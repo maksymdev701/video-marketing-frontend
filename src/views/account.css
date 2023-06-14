@@ -1,0 +1,884 @@
+.account-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.account-heading-title {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  margin-top: 0px;
+  align-items: center;
+  margin-bottom: 0px;
+  flex-direction: column;
+  justify-content: center;
+}
+.account-text {
+  color: var(--dl-color-primary-100);
+  margin-bottom: var(--dl-space-space-twounits);
+}
+.account-container01 {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  padding-left: var(--dl-space-space-sixunits);
+  padding-right: var(--dl-space-space-sixunits);
+  justify-content: space-between;
+}
+.account-text01 {
+  color: var(--dl-color-primary-100);
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: var(--dl-space-space-unit);
+  text-decoration: none;
+}
+.account-text02 {
+  color: var(--dl-color-primary-100);
+  font-style: normal;
+  font-weight: 700;
+  margin-bottom: var(--dl-space-space-unit);
+  text-decoration: none;
+}
+.account-text03 {
+  margin-top: var(--dl-space-space-twounits);
+  margin-bottom: var(--dl-space-space-twounits);
+}
+.account-subtitle {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 65px;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  align-self: center;
+  margin-top: var(--dl-space-space-twounits);
+  align-items: center;
+  margin-bottom: var(--dl-space-space-twounits);
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--dl-color-primary-100);
+}
+.account-text04 {
+  color: var(--dl-color-primary-300);
+  width: auto;
+  font-size: 22px;
+  font-style: normal;
+  text-align: center;
+  font-weight: 400;
+  padding-right: 0px;
+}
+.account-tik-tok {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  padding: var(--dl-space-space-twounits);
+  position: relative;
+  align-items: center;
+  border-color: var(--dl-color-gray-700);
+  border-width: 1px;
+  margin-bottom: 0px;
+  justify-content: flex-start;
+}
+.account-logo {
+  flex: 0 0 auto;
+  width: 20%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.account-image {
+  width: var(--dl-size-size-small);
+  height: var(--dl-size-size-small);
+  object-fit: cover;
+}
+.account-text05 {
+  font-style: normal;
+  margin-top: var(--dl-space-space-halfunit);
+  text-align: center;
+  font-weight: 700;
+}
+.account-container02 {
+  flex: 0 0 auto;
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.account-textinput {
+  width: var(--dl-size-size-xxlarge);
+  border-radius: var(--dl-radius-radius-radius10);
+  margin-bottom: var(--dl-space-space-unit);
+}
+.account-textinput01 {
+  width: var(--dl-size-size-xxlarge);
+  border-radius: var(--dl-radius-radius-radius10);
+  margin-bottom: var(--dl-space-space-unit);
+}
+.account-container03 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.account-button {
+  color: var(--dl-color-primary-100);
+  width: var(--dl-size-size-large);
+  height: var(--dl-size-size-small);
+  padding: var(--dl-space-space-halfunit);
+  align-self: flex-start;
+  margin-top: 0px;
+  border-color: var(--dl-color-primary-100);
+  border-width: 1px;
+  border-radius: var(--dl-radius-radius-radius10);
+  padding-right: 8px;
+  padding-bottom: 8px;
+  background-color: transparent;
+}
+.account-button01 {
+  color: var(--dl-color-primary-300);
+  width: var(--dl-size-size-large);
+  height: var(--dl-size-size-small);
+  padding: var(--dl-space-space-halfunit);
+  align-self: flex-start;
+  margin-top: 0px;
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius10);
+  padding-right: 8px;
+  padding-bottom: 8px;
+  background-color: var(--dl-color-primary-100);
+}
+.account-you-tube {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  padding: var(--dl-space-space-twounits);
+  position: relative;
+  align-items: center;
+  border-color: var(--dl-color-gray-700);
+  border-width: 1px;
+  margin-bottom: 0px;
+  justify-content: flex-start;
+}
+.account-logo1 {
+  flex: 0 0 auto;
+  width: 20%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.account-icon {
+  width: var(--dl-size-size-small);
+  height: var(--dl-size-size-small);
+}
+.account-text06 {
+  font-style: normal;
+  margin-top: var(--dl-space-space-halfunit);
+  text-align: center;
+  font-weight: 700;
+}
+.account-container04 {
+  flex: 0 0 auto;
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.account-textinput02 {
+  width: var(--dl-size-size-xxlarge);
+  border-radius: var(--dl-radius-radius-radius10);
+  margin-bottom: var(--dl-space-space-unit);
+}
+.account-textinput03 {
+  width: var(--dl-size-size-xxlarge);
+  border-radius: var(--dl-radius-radius-radius10);
+  margin-bottom: var(--dl-space-space-unit);
+}
+.account-container05 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.account-button02 {
+  color: var(--dl-color-primary-100);
+  width: var(--dl-size-size-large);
+  height: var(--dl-size-size-small);
+  padding: var(--dl-space-space-halfunit);
+  align-self: flex-start;
+  margin-top: 0px;
+  border-color: var(--dl-color-primary-100);
+  border-width: 1px;
+  border-radius: var(--dl-radius-radius-radius10);
+  padding-right: 8px;
+  padding-bottom: 8px;
+  background-color: transparent;
+}
+.account-button03 {
+  color: var(--dl-color-primary-300);
+  width: var(--dl-size-size-large);
+  height: var(--dl-size-size-small);
+  padding: var(--dl-space-space-halfunit);
+  align-self: flex-start;
+  margin-top: 0px;
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius10);
+  padding-right: 8px;
+  padding-bottom: 8px;
+  background-color: var(--dl-color-primary-100);
+}
+.account-facebook {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  padding: var(--dl-space-space-twounits);
+  position: relative;
+  align-items: center;
+  border-color: var(--dl-color-gray-700);
+  border-width: 1px;
+  margin-bottom: 0px;
+  justify-content: flex-start;
+}
+.account-logo2 {
+  flex: 0 0 auto;
+  width: 20%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.account-icon2 {
+  width: var(--dl-size-size-small);
+  height: var(--dl-size-size-small);
+}
+.account-text07 {
+  font-style: normal;
+  margin-top: var(--dl-space-space-halfunit);
+  text-align: center;
+  font-weight: 700;
+}
+.account-container06 {
+  flex: 0 0 auto;
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.account-textinput04 {
+  width: var(--dl-size-size-xxlarge);
+  border-radius: var(--dl-radius-radius-radius10);
+  margin-bottom: var(--dl-space-space-unit);
+}
+.account-textinput05 {
+  width: var(--dl-size-size-xxlarge);
+  border-radius: var(--dl-radius-radius-radius10);
+  margin-bottom: var(--dl-space-space-unit);
+}
+.account-container07 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.account-button04 {
+  color: var(--dl-color-primary-100);
+  width: var(--dl-size-size-large);
+  height: var(--dl-size-size-small);
+  padding: var(--dl-space-space-halfunit);
+  align-self: flex-start;
+  margin-top: 0px;
+  border-color: var(--dl-color-primary-100);
+  border-width: 1px;
+  border-radius: var(--dl-radius-radius-radius10);
+  padding-right: 8px;
+  padding-bottom: 8px;
+  background-color: transparent;
+}
+.account-button05 {
+  color: var(--dl-color-primary-300);
+  width: var(--dl-size-size-large);
+  height: var(--dl-size-size-small);
+  padding: var(--dl-space-space-halfunit);
+  align-self: flex-start;
+  margin-top: 0px;
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius10);
+  padding-right: 8px;
+  padding-bottom: 8px;
+  background-color: var(--dl-color-primary-100);
+}
+.account-channels {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  padding: var(--dl-space-space-twounits);
+  position: relative;
+  align-items: center;
+  border-color: var(--dl-color-gray-700);
+  border-width: 1px;
+  margin-bottom: 0px;
+  justify-content: flex-start;
+}
+.account-logo3 {
+  flex: 0 0 auto;
+  width: 20%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.account-icon4 {
+  width: var(--dl-size-size-small);
+  height: var(--dl-size-size-small);
+}
+.account-text08 {
+  font-style: normal;
+  margin-top: var(--dl-space-space-halfunit);
+  text-align: center;
+  font-weight: 700;
+}
+.account-container08 {
+  flex: 0 0 auto;
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.account-textinput06 {
+  width: var(--dl-size-size-xxlarge);
+  border-radius: var(--dl-radius-radius-radius10);
+  margin-bottom: var(--dl-space-space-unit);
+}
+.account-textinput07 {
+  width: var(--dl-size-size-xxlarge);
+  border-radius: var(--dl-radius-radius-radius10);
+  margin-bottom: var(--dl-space-space-unit);
+}
+.account-container09 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+}
+.account-button06 {
+  color: var(--dl-color-primary-100);
+  width: var(--dl-size-size-large);
+  height: var(--dl-size-size-small);
+  padding: var(--dl-space-space-halfunit);
+  align-self: flex-start;
+  margin-top: 0px;
+  border-color: var(--dl-color-primary-100);
+  border-width: 1px;
+  border-radius: var(--dl-radius-radius-radius10);
+  padding-right: 8px;
+  padding-bottom: 8px;
+  background-color: transparent;
+}
+.account-button07 {
+  color: var(--dl-color-primary-300);
+  width: var(--dl-size-size-large);
+  height: var(--dl-size-size-small);
+  padding: var(--dl-space-space-halfunit);
+  align-self: flex-start;
+  margin-top: 0px;
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius10);
+  padding-right: 8px;
+  padding-bottom: 8px;
+  background-color: var(--dl-color-primary-100);
+}
+.account-subtitle1 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 65px;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  align-self: center;
+  margin-top: var(--dl-space-space-twounits);
+  align-items: center;
+  margin-bottom: var(--dl-space-space-twounits);
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--dl-color-primary-100);
+}
+.account-text09 {
+  color: var(--dl-color-primary-300);
+  width: auto;
+  font-size: 22px;
+  font-style: normal;
+  text-align: center;
+  font-weight: 400;
+  padding-right: 0px;
+}
+.account-name {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  align-items: center;
+  border-color: var(--dl-color-gray-700);
+  border-width: 1px;
+  justify-content: flex-start;
+}
+.account-container10 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.account-text10 {
+  width: var(--dl-size-size-xlarge);
+  padding-right: var(--dl-space-space-unit);
+}
+.account-text11 {
+  color: var(--dl-color-primary-100);
+}
+.account-mobile {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  align-self: center;
+  align-items: flex-start;
+  border-color: var(--dl-color-gray-700);
+  border-width: 1px;
+  flex-direction: column;
+  justify-content: center;
+}
+.account-container11 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.account-text12 {
+  width: var(--dl-size-size-xlarge);
+  padding-right: var(--dl-space-space-unit);
+}
+.account-text13 {
+  color: var(--dl-color-primary-100);
+}
+.account-button08 {
+  color: var(--dl-color-primary-100);
+  width: var(--dl-size-size-large);
+  height: var(--dl-size-size-small);
+  padding: var(--dl-space-space-halfunit);
+  align-self: flex-start;
+  margin-top: var(--dl-space-space-unit);
+  border-color: var(--dl-color-primary-100);
+  border-width: 1px;
+  border-radius: var(--dl-radius-radius-radius10);
+  padding-right: 8px;
+  background-color: transparent;
+}
+.account-email {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  align-self: center;
+  align-items: flex-start;
+  border-color: var(--dl-color-gray-700);
+  border-width: 1px;
+  flex-direction: column;
+  justify-content: center;
+}
+.account-container12 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.account-text14 {
+  width: var(--dl-size-size-xlarge);
+  padding-right: var(--dl-space-space-unit);
+}
+.account-text15 {
+  color: var(--dl-color-primary-100);
+}
+.account-button09 {
+  color: var(--dl-color-primary-100);
+  width: var(--dl-size-size-large);
+  height: var(--dl-size-size-small);
+  padding: var(--dl-space-space-halfunit);
+  align-self: flex-start;
+  margin-top: var(--dl-space-space-unit);
+  border-color: var(--dl-color-primary-100);
+  border-width: 1px;
+  border-radius: var(--dl-radius-radius-radius10);
+  padding-right: 8px;
+  background-color: transparent;
+}
+.account-change-password {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  align-self: center;
+  align-items: flex-start;
+  border-color: var(--dl-color-gray-700);
+  border-width: 1px;
+  flex-direction: column;
+  justify-content: center;
+}
+.account-container13 {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--dl-space-space-unit);
+  justify-content: flex-start;
+}
+.account-text16 {
+  width: var(--dl-size-size-xlarge);
+  font-style: normal;
+  font-weight: 700;
+  padding-right: var(--dl-space-space-unit);
+}
+.account-container14 {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--dl-space-space-unit);
+  justify-content: flex-start;
+}
+.account-text17 {
+  width: var(--dl-size-size-xlarge);
+  padding-right: var(--dl-space-space-unit);
+}
+.account-textinput08 {
+  border-radius: var(--dl-radius-radius-radius10);
+}
+.account-container15 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.account-text18 {
+  width: var(--dl-size-size-xlarge);
+  padding-right: var(--dl-space-space-unit);
+}
+.account-textinput09 {
+  border-radius: var(--dl-radius-radius-radius10);
+}
+.account-button10 {
+  color: var(--dl-color-primary-300);
+  width: var(--dl-size-size-large);
+  height: var(--dl-size-size-small);
+  padding: var(--dl-space-space-halfunit);
+  align-self: flex-start;
+  margin-top: var(--dl-space-space-unit);
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius10);
+  padding-right: 8px;
+  background-color: var(--dl-color-primary-100);
+}
+.account-container16 {
+  width: 100%;
+  border: 2px dashed rgba(120, 120, 120, 0.4);
+  height: var(--dl-size-size-medium);
+  display: flex;
+  align-items: flex-start;
+}
+@media(max-width: 991px) {
+  .account-text03 {
+    margin-top: var(--dl-space-space-twounits);
+  }
+  .account-subtitle {
+    width: 100%;
+    padding: var(--dl-space-space-unit);
+    align-items: flex-start;
+  }
+  .account-tik-tok {
+    border-color: var(--dl-color-gray-700);
+    border-width: 1px;
+  }
+  .account-textinput {
+    width: var(--dl-size-size-xxlarge);
+  }
+  .account-textinput01 {
+    width: var(--dl-size-size-xxlarge);
+  }
+  .account-button {
+    color: var(--dl-color-primary-100);
+    margin-top: var(--dl-space-space-unit);
+    font-family: Inter;
+    margin-left: 0px;
+    padding-top: var(--dl-space-space-halfunit);
+    border-width: 1px;
+    border-radius: var(--dl-radius-radius-radius10);
+    padding-bottom: var(--dl-space-space-halfunit);
+    background-color: transparent;
+  }
+  .account-button01 {
+    color: var(--dl-color-primary-300);
+    margin-top: var(--dl-space-space-unit);
+    font-family: Inter;
+    margin-left: 0px;
+    padding-top: var(--dl-space-space-halfunit);
+    border-width: 0px;
+    border-radius: var(--dl-radius-radius-radius10);
+    padding-bottom: var(--dl-space-space-halfunit);
+    background-color: var(--dl-color-primary-100);
+  }
+  .account-you-tube {
+    border-color: var(--dl-color-gray-700);
+    border-width: 1px;
+  }
+  .account-textinput02 {
+    width: var(--dl-size-size-xxlarge);
+  }
+  .account-textinput03 {
+    width: var(--dl-size-size-xxlarge);
+  }
+  .account-button02 {
+    color: var(--dl-color-primary-100);
+    margin-top: var(--dl-space-space-unit);
+    font-family: Inter;
+    margin-left: 0px;
+    padding-top: var(--dl-space-space-halfunit);
+    border-width: 1px;
+    border-radius: var(--dl-radius-radius-radius10);
+    padding-bottom: var(--dl-space-space-halfunit);
+    background-color: transparent;
+  }
+  .account-button03 {
+    color: var(--dl-color-primary-300);
+    margin-top: var(--dl-space-space-unit);
+    font-family: Inter;
+    margin-left: 0px;
+    padding-top: var(--dl-space-space-halfunit);
+    border-width: 0px;
+    border-radius: var(--dl-radius-radius-radius10);
+    padding-bottom: var(--dl-space-space-halfunit);
+    background-color: var(--dl-color-primary-100);
+  }
+  .account-facebook {
+    border-color: var(--dl-color-gray-700);
+    border-width: 1px;
+  }
+  .account-textinput04 {
+    width: var(--dl-size-size-xxlarge);
+  }
+  .account-textinput05 {
+    width: var(--dl-size-size-xxlarge);
+  }
+  .account-button04 {
+    color: var(--dl-color-primary-100);
+    margin-top: var(--dl-space-space-unit);
+    font-family: Inter;
+    margin-left: 0px;
+    padding-top: var(--dl-space-space-halfunit);
+    border-width: 1px;
+    border-radius: var(--dl-radius-radius-radius10);
+    padding-bottom: var(--dl-space-space-halfunit);
+    background-color: transparent;
+  }
+  .account-button05 {
+    color: var(--dl-color-primary-300);
+    margin-top: var(--dl-space-space-unit);
+    font-family: Inter;
+    margin-left: 0px;
+    padding-top: var(--dl-space-space-halfunit);
+    border-width: 0px;
+    border-radius: var(--dl-radius-radius-radius10);
+    padding-bottom: var(--dl-space-space-halfunit);
+    background-color: var(--dl-color-primary-100);
+  }
+  .account-channels {
+    border-color: var(--dl-color-gray-700);
+    border-width: 1px;
+  }
+  .account-textinput06 {
+    width: var(--dl-size-size-xxlarge);
+  }
+  .account-textinput07 {
+    width: var(--dl-size-size-xxlarge);
+  }
+  .account-button06 {
+    color: var(--dl-color-primary-100);
+    margin-top: var(--dl-space-space-unit);
+    font-family: Inter;
+    margin-left: 0px;
+    padding-top: var(--dl-space-space-halfunit);
+    border-width: 1px;
+    border-radius: var(--dl-radius-radius-radius10);
+    padding-bottom: var(--dl-space-space-halfunit);
+    background-color: transparent;
+  }
+  .account-button07 {
+    color: var(--dl-color-primary-300);
+    margin-top: var(--dl-space-space-unit);
+    font-family: Inter;
+    margin-left: 0px;
+    padding-top: var(--dl-space-space-halfunit);
+    border-width: 0px;
+    border-radius: var(--dl-radius-radius-radius10);
+    padding-bottom: var(--dl-space-space-halfunit);
+    background-color: var(--dl-color-primary-100);
+  }
+  .account-subtitle1 {
+    width: 100%;
+    padding: var(--dl-space-space-unit);
+    align-items: flex-start;
+  }
+  .account-text11 {
+    color: var(--dl-color-primary-100);
+  }
+  .account-mobile {
+    width: 100%;
+    padding: var(--dl-space-space-unit);
+    align-items: flex-start;
+  }
+  .account-container11 {
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .account-text13 {
+    color: var(--dl-color-primary-100);
+  }
+  .account-button08 {
+    color: var(--dl-color-primary-100);
+    margin-top: var(--dl-space-space-unit);
+    font-family: Inter;
+    margin-left: 0px;
+    padding-top: var(--dl-space-space-halfunit);
+    border-width: 1px;
+    border-radius: var(--dl-radius-radius-radius10);
+    padding-bottom: var(--dl-space-space-halfunit);
+    background-color: transparent;
+  }
+  .account-email {
+    width: 100%;
+    padding: var(--dl-space-space-unit);
+    align-items: flex-start;
+  }
+  .account-container12 {
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .account-text15 {
+    color: var(--dl-color-primary-100);
+  }
+  .account-button09 {
+    color: var(--dl-color-primary-100);
+    margin-top: var(--dl-space-space-unit);
+    font-family: Inter;
+    margin-left: 0px;
+    padding-top: var(--dl-space-space-halfunit);
+    border-width: 1px;
+    border-radius: var(--dl-radius-radius-radius10);
+    padding-bottom: var(--dl-space-space-halfunit);
+    background-color: transparent;
+  }
+  .account-change-password {
+    width: 100%;
+    padding: var(--dl-space-space-unit);
+    align-items: flex-start;
+  }
+  .account-container13 {
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .account-button10 {
+    color: var(--dl-color-primary-100);
+    margin-top: var(--dl-space-space-unit);
+    font-family: Inter;
+    margin-left: 0px;
+    padding-top: var(--dl-space-space-halfunit);
+    border-width: 1px;
+    border-radius: var(--dl-radius-radius-radius10);
+    padding-bottom: var(--dl-space-space-halfunit);
+    background-color: transparent;
+  }
+}
+@media(max-width: 479px) {
+  .account-container01 {
+    align-items: center;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .account-text01 {
+    align-self: center;
+    margin-bottom: 0px;
+  }
+  .account-text02 {
+    margin-bottom: 0px;
+  }
+  .account-text03 {
+    margin-top: var(--dl-space-space-twounits);
+    margin-bottom: 0px;
+  }
+  .account-subtitle {
+    align-items: flex-start;
+  }
+  .account-button {
+    align-self: flex-end;
+  }
+  .account-button01 {
+    align-self: flex-end;
+  }
+  .account-button02 {
+    align-self: flex-end;
+  }
+  .account-button03 {
+    align-self: flex-end;
+  }
+  .account-button04 {
+    align-self: flex-end;
+  }
+  .account-button05 {
+    align-self: flex-end;
+  }
+  .account-button06 {
+    align-self: flex-end;
+  }
+  .account-button07 {
+    align-self: flex-end;
+  }
+  .account-subtitle1 {
+    align-items: flex-start;
+  }
+  .account-name {
+    align-self: center;
+    justify-content: flex-start;
+  }
+  .account-mobile {
+    align-items: flex-start;
+  }
+  .account-button08 {
+    align-self: flex-end;
+  }
+  .account-email {
+    align-items: flex-start;
+  }
+  .account-button09 {
+    align-self: flex-end;
+  }
+  .account-change-password {
+    align-items: flex-start;
+  }
+  .account-button10 {
+    color: var(--dl-color-primary-300);
+    align-self: flex-end;
+    border-width: 0px;
+    background-color: var(--dl-color-primary-100);
+  }
+}
