@@ -84,7 +84,9 @@
   color: var(--dl-color-primary-300);
   width: 216px;
   height: var(--dl-size-size-small);
-  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: 0px;
   border-width: 0px;
   border-radius: var(--dl-radius-radius-radius10);
@@ -247,7 +249,9 @@
   color: var(--dl-color-primary-300);
   width: 216px;
   height: var(--dl-size-size-small);
-  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: 0px;
   border-width: 0px;
   border-radius: var(--dl-radius-radius-radius10);
