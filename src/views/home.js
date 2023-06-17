@@ -1,13 +1,107 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
+import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 
-import { Helmet } from 'react-helmet'
-
-import Language from '../components/language'
-import Footer from '../components/footer'
-import './home.css'
+import Language from "../components/language";
+import Footer from "../components/footer";
+import "./home.css";
+import { validateEmail, validateEmpty, validatePhoneNumber } from "../utils";
+import {
+  useLoginUserMutation,
+  useRegisterUserMutation,
+} from "../redux/api/authApi";
 
 const Home = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loginError, setLoginerror] = useState("");
+  const [newName, setNewName] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [newMobile, setNewMobile] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [registerError, setRegisterError] = useState("");
+
+  const [loginUser, loginStates] = useLoginUserMutation();
+  const [registerUser, registerStates] = useRegisterUserMutation();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleSignup = () => {
+    if (
+      validateEmpty(newName) ||
+      validateEmpty(newEmail) ||
+      validateEmpty(newMobile) ||
+      validateEmpty(newPassword) ||
+      validateEmpty(confirm)
+    ) {
+      setRegisterError("Please fill all the fields!");
+      return;
+    }
+    if (!validateEmail(newEmail)) {
+      setRegisterError("Please enter valid email format!");
+      return;
+    }
+    if (!validatePhoneNumber(newMobile)) {
+      setRegisterError("Please enter valid phone number!");
+      return;
+    }
+    if (newPassword !== confirm) {
+      setRegisterError("Password doesn't match!");
+      return;
+    }
+    setRegisterError("");
+
+    registerUser({
+      name: newName,
+      email: newEmail,
+      mobile: newMobile,
+      password: newPassword,
+      passwordConfirm: confirm,
+    });
+  };
+
+  useEffect(() => {
+    if (registerStates.isSuccess) {
+      toast.success("User registered successfully");
+      setNewName("");
+      setNewEmail("");
+      setNewMobile("");
+      setNewPassword("");
+      setConfirm("");
+    }
+    if (registerStates.isError) {
+      toast.error(registerStates.error.data.detail, {
+        position: "top-right",
+      });
+    }
+  }, [registerStates.isLoading]);
+
+  const handleSignin = () => {
+    if (validateEmpty(email) || validateEmpty(password)) {
+      setLoginerror("Fill out all the fields!");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setLoginerror("Input valid email format!");
+      return;
+    }
+    setLoginerror("");
+    // axios
+    //   .post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password })
+    //   .then(({ data }) => {})
+    //   .catch((err) => console.log(err));
+    toast.success("User login successfully");
+    navigate("/my-stats")
+  };
+
+  useEffect(() => {
+
+  })
+
   return (
     <div className="home-container">
       <Helmet>
@@ -38,8 +132,10 @@ const Home = (props) => {
           <span className="home-text01">Email</span>
           <input
             type="text"
-            placeholder="placeholder"
+            placeholder="Input your Email"
             className="home-textinput input"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
       </div>
@@ -47,16 +143,19 @@ const Home = (props) => {
         <div className="home-container02">
           <span className="home-text02">Password</span>
           <input
-            type="text"
-            placeholder="placeholder"
+            type="password"
+            placeholder="Input your password"
             className="home-textinput1 input"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
       </div>
+      {loginError ? <div style={{ color: "red" }}>{loginError}</div> : null}
       <div className="home-confirm">
-        <Link to="/download" className="home-navlink button">
-          CONFIRM
-        </Link>
+        <button className="home-navlink button" onClick={handleSignin}>
+          Login
+        </button>
       </div>
       <div className="home-forgot">
         <a
@@ -77,8 +176,10 @@ const Home = (props) => {
           <span className="home-text04">Name</span>
           <input
             type="text"
-            placeholder="placeholder"
+            placeholder="Input your Name"
             className="home-textinput2 input"
+            onChange={(e) => setNewName(e.target.value)}
+            value={newName}
           />
         </div>
       </div>
@@ -87,8 +188,10 @@ const Home = (props) => {
           <span className="home-text05">Email</span>
           <input
             type="text"
-            placeholder="placeholder"
+            placeholder="Input your Email"
             className="home-textinput3 input"
+            onChange={(e) => setNewEmail(e.target.value)}
+            value={newEmail}
           />
         </div>
       </div>
@@ -97,7 +200,7 @@ const Home = (props) => {
           Input your mobile number like this: +area code SPACE mobile number.
           <span
             dangerouslySetInnerHTML={{
-              __html: ' ',
+              __html: " ",
             }}
           />
         </span>
@@ -109,8 +212,10 @@ const Home = (props) => {
           <span className="home-text09">Mobile</span>
           <input
             type="text"
-            placeholder="placeholder"
+            placeholder="Input your Mobile"
             className="home-textinput4 input"
+            onChange={(e) => setNewMobile(e.target.value)}
+            value={newMobile}
           />
         </div>
       </div>
@@ -122,9 +227,11 @@ const Home = (props) => {
         <div className="home-container07">
           <span className="home-text10">Password</span>
           <input
-            type="text"
-            placeholder="placeholder"
+            type="password"
+            placeholder="Input your password"
             className="home-textinput5 input"
+            onChange={(e) => setNewPassword(e.target.value)}
+            value={newPassword}
           />
         </div>
       </div>
@@ -132,21 +239,26 @@ const Home = (props) => {
         <div className="home-container08">
           <span className="home-text11">Confirm Password</span>
           <input
-            type="text"
-            placeholder="placeholder"
+            type="password"
+            placeholder="Confirm your password"
             className="home-textinput6 input"
+            onChange={(e) => setConfirm(e.target.value)}
+            value={confirm}
           />
         </div>
       </div>
+      {registerError ? (
+        <div style={{ color: "red" }}>{registerError}</div>
+      ) : null}
       <div className="home-confirm1">
-        <Link to="/account" className="home-navlink1 button">
-          CONFIRM
-        </Link>
+        <button className="home-navlink1 button" onClick={handleSignup}>
+          Register
+        </button>
       </div>
       <div className="home-container09"></div>
       <Footer rootClassName="footer-root-class-name"></Footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
