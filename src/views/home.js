@@ -30,6 +30,8 @@ const Home = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const from = location.state ? location.state.from.pathname : "/my-stats";
+
   const handleSignup = () => {
     if (
       validateEmpty(newName) ||
@@ -74,9 +76,18 @@ const Home = (props) => {
       setConfirm("");
     }
     if (registerStates.isError) {
-      toast.error(registerStates.error.data.detail, {
-        position: "top-right",
-      });
+      if (Array.isArray(registerStates.error.data.detail)) {
+        console.log(registerStates.error.data.detail);
+        registerStates.error.data.detail.forEach((el) =>
+          toast.error(`${el.loc[1]}: ${el.msg}`, {
+            position: "top-right",
+          })
+        );
+      } else {
+        toast.error(registerStates.error.data.detail, {
+          position: "top-right",
+        });
+      }
     }
   }, [registerStates.isLoading]);
 
@@ -90,17 +101,29 @@ const Home = (props) => {
       return;
     }
     setLoginerror("");
-    // axios
-    //   .post(`${process.env.REACT_APP_API_URL}/auth/login`, { email, password })
-    //   .then(({ data }) => {})
-    //   .catch((err) => console.log(err));
-    toast.success("User login successfully");
-    navigate("/my-stats")
+    loginUser({email, password});
   };
 
   useEffect(() => {
-
-  })
+    if(loginStates.isSuccess) {
+      toast.success("User login successfully");
+      navigate(from);
+    }
+    if(loginStates.isError) {
+      if (Array.isArray(loginStates.error.data.detail)) {
+        console.log(loginStates.error.data.detail);
+        loginStates.error.data.detail.forEach((el) =>
+          toast.error(`${el.loc[1]}: ${el.msg}`, {
+            position: "top-right",
+          })
+        );
+      } else {
+        toast.error(loginStates.error.data.detail, {
+          position: "top-right",
+        });
+      }
+    }
+    }, [loginStates.isLoading]);
 
   return (
     <div className="home-container">
