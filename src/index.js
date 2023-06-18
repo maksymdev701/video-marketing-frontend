@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
 
 import "./style.css";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 import MyStats from "./views/my-stats";
 import NewUser from "./views/new-user";
@@ -18,6 +18,8 @@ import Download from "./views/download";
 import Home from "./views/home";
 import TermsPrivacy from "./views/terms-privacy";
 import Dashboard from "./views/dashboard";
+import UnauthorizedPage from "./views/unauthorized";
+import RequireUser from "./components/require-user";
 import { store } from "./redux/store";
 
 const App = () => {
@@ -27,16 +29,29 @@ const App = () => {
         <ToastContainer />
         <Routes>
           <Route element={<Home />} path="/" />
-          <Route element={<MyStats />} path="/my-stats" />
-          <Route element={<NewUser />} path="/new-user" />
-          <Route element={<UploadPopup />} path="/upload-popup" />
-          <Route element={<Creator />} path="/creator" />
-          <Route element={<Users />} path="/users" />
           <Route element={<ForgotPassword />} path="/forgot-password" />
-          <Route element={<Account />} path="/account" />
-          <Route element={<Download />} path="/download" />
+          <Route element={<UnauthorizedPage />} path="/unauthorized" />
+
+          <Route
+            element={<RequireUser allowedRoles={["marketeer", "creator"]} />}
+          >
+            <Route element={<MyStats />} path="/my-stats" />
+            <Route element={<Account />} path="/account" />
+            <Route element={<Download />} path="/download" />
+          </Route>
+
+          <Route element={<RequireUser allowedRoles={["admin"]} />}>
+            <Route element={<NewUser />} path="/new-user" />
+            <Route element={<Users />} path="/users" />
+            <Route element={<Dashboard />} path="/dashboard" />
+          </Route>
+
+          <Route element={<RequireUser allowedRoles={["creator"]} />}>
+            <Route element={<Creator />} path="/creator" />
+            <Route element={<UploadPopup />} path="/upload-popup" />
+          </Route>
+
           <Route element={<TermsPrivacy />} path="/terms-privacy" />
-          <Route element={<Dashboard />} path="/dashboard" />
         </Routes>
       </BrowserRouter>
     </Provider>

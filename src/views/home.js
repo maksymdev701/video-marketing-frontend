@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -11,7 +10,7 @@ import { validateEmail, validateEmpty, validatePhoneNumber } from "../utils";
 import {
   useLoginUserMutation,
   useRegisterUserMutation,
-} from "../redux/api/authApi";
+} from "../redux/api/auth-api";
 
 const Home = (props) => {
   const [email, setEmail] = useState("");
@@ -29,8 +28,6 @@ const Home = (props) => {
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  const from = location.state ? location.state.from.pathname : "/my-stats";
 
   const handleSignup = () => {
     if (
@@ -63,6 +60,7 @@ const Home = (props) => {
       mobile: newMobile,
       password: newPassword,
       passwordConfirm: confirm,
+      role: "marketeer",
     });
   };
 
@@ -101,15 +99,21 @@ const Home = (props) => {
       return;
     }
     setLoginerror("");
-    loginUser({email, password});
+    loginUser({ email, password });
   };
 
   useEffect(() => {
-    if(loginStates.isSuccess) {
+    if (loginStates.isSuccess) {
       toast.success("User login successfully");
+      const role = loginStates.data.role;
+      const from = location.state
+        ? location.state.pathname.from
+        : role === "admin"
+        ? "/dashboard"
+        : "/my-stats";
       navigate(from);
     }
-    if(loginStates.isError) {
+    if (loginStates.isError) {
       if (Array.isArray(loginStates.error.data.detail)) {
         console.log(loginStates.error.data.detail);
         loginStates.error.data.detail.forEach((el) =>
@@ -123,7 +127,7 @@ const Home = (props) => {
         });
       }
     }
-    }, [loginStates.isLoading]);
+  }, [loginStates.isLoading]);
 
   return (
     <div className="home-container">
