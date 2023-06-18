@@ -1,12 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import { useSelector } from "react-redux";
 
-import { Helmet } from 'react-helmet'
-
-import NavbarCreator from '../components/navbar-creator'
-import Channels from '../components/channels'
-import Footer from '../components/footer'
-import './account.css'
+import NavbarCreator from "../components/navbar-creator";
+import Channels from "../components/channels";
+import Footer from "../components/footer";
+import "./account.css";
 
 const Account = (props) => {
   return (
@@ -40,7 +40,7 @@ const Account = (props) => {
           platform.
           <span
             dangerouslySetInnerHTML={{
-              __html: ' ',
+              __html: " ",
             }}
           />
         </span>
@@ -177,7 +177,7 @@ const Account = (props) => {
           Change
           <span
             dangerouslySetInnerHTML={{
-              __html: ' ',
+              __html: " ",
             }}
           />
         </button>
@@ -191,7 +191,7 @@ const Account = (props) => {
           Change
           <span
             dangerouslySetInnerHTML={{
-              __html: ' ',
+              __html: " ",
             }}
           />
         </button>
@@ -223,7 +223,7 @@ const Account = (props) => {
       <div className="account-container16"></div>
       <Footer rootClassName="footer-root-class-name4"></Footer>
     </div>
-  )
-}
+  );
+};
 
-export default Account
+export default Account;

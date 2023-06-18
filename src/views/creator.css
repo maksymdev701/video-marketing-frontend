@@ -193,6 +193,7 @@
   border-radius: var(--dl-radius-radius-radius20);
   margin-bottom: var(--dl-space-space-twounits);
   background-color: var(--dl-color-primary-300);
+  padding: 20px;
 }
 .creator-button {
   color: var(--dl-color-primary-300);

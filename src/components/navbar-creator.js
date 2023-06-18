@@ -1,12 +1,14 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 
-import PropTypes from 'prop-types'
-
-import Language from './language'
-import './navbar-creator.css'
+import Language from "./language";
+import "./navbar-creator.css";
 
 const NavbarCreator = (props) => {
+  const user = useSelector((state) => state.userState.user);
+
   return (
     <div className={`navbar-creator-container ${props.rootClassName} `}>
       <header
@@ -35,9 +37,12 @@ const NavbarCreator = (props) => {
             <Link to="/my-stats" className="navbar-creator-navlink1">
               {props.text1}
             </Link>
-            <Link to="/creator" className="navbar-creator-navlink2">
-              {props.text2}
-            </Link>
+            {user && user.role === "creator" ? (
+              <Link to="/creator" className="navbar-creator-navlink2">
+                {props.text2}
+              </Link>
+            ) : null}
+
             <Link to="/account" className="navbar-creator-navlink3">
               {props.text3}
             </Link>
@@ -142,31 +147,31 @@ const NavbarCreator = (props) => {
         </div>
       </header>
     </div>
-  )
-}
+  );
+};
 
 NavbarCreator.defaultProps = {
-  button1: 'Log Out',
-  button: 'Log Out',
-  text2: 'Creator',
-  image_alt2: 'image',
-  Login: 'Login',
-  text6: 'Creator Stats',
-  text5: 'My Stats',
-  text: 'Download',
-  Register: 'Register',
-  text1: 'My Stats',
-  text4: 'Download',
-  text3: 'Account',
+  button1: "Log Out",
+  button: "Log Out",
+  text2: "Creator",
+  image_alt2: "image",
+  Login: "Login",
+  text6: "Creator Stats",
+  text5: "My Stats",
+  text: "Download",
+  Register: "Register",
+  text1: "My Stats",
+  text4: "Download",
+  text3: "Account",
   image_src1:
-    'https://presentation-website-assets.teleporthq.io/logos/logo.png',
-  text7: 'My Account',
-  rootClassName: '',
-  image_alt1: 'image',
-  image_alt: 'logo',
-  image_src: '/eurasia%20media%20logo.svg',
-  image_src2: '/eurasia%20media%20logo.svg',
-}
+    "https://presentation-website-assets.teleporthq.io/logos/logo.png",
+  text7: "My Account",
+  rootClassName: "",
+  image_alt1: "image",
+  image_alt: "logo",
+  image_src: "/eurasia%20media%20logo.svg",
+  image_src2: "/eurasia%20media%20logo.svg",
+};
 
 NavbarCreator.propTypes = {
   button1: PropTypes.string,
@@ -188,6 +193,6 @@ NavbarCreator.propTypes = {
   image_alt: PropTypes.string,
   image_src: PropTypes.string,
   image_src2: PropTypes.string,
-}
+};
 
-export default NavbarCreator
+export default NavbarCreator;

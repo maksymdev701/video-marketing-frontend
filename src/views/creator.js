@@ -1,12 +1,29 @@
-import React from 'react'
+import React, { useRef, useState } from "react";
 
-import { Helmet } from 'react-helmet'
+import { Helmet } from "react-helmet";
 
-import NavbarCreator from '../components/navbar-creator'
-import Footer from '../components/footer'
-import './creator.css'
+import NavbarCreator from "../components/navbar-creator";
+import Footer from "../components/footer";
+import "./creator.css";
 
 const Creator = (props) => {
+  const inputFileRef = useRef(null);
+  const [files, setFiles] = useState([]);
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    setFiles([...files, ...event.dataTransfer.files]);
+  };
+
+  const handleFilesInputChange = (event) => {
+    setFiles([...files, ...event.target.files]);
+  };
+
+  const handleUpload = () => {
+    const formData = new FormData();
+    formData.append("files", files);
+  };
+
   return (
     <div className="creator-container">
       <Helmet>
@@ -68,7 +85,34 @@ const Creator = (props) => {
         </span>
       </div>
       <div className="creator-container1">
-        <div className="creator-container2"></div>
+        <input
+          type="file"
+          style={{ display: "none" }}
+          ref={inputFileRef}
+          multiple
+          onChange={handleFilesInputChange}
+        />
+        <div
+          className="creator-container2"
+          onClick={() => inputFileRef.current.click()}
+          onDragOver={(event) => event.preventDefault()}
+          onDrop={handleDrop}
+        >
+          <ul style={{ width: "100%" }}>
+            {files.map((file, index) => (
+              <li
+                key={index}
+                style={{
+                  listStyleType: "none",
+                  borderBottom: "1px solid black",
+                  padding: 5,
+                }}
+              >
+                {file.name}
+              </li>
+            ))}
+          </ul>
+        </div>
         <button type="button" className="creator-button button">
           UPLOAD
         </button>
@@ -76,7 +120,7 @@ const Creator = (props) => {
       <div className="creator-container3"></div>
       <Footer rootClassName="footer-root-class-name3"></Footer>
     </div>
-  )
-}
+  );
+};
 
-export default Creator
+export default Creator;
