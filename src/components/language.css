@@ -35,8 +35,9 @@
   transition: 0.3s;
 }
 .language-icon {
-  width: 18px;
-  height: 18px;
+  fill: var(--dl-color-primary-100);
+  width: 24px;
+  height: 24px;
   margin-top: auto;
   transition: 0.3s;
   margin-bottom: auto;
@@ -63,7 +64,9 @@
   cursor: pointer;
   display: inline-block;
   position: relative;
+  padding-top: var(--dl-space-space-halfunit);
   border-radius: 2px;
+  padding-bottom: var(--dl-space-space-halfunit);
 }
 .language-dropdown-toggle1 {
   fill: #595959;
@@ -77,6 +80,7 @@
   border-radius: 4px;
   padding-right: var(--dl-space-space-unit);
   padding-bottom: var(--dl-space-space-halfunit);
+  text-decoration: none;
 }
 .language-dropdown-toggle1:hover {
   fill: #fff;
@@ -87,7 +91,7 @@
   width: 100%;
   cursor: pointer;
   display: flex;
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
 }
@@ -95,7 +99,9 @@
   cursor: pointer;
   display: inline-block;
   position: relative;
+  padding-top: var(--dl-space-space-halfunit);
   border-radius: 2px;
+  padding-bottom: var(--dl-space-space-halfunit);
 }
 .language-dropdown-toggle2 {
   fill: #595959;
@@ -119,9 +125,17 @@
   width: 100%;
   cursor: pointer;
   display: flex;
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
+}
+.language-dropdown2 {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  padding-top: var(--dl-space-space-halfunit);
+  border-radius: 2px;
+  padding-bottom: var(--dl-space-space-halfunit);
 }
 .language-dropdown-toggle3 {
   fill: #595959;
@@ -145,15 +159,17 @@
   width: 100%;
   cursor: pointer;
   display: flex;
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
 }
-.language-dropdown2 {
+.language-dropdown3 {
   cursor: pointer;
   display: inline-block;
   position: relative;
+  padding-top: var(--dl-space-space-halfunit);
   border-radius: 2px;
+  padding-bottom: var(--dl-space-space-halfunit);
 }
 .language-dropdown-toggle4 {
   fill: #595959;
@@ -177,15 +193,9 @@
   width: 100%;
   cursor: pointer;
   display: flex;
-  font-size: 14px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 500;
-}
-.language-dropdown3 {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  border-radius: 2px;
 }
 
 

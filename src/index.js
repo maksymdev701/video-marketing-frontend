@@ -9,7 +9,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 import MyStats from "./views/my-stats";
 import NewUser from "./views/new-user";
-import UploadPopup from "./views/upload-popup";
 import Creator from "./views/creator";
 import Users from "./views/users";
 import ForgotPassword from "./views/forgot-password";
@@ -48,7 +47,6 @@ const App = () => {
 
           <Route element={<RequireUser allowedRoles={["creator"]} />}>
             <Route element={<Creator />} path="/creator" />
-            <Route element={<UploadPopup />} path="/upload-popup" />
           </Route>
 
           <Route element={<TermsPrivacy />} path="/terms-privacy" />

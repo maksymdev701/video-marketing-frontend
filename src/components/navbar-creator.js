@@ -1,14 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+
 import PropTypes from "prop-types";
 
 import Language from "./language";
 import "./navbar-creator.css";
 
 const NavbarCreator = (props) => {
-  const user = useSelector((state) => state.userState.user);
-
   return (
     <div className={`navbar-creator-container ${props.rootClassName} `}>
       <header
@@ -17,7 +15,7 @@ const NavbarCreator = (props) => {
       >
         <img
           alt={props.image_alt}
-          src={props.image_src}
+          src={props.logo}
           loading="eager"
           className="navbar-creator-image"
         />
@@ -31,20 +29,20 @@ const NavbarCreator = (props) => {
             data-role="Nav"
             className="navbar-creator-nav"
           >
-            <Link to="/download" className="navbar-creator-navlink">
-              {props.text}
+            <Link to="/creator" className="navbar-creator-navlink">
+              {props.Creator}
             </Link>
-            <Link to="/my-stats" className="navbar-creator-navlink1">
-              {props.text1}
+            <Link to="/download" className="navbar-creator-navlink1">
+              {props.Download}
             </Link>
-            {user && user.role === "creator" ? (
-              <Link to="/creator" className="navbar-creator-navlink2">
-                {props.text2}
-              </Link>
-            ) : null}
-
+            <Link to="/my-stats" className="navbar-creator-navlink2">
+              {props.Stats}
+            </Link>
             <Link to="/account" className="navbar-creator-navlink3">
-              {props.text3}
+              {props.Account}
+            </Link>
+            <Link to="/contact" className="navbar-creator-navlink4">
+              {props.Contact1}
             </Link>
           </nav>
           <Language
@@ -52,7 +50,7 @@ const NavbarCreator = (props) => {
             className=""
           ></Language>
           <button type="button" className="navbar-creator-button button">
-            {props.button}
+            {props.logout}
           </button>
         </div>
         <div data-thq="thq-burger-menu" className="navbar-creator-burger-menu">
@@ -71,8 +69,8 @@ const NavbarCreator = (props) => {
           >
             <div className="navbar-creator-container1">
               <img
-                alt={props.image_alt2}
-                src={props.image_src2}
+                alt="image"
+                src="/eurasia%20media%20logo.svg"
                 className="navbar-creator-image1"
               />
               <div
@@ -93,16 +91,19 @@ const NavbarCreator = (props) => {
               className="navbar-creator-nav2"
             >
               <Link to="/download" className="navbar-creator-text">
-                {props.text4}
+                Download
               </Link>
-              <Link to="/my-stats" className="navbar-creator-navlink4">
-                {props.text5}
+              <Link to="/my-stats" className="navbar-creator-navlink5">
+                My Stats
               </Link>
-              <Link to="/creator" className="navbar-creator-navlink5">
-                {props.text6}
+              <Link to="/creator" className="navbar-creator-navlink6">
+                Creator Stats
               </Link>
-              <Link to="/account" className="navbar-creator-navlink6">
-                {props.text7}
+              <Link to="/account" className="navbar-creator-navlink7">
+                My Account
+              </Link>
+              <Link to="/account" className="navbar-creator-navlink8">
+                My Account
               </Link>
             </nav>
             <Language
@@ -111,7 +112,7 @@ const NavbarCreator = (props) => {
             ></Language>
             <div className="navbar-creator-container2">
               <button type="button" className="button navbar-creator-button1">
-                {props.button1}
+                Log Out
               </button>
             </div>
           </div>
@@ -151,48 +152,27 @@ const NavbarCreator = (props) => {
 };
 
 NavbarCreator.defaultProps = {
-  button1: "Log Out",
-  button: "Log Out",
-  text2: "Creator",
-  image_alt2: "image",
-  Login: "Login",
-  text6: "Creator Stats",
-  text5: "My Stats",
-  text: "Download",
-  Register: "Register",
-  text1: "My Stats",
-  text4: "Download",
-  text3: "Account",
-  image_src1:
-    "https://presentation-website-assets.teleporthq.io/logos/logo.png",
-  text7: "My Account",
+  logout: "Log Out",
+  Creator: "Creator",
+  Contact1: "Contact",
+  Download: "Download",
+  Stats: "My Stats",
+  Account: "Account",
   rootClassName: "",
-  image_alt1: "image",
   image_alt: "logo",
-  image_src: "/eurasia%20media%20logo.svg",
-  image_src2: "/eurasia%20media%20logo.svg",
+  logo: "/eurasia%20media%20logo.svg",
 };
 
 NavbarCreator.propTypes = {
-  button1: PropTypes.string,
-  button: PropTypes.string,
-  text2: PropTypes.string,
-  image_alt2: PropTypes.string,
-  Login: PropTypes.string,
-  text6: PropTypes.string,
-  text5: PropTypes.string,
-  text: PropTypes.string,
-  Register: PropTypes.string,
-  text1: PropTypes.string,
-  text4: PropTypes.string,
-  text3: PropTypes.string,
-  image_src1: PropTypes.string,
-  text7: PropTypes.string,
+  logout: PropTypes.string,
+  Creator: PropTypes.string,
+  Contact1: PropTypes.string,
+  Download: PropTypes.string,
+  Stats: PropTypes.string,
+  Account: PropTypes.string,
   rootClassName: PropTypes.string,
-  image_alt1: PropTypes.string,
   image_alt: PropTypes.string,
-  image_src: PropTypes.string,
-  image_src2: PropTypes.string,
+  logo: PropTypes.string,
 };
 
 export default NavbarCreator;

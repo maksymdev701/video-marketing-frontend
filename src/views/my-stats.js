@@ -21,7 +21,9 @@ const MyStats = (props) => {
           content="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/071bde54-b947-4b89-82c7-e6a339ef6380/186d5565-2c99-44f3-984e-7613e4faed3d?org_if_sml=1"
         />
       </Helmet>
-      <NavbarCreator rootClassName="navbar-creator-root-class-name4"></NavbarCreator>
+      <div className="my-stats-sticky-nav-bar">
+        <NavbarCreator rootClassName="navbar-creator-root-class-name"></NavbarCreator>
+      </div>
       <div className="my-stats-heading-title">
         <h1 className="my-stats-text">MY STATS</h1>
       </div>
@@ -33,7 +35,12 @@ const MyStats = (props) => {
           <h1 className="my-stats-text01 StatsBig">5,000</h1>
           <span className="my-stats-text02 StatTitle">Videos Downloaded</span>
           <span className="my-stats-text03">
-            Total videos downloaded since sign up
+            All-time videos downloaded
+            <span
+              dangerouslySetInnerHTML={{
+                __html: ' ',
+              }}
+            />
           </span>
         </div>
         <div className="my-stats-stat1">
@@ -64,30 +71,30 @@ const MyStats = (props) => {
         </div>
       </div>
       <div className="my-stats-challenge-title">
-        <span className="my-stats-text13">New Student Challenge</span>
-        <span className="my-stats-text14">
-          Post 100 videos (from this platform) in your first 40 days and get a
-          €200 bonus
-        </span>
+        <span className="my-stats-text13">Support Bonus for New Students</span>
+        <div className="my-stats-data">
+          <span className="my-stats-text14">Bonus Status</span>
+          <span className="my-stats-text15">Please complete the task </span>
+        </div>
       </div>
       <div className="my-stats-my-stats2">
         <div className="my-stats-stat4">
           <svg viewBox="0 0 1024 1024" className="my-stats-icon08">
             <path d="M426 704l256-192-256-192v384zM512 86q176 0 301 125t125 301-125 301-301 125-301-125-125-301 125-301 301-125z"></path>
           </svg>
-          <h1 className="my-stats-text15 StatsBig">
+          <h1 className="my-stats-text16 StatsBig">
             <span>50</span>
           </h1>
-          <span className="my-stats-text17 StatTitle">Videos Posted</span>
-          <span className="my-stats-text18">In the first 40 days</span>
+          <span className="my-stats-text18 StatTitle">Videos Posted</span>
+          <span className="my-stats-text19">In the first 40 days</span>
         </div>
         <div className="my-stats-stat5">
           <svg viewBox="0 0 1024 1024" className="my-stats-icon10">
             <path d="M512 0c-282.77 0-512 229.23-512 512s229.23 512 512 512 512-229.23 512-512-229.23-512-512-512zM658.744 749.256l-210.744-210.746v-282.51h128v229.49l173.256 173.254-90.512 90.512z"></path>
           </svg>
-          <h1 className="my-stats-text19 StatsBig">17</h1>
-          <span className="my-stats-text20 StatTitle">Days Left</span>
-          <span className="my-stats-text21">Hurry, offer expires soon</span>
+          <h1 className="my-stats-text20 StatsBig">17</h1>
+          <span className="my-stats-text21 StatTitle">Days Left</span>
+          <span className="my-stats-text22">Hurry, offer expires soon</span>
         </div>
         <div className="my-stats-stat6">
           <div className="my-stats-container1">
@@ -95,19 +102,22 @@ const MyStats = (props) => {
               <path d="M810 810v-468h-596v468h596zM682 42h86v86h42q34 0 60 26t26 60v596q0 34-26 60t-60 26h-596q-36 0-61-25t-25-61v-596q0-34 25-60t61-26h42v-86h86v86h340v-86zM726 512v214h-214v-214h214z"></path>
             </svg>
           </div>
-          <h1 className="my-stats-text22 StatsBig">23/06/13</h1>
-          <span className="my-stats-text23 StatTitle">Date of Enrollment</span>
-          <span className="my-stats-text24">Date you signed up</span>
+          <h1 className="my-stats-text23 StatsBig">23/06/13</h1>
+          <span className="my-stats-text24 StatTitle">Date of Enrollment</span>
+          <span className="my-stats-text25">Date you signed up</span>
         </div>
       </div>
-      <div className="my-stats-stats">
-        <div className="my-stats-data">
-          <span className="my-stats-text25">Bonus Status</span>
-          <span className="my-stats-text26">Please complete the task </span>
-        </div>
+      <div className="my-stats-rules">
+        <span className="my-stats-rules1">
+          If you didn&apos;t manage to recover the cost of the AI Marketeer
+          Course during the first 40 days since you signed up for the course,
+          Eurasia Media will give you a bonus of up to €200 to make sure you
+          recover the cost of the course. VAT costs are not included in this
+          Support Bonus. In order to be eligible to get the bonus, you must have
+          posted 100 videos (from this platform) in your first 40 days.
+        </span>
       </div>
-      <div className="my-stats-container2"></div>
-      <Footer rootClassName="footer-root-class-name2"></Footer>
+      <Footer rootClassName="footer-root-class-name11"></Footer>
     </div>
   )
 }
