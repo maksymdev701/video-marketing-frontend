@@ -29,3 +29,16 @@ export function setAuthToken(token) {
     axios.defaults.headers.common["Authorization"] = `${token}`;
   }
 }
+
+export function getDateFromPydate(datetimeString) {
+  // Split the string into date and time components
+  const [dateString, timeString] = datetimeString.split("T");
+
+  // Split the date component into year, month, and day values
+  const [year, month, day] = dateString.split("-");
+
+  // Create a new Date object using the extracted year, month, and day values
+  const dateObject = new Date(year, month - 1, day);
+
+  return dateObject;
+}

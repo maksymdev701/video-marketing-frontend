@@ -1,12 +1,19 @@
-import React from 'react'
+import React from "react";
+import { useSelector } from "react-redux";
+import { Helmet } from "react-helmet";
 
-import { Helmet } from 'react-helmet'
-
-import NavbarCreator from '../components/navbar-creator'
-import Footer from '../components/footer'
-import './my-stats.css'
+import NavbarCreator from "../components/navbar-creator";
+import NavbarMarketeer from "../components/navbar-marketeer";
+import Footer from "../components/footer";
+import "./my-stats.css";
+import { getDateFromPydate } from "../utils";
 
 const MyStats = (props) => {
+  const user = useSelector((state) => state.userState.user);
+  if (!user) return null;
+
+  const enrolDate = getDateFromPydate(user.created_at);
+
   return (
     <div className="my-stats-container">
       <Helmet>
@@ -22,7 +29,11 @@ const MyStats = (props) => {
         />
       </Helmet>
       <div className="my-stats-sticky-nav-bar">
-        <NavbarCreator rootClassName="navbar-creator-root-class-name"></NavbarCreator>
+        {user.role === "creator" ? (
+          <NavbarCreator rootClassName="navbar-creator-root-class-name"></NavbarCreator>
+        ) : (
+          <NavbarMarketeer></NavbarMarketeer>
+        )}
       </div>
       <div className="my-stats-heading-title">
         <h1 className="my-stats-text">MY STATS</h1>
@@ -38,7 +49,7 @@ const MyStats = (props) => {
             All-time videos downloaded
             <span
               dangerouslySetInnerHTML={{
-                __html: ' ',
+                __html: " ",
               }}
             />
           </span>
@@ -102,7 +113,16 @@ const MyStats = (props) => {
               <path d="M810 810v-468h-596v468h596zM682 42h86v86h42q34 0 60 26t26 60v596q0 34-26 60t-60 26h-596q-36 0-61-25t-25-61v-596q0-34 25-60t61-26h42v-86h86v86h340v-86zM726 512v214h-214v-214h214z"></path>
             </svg>
           </div>
-          <h1 className="my-stats-text23 StatsBig">23/06/13</h1>
+          <h1 className="my-stats-text23 StatsBig">
+            {enrolDate.getFullYear().toString(10).substr(-2)}/
+            {enrolDate.getMonth() + 1 < 10
+              ? "0" + (enrolDate.getMonth() + 1)
+              : enrolDate.getMonth() + 1}
+            /
+            {enrolDate.getDate() < 10
+              ? "0" + enrolDate.getDate()
+              : enrolDate.getDate()}
+          </h1>
           <span className="my-stats-text24 StatTitle">Date of Enrollment</span>
           <span className="my-stats-text25">Date you signed up</span>
         </div>
@@ -119,7 +139,7 @@ const MyStats = (props) => {
       </div>
       <Footer rootClassName="footer-root-class-name11"></Footer>
     </div>
-  )
-}
+  );
+};
 
-export default MyStats
+export default MyStats;

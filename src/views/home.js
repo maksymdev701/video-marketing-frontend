@@ -110,6 +110,7 @@ const Home = (props) => {
       navigate(from);
     }
     if (loginStates.isError) {
+      console.log(loginStates);
       if (Array.isArray(loginStates.error.data.detail)) {
         console.log(loginStates.error.data.detail);
         loginStates.error.data.detail.forEach((el) =>

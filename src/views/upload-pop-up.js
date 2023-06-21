@@ -1,5 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
+
+import { useUploadVideoMutation } from "../redux/api/video-api";
+import Spinner from "../components/spinner";
 
 import "./upload-pop-up.css";
 
@@ -7,6 +11,8 @@ const UploadPopUp = (props) => {
   const inputFileRef = useRef(null);
   const modalRef = useRef(null);
   const [files, setFiles] = useState([]);
+
+  const [uploadVideo, uploadStates] = useUploadVideoMutation();
 
   const handleDrop = (event) => {
     event.preventDefault();
@@ -19,8 +25,9 @@ const UploadPopUp = (props) => {
 
   const handleUpload = () => {
     const formData = new FormData();
-    formData.append("files", files);
-    console.log(files);
+    formData.append("files", files[0]);
+    files.forEach((files) => formData.append("files", files));
+    uploadVideo(formData);
   };
 
   const handleCloseModal = (event) => {
@@ -48,78 +55,84 @@ const UploadPopUp = (props) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (uploadStates.isSuccess) {
+      toast.success("Uploaded successfully!");
+      setFiles([]);
+      props.showFunc(false);
+    }
+  }, [uploadStates.isLoading]);
+
   if (!props.isShown) return null;
 
   return (
     <div className="upload-pop-up-container">
-      <div className="upload-pop-up-container1" ref={modalRef}>
-        <input
-          type="file"
-          style={{ display: "none" }}
-          ref={inputFileRef}
-          multiple
-          onChange={handleFilesInputChange}
-        />
-        <div className="upload-pop-up-challenge-title">
-          <span className="upload-pop-up-text">BULK UPLOAD</span>
-          <span className="upload-pop-up-text1">
-            Drag and drop files her or click to browse on your computer
-          </span>
-        </div>
-        <div className="upload-pop-up-container2">
-          <div
-            className="upload-pop-up-container3"
-            onClick={() => inputFileRef.current.click()}
-            onDragOver={(event) => event.preventDefault()}
-            onDrop={handleDrop}
-          >
-            <ul
-              style={{
-                width: "100%",
-                height: "100%",
-                overflow: "auto",
-                padding: 10,
-              }}
-            >
-              {files.map((file, index) => (
-                <li
-                  key={index}
-                  style={{
-                    listStyleType: "none",
-                    backgroundColor: "#e0e0e0",
-                    margin: 10,
-                    padding: 10,
-                    borderRadius: 10,
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <span style={{ width: "50%", overflow: "hidden" }}>
-                    {file.name}
-                  </span>
-                  <span style={{ flex: 1, textAlign: "right" }}>
-                    {calcSize(file.size)}
-                  </span>
-                  <div style={{ width: "30%" }}></div>
-                  <span
-                    className="close-btn"
-                    onClick={(event) => {
-                      event.stopPropagation();
-                      removeFile(index);
-                    }}
-                  >
-                    &times;
-                  </span>
-                </li>
-              ))}
-            </ul>
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          position: "fixed",
+        }}
+      >
+        <div className="upload-pop-up-container1" ref={modalRef}>
+          <input
+            type="file"
+            style={{ display: "none" }}
+            ref={inputFileRef}
+            multiple
+            onChange={handleFilesInputChange}
+          />
+          <div className="upload-pop-up-challenge-title">
+            <span className="upload-pop-up-text">BULK UPLOAD</span>
+            <span className="upload-pop-up-text1">
+              Drag and drop files her or click to browse on your computer
+            </span>
           </div>
-          <button
-            className="upload-pop-up-navlink button"
-            onClick={handleUpload}
-          >
-            UPLOAD
-          </button>
+          <div className="upload-pop-up-container2">
+            <div
+              className="upload-pop-up-container3"
+              onClick={() => inputFileRef.current.click()}
+              onDragOver={(event) => event.preventDefault()}
+              onDrop={handleDrop}
+            >
+              <ul className="files-container">
+                {files.map((file, index) => (
+                  <li key={index} className="file-item">
+                    <span style={{ width: "50%", overflow: "hidden" }}>
+                      {file.name}
+                    </span>
+                    <span style={{ flex: 1, textAlign: "right" }}>
+                      {calcSize(file.size)}
+                    </span>
+                    <div style={{ width: "30%" }}></div>
+                    <span
+                      className="close-btn"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        removeFile(index);
+                      }}
+                    >
+                      &times;
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <button
+              className="upload-pop-up-navlink button"
+              onClick={handleUpload}
+            >
+              UPLOAD
+            </button>
+          </div>
+          {uploadStates.isLoading ? (
+            <div className="spinner-container">
+              <Spinner />
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
