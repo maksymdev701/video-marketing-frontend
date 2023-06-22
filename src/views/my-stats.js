@@ -6,19 +6,36 @@ import { toast } from "react-toastify";
 import NavbarCreator from "../components/navbar-creator";
 import NavbarMarketeer from "../components/navbar-marketeer";
 import Footer from "../components/footer";
-import "./my-stats.css";
 import { getDateFromPydate } from "../utils";
 import { useGetMyStatsQuery } from "../redux/api/user-api";
 import FullScreenLoader from "../components/fullscreen-loader";
 
-const MyStats = () => {
+import "./my-stats.css";
+
+const MyStats = (props) => {
   const { isLoading, isError, error, data } = useGetMyStatsQuery();
   const user = useSelector((state) => state.userState.user);
 
+  useEffect(() => {
+    if (isError) {
+      if (Array.isArray(error.data.detail)) {
+        error.data.detail.forEach((el) =>
+          toast.error(`${el.loc[1]}: ${el.msg}`, {
+            position: "top-right",
+          })
+        );
+      } else {
+        toast.error(error.data.detail, {
+          position: "top-right",
+        });
+      }
+    }
+  }, [isLoading]);
+
   if (!user || isLoading) return <FullScreenLoader />;
+  console.log(data);
 
   const enrolDate = getDateFromPydate(user.created_at);
-  console.log(data);
 
   return (
     <div className="my-stats-container">
