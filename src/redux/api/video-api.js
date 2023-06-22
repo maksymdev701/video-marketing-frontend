@@ -18,10 +18,10 @@ export const videoApi = createApi({
         };
       },
     }),
-    getAllVideos: builder.query({
+    getDownloadableVideos: builder.query({
       query(data) {
         return {
-          url: "list",
+          url: "downloadable",
           method: "GET",
         };
       },
