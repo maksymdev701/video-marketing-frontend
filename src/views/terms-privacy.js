@@ -3,6 +3,7 @@ import React from 'react'
 import { Helmet } from 'react-helmet'
 
 import NavbarCreator from '../components/navbar-creator'
+import Footer from '../components/footer'
 import './terms-privacy.css'
 
 const TermsPrivacy = (props) => {
@@ -23,7 +24,9 @@ const TermsPrivacy = (props) => {
           content="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/071bde54-b947-4b89-82c7-e6a339ef6380/186d5565-2c99-44f3-984e-7613e4faed3d?org_if_sml=1"
         />
       </Helmet>
-      <NavbarCreator rootClassName="navbar-creator-root-class-name6"></NavbarCreator>
+      <div className="terms-privacy-sticky-nav-bar">
+        <NavbarCreator rootClassName="navbar-creator-root-class-name3"></NavbarCreator>
+      </div>
       <div className="terms-privacy-heading-title">
         <h1 className="terms-privacy-text">TERMS AND PRIVACY</h1>
         <span>
@@ -69,15 +72,8 @@ const TermsPrivacy = (props) => {
             pariatur?&quot;
           </span>
         </div>
-        <div className="terms-privacy-terms2">
-          <span className="terms-privacy-text6">
-            By clicking you agree to our terms and privacy
-          </span>
-          <button type="button" className="terms-privacy-button button">
-            I ACCEPT 
-          </button>
-        </div>
       </div>
+      <Footer rootClassName="footer-root-class-name5"></Footer>
     </div>
   )
 }

@@ -8,10 +8,8 @@ import "./style.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import MyStats from "./views/my-stats";
-import NewUser from "./views/new-user";
 import Creator from "./views/creator";
 import Users from "./views/users";
-import ForgotPassword from "./views/forgot-password";
 import Account from "./views/account";
 import Download from "./views/download";
 import Home from "./views/home";
@@ -19,6 +17,7 @@ import TermsPrivacy from "./views/terms-privacy";
 import Dashboard from "./views/dashboard";
 import UnauthorizedPage from "./views/unauthorized";
 import RequireUser from "./components/require-user";
+import Contact from "./views/contact";
 import { store } from "./redux/store";
 
 const App = () => {
@@ -28,7 +27,6 @@ const App = () => {
         <ToastContainer />
         <Routes>
           <Route element={<Home />} path="/" />
-          <Route element={<ForgotPassword />} path="/forgot-password" />
           <Route element={<UnauthorizedPage />} path="/unauthorized" />
 
           <Route
@@ -40,7 +38,6 @@ const App = () => {
           </Route>
 
           <Route element={<RequireUser allowedRoles={["admin"]} />}>
-            <Route element={<NewUser />} path="/new-user" />
             <Route element={<Users />} path="/users" />
             <Route element={<Dashboard />} path="/dashboard" />
           </Route>
@@ -50,6 +47,7 @@ const App = () => {
           </Route>
 
           <Route element={<TermsPrivacy />} path="/terms-privacy" />
+          <Route element={<Contact />} path="/contact" />
         </Routes>
       </BrowserRouter>
     </Provider>

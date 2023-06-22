@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
-import { Helmet } from 'react-helmet'
+import { Helmet } from "react-helmet";
 
-import NavbarCreator from '../components/navbar-creator'
-import ThumbnailMOB from '../components/thumbnail-mob'
-import Footer from '../components/footer'
-import './download.css'
+import NavbarCreator from "../components/navbar-creator";
+import ThumbnailMOB from "../components/thumbnail-mob";
+import Footer from "../components/footer";
+import "./download.css";
 
 const Download = (props) => {
   return (
@@ -22,10 +22,15 @@ const Download = (props) => {
           content="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/071bde54-b947-4b89-82c7-e6a339ef6380/186d5565-2c99-44f3-984e-7613e4faed3d?org_if_sml=1"
         />
       </Helmet>
-      <NavbarCreator rootClassName="navbar-creator-root-class-name"></NavbarCreator>
+      <div className="download-sticky-nav-bar">
+        <NavbarCreator rootClassName="navbar-creator-root-class-name7"></NavbarCreator>
+      </div>
       <div className="download-heading-title">
         <h1 className="download-text">DOWNLOAD</h1>
-        <span>You can only download three videos per day</span>
+        <div className="download-container1">
+          <span className="download-text1">Downloads Remaining Today</span>
+          <span className="download-text2">3/3</span>
+        </div>
       </div>
       <div className="download-waterfall">
         <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name9"></ThumbnailMOB>
@@ -43,10 +48,9 @@ const Download = (props) => {
         <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name10"></ThumbnailMOB>
         <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name"></ThumbnailMOB>
       </div>
-      <div className="download-container1"></div>
-      <Footer rootClassName="footer-root-class-name1"></Footer>
+      <Footer rootClassName="footer-root-class-name12"></Footer>
     </div>
-  )
-}
+  );
+};
 
-export default Download
+export default Download;

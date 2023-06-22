@@ -1,4 +1,4 @@
-.forgot-password-container {
+.forgot-p-pop-up-container {
   width: 100%;
   display: flex;
   overflow: auto;
@@ -6,7 +6,7 @@
   align-items: center;
   flex-direction: column;
 }
-.forgot-password-container1 {
+.forgot-p-pop-up-container1 {
   flex: 0 0 auto;
   width: auto;
   height: auto;
@@ -22,22 +22,22 @@
   margin-bottom: 0px;
   flex-direction: column;
 }
-.forgot-password-text {
+.forgot-p-pop-up-text {
   font-style: normal;
   text-align: center;
   font-weight: 700;
   margin-bottom: var(--dl-space-space-twounits);
 }
-.forgot-password-text1 {
+.forgot-p-pop-up-text1 {
   width: var(--dl-size-size-xxlarge);
   text-align: center;
 }
-.forgot-password-textinput {
+.forgot-p-pop-up-textinput {
   width: var(--dl-size-size-xxlarge);
   margin-top: var(--dl-space-space-twounits);
   border-radius: var(--dl-radius-radius-radius10);
 }
-.forgot-password-button {
+.forgot-p-pop-up-navlink {
   color: var(--dl-color-primary-300);
   width: 216px;
   height: var(--dl-size-size-small);
@@ -46,9 +46,10 @@
   margin-left: 0px;
   border-width: 0px;
   border-radius: var(--dl-radius-radius-radius10);
+  text-decoration: none;
   background-color: var(--dl-color-primary-100);
 }
-.forgot-password-button1 {
+.forgot-p-pop-up-navlink1 {
   color: var(--dl-color-primary-100);
   width: 216px;
   height: var(--dl-size-size-small);
@@ -58,22 +59,23 @@
   border-color: var(--dl-color-primary-100);
   border-width: 1px;
   border-radius: var(--dl-radius-radius-radius10);
+  text-decoration: none;
   background-color: var(--dl-color-primary-300);
 }
 @media(max-width: 991px) {
-  .forgot-password-button {
+  .forgot-p-pop-up-navlink {
     border-radius: var(--dl-radius-radius-radius10);
   }
-  .forgot-password-button1 {
+  .forgot-p-pop-up-navlink1 {
     border-radius: var(--dl-radius-radius-radius10);
   }
 }
 @media(max-width: 479px) {
-  .forgot-password-button {
+  .forgot-p-pop-up-navlink {
     color: var(--dl-color-primary-300);
     background-color: var(--dl-color-primary-100);
   }
-  .forgot-password-button1 {
+  .forgot-p-pop-up-navlink1 {
     color: var(--dl-color-primary-300);
     background-color: var(--dl-color-primary-100);
   }

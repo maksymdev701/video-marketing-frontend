@@ -8,7 +8,7 @@
   --dl-color-danger-500: #BF2626;
   --dl-color-danger-700: #E14747;
   --dl-color-gray-black: #000000;
-  --dl-color-gray-white: #fdf5f5ff;
+  --dl-color-gray-white: #FFFFFF;
   --dl-size-size-medium: 96px;
   --dl-size-size-xlarge: 192px;
   --dl-size-size-xsmall: 16px;
@@ -27,11 +27,13 @@
   --dl-space-space-sixunits: 96px;
   --dl-space-space-twounits: 32px;
   --dl-radius-radius-radius8: 8px;
+  --dl-radius-radius-round40: 40px;
   --dl-space-space-fiveunits: 80px;
   --dl-space-space-fourunits: 64px;
   --dl-radius-radius-radius10: 10px;
   --dl-radius-radius-radius20: 20px;
   --dl-space-space-threeunits: 48px;
+  --dl-color-primary-darkpurple: #1d1a31ff;
   --dl-space-space-oneandhalfunits: 24px;
 }
 .button {
@@ -96,7 +98,7 @@
   font-size: 16px;
   font-family: Inter;
   font-weight: 400;
-  line-height: 1.15;
+  line-height: 1.35;
   text-transform: none;
   text-decoration: none;
 }
@@ -117,8 +119,8 @@
   text-decoration: none;
 }
 .Subheading {
-  font-size: 18px;
-  font-family: Arial;
+  font-size: 24px;
+  font-family: Inter;
   font-weight: 500;
   text-transform: none;
   text-decoration: none;
