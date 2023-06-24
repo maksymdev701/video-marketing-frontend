@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import Language from "../components/language";
@@ -67,11 +67,7 @@ const Home = (props) => {
   useEffect(() => {
     if (registerStates.isSuccess) {
       toast.success("User registered successfully");
-      setNewName("");
-      setNewEmail("");
-      setNewMobile("");
-      setNewPassword("");
-      setConfirm("");
+      navigate("");
     }
     if (registerStates.isError) {
       if (Array.isArray(registerStates.error.data.detail)) {
@@ -141,11 +137,7 @@ const Home = (props) => {
         />
       </Helmet>
       <div className="home-header">
-        <img
-          alt="image"
-          src="/eurasia%20media%20logo.svg"
-          className="home-image"
-        />
+        <img alt="image" src="/eurasia-logo-r.svg" className="home-image" />
         <Language></Language>
       </div>
       <div className="home-log-in">
@@ -186,7 +178,7 @@ const Home = (props) => {
           href="https://example.com"
           target="_blank"
           rel="noreferrer noopener"
-          className="home-link"
+          className="home-navlink1"
         >
           FORGOT PASSWORD
         </a>
@@ -274,13 +266,24 @@ const Home = (props) => {
       {registerError ? (
         <div style={{ color: "red" }}>{registerError}</div>
       ) : null}
+      <div className="home-confirm-passwordf1">
+        <div className="home-container09">
+          <input type="checkbox" checked="true" className="home-checkbox" />
+          <span className="home-text12">
+            I have read and agree to the Terms of Service and Privacy Policy
+          </span>
+          <Link to="/terms-pop-up" className="home-navlink2">
+            READ -&gt;
+          </Link>
+        </div>
+      </div>
       <div className="home-confirm1">
-        <button className="home-navlink1 button" onClick={handleSignup}>
+        <button className="home-navlink3 button" onClick={handleSignup}>
           Register
         </button>
       </div>
       <div className="home-container09"></div>
-      <Footer rootClassName="footer-root-class-name"></Footer>
+      <Footer rootClassName="footer-root-class-name14"></Footer>
     </div>
   );
 };

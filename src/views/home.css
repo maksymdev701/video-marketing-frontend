@@ -8,14 +8,18 @@
 }
 .home-header {
   width: 100%;
-  height: 106px;
+  height: 100px;
   display: flex;
   padding: var(--dl-space-space-unit);
-  align-items: flex-start;
+  z-index: 1;
+  position: fixed;
+  max-width: var(--dl-size-size-maxwidth);
+  align-items: center;
   justify-content: space-between;
+  background-color: var(--dl-color-gray-white);
 }
 .home-image {
-  width: 357px;
+  width: auto;
   height: 50px;
   align-self: center;
   object-fit: cover;
@@ -25,7 +29,7 @@
   width: 100%;
   height: 47px;
   display: flex;
-  margin-top: var(--dl-space-space-fourunits);
+  margin-top: 150px;
   align-items: center;
   justify-content: center;
 }
@@ -84,12 +88,10 @@
   color: var(--dl-color-primary-300);
   width: 216px;
   height: var(--dl-size-size-small);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  align-self: center;
   margin-left: 0px;
   border-width: 0px;
-  border-radius: var(--dl-radius-radius-radius10);
+  border-radius: var(--dl-radius-radius-radius20);
   text-decoration: none;
   background-color: var(--dl-color-primary-100);
 }
@@ -100,17 +102,19 @@
   align-items: flex-start;
   justify-content: center;
 }
-.home-link {
+.home-navlink1 {
   color: var(--dl-color-primary-100);
   align-self: center;
   font-style: normal;
   font-weight: 500;
+  text-decoration: none;
 }
 .home-container03 {
   flex: 0 0 auto;
   width: 100%;
   height: var(--dl-size-size-small);
   display: flex;
+  max-width: var(--dl-size-size-maxwidth);
   margin-top: var(--dl-space-space-twounits);
   align-items: flex-start;
   margin-bottom: var(--dl-space-space-twounits);
@@ -237,6 +241,37 @@
 .home-textinput6 {
   border-radius: var(--dl-radius-radius-radius10);
 }
+.home-confirm-passwordf1 {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  padding: var(--dl-space-space-unit);
+  align-items: center;
+  justify-content: center;
+}
+.home-container09 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.home-checkbox {
+  width: 24px;
+  height: 24px;
+  margin-right: var(--dl-space-space-twounits);
+  padding-right: 0px;
+}
+.home-text12 {
+  color: var(--dl-color-primary-500);
+  width: var(--dl-size-size-xxlarge);
+  padding-right: var(--dl-space-space-unit);
+}
+.home-navlink2 {
+  color: var(--dl-color-primary-100);
+  width: auto;
+  padding-left: var(--dl-space-space-unit);
+  padding-right: 0px;
+  text-decoration: none;
+}
 .home-confirm1 {
   width: 100%;
   height: 80px;
@@ -245,25 +280,22 @@
   align-items: center;
   justify-content: center;
 }
-.home-navlink1 {
+.home-navlink3 {
   color: var(--dl-color-primary-300);
   width: 216px;
   height: var(--dl-size-size-small);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  align-self: center;
   margin-left: 0px;
   border-width: 0px;
-  border-radius: var(--dl-radius-radius-radius10);
+  border-radius: var(--dl-radius-radius-radius20);
   text-decoration: none;
   background-color: var(--dl-color-primary-100);
 }
-.home-container09 {
-  width: 100%;
-  border: 2px dashed rgba(120, 120, 120, 0.4);
-  height: var(--dl-size-size-medium);
-  display: flex;
-  align-items: flex-start;
+@media(max-width: 1200px) {
+  .home-header {
+    padding-left: var(--dl-space-space-twounits);
+    padding-right: var(--dl-space-space-twounits);
+  }
 }
 @media(max-width: 991px) {
   .home-navlink {
@@ -272,11 +304,21 @@
   .home-container03 {
     height: 24px;
   }
-  .home-navlink1 {
+  .home-navlink3 {
     border-radius: var(--dl-radius-radius-radius10);
   }
 }
 @media(max-width: 479px) {
+  .home-header {
+    height: 70px;
+  }
+  .home-image {
+    width: auto;
+    height: 40px;
+  }
+  .home-log-in {
+    margin-top: 100px;
+  }
   .home-navlink {
     color: var(--dl-color-primary-300);
     background-color: var(--dl-color-primary-100);
@@ -291,7 +333,7 @@
     padding-left: var(--dl-space-space-unit);
     padding-right: var(--dl-space-space-unit);
   }
-  .home-navlink1 {
+  .home-navlink3 {
     color: var(--dl-color-primary-300);
     background-color: var(--dl-color-primary-100);
   }

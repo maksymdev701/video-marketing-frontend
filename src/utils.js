@@ -11,9 +11,9 @@ export function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
-export function validatePhoneNumber(phoneNumber) {
-  const re = /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s/0-9]*$/;
-  return re.test(String(phoneNumber).toLowerCase());
+export function validatePhoneNumber(mobileNumber) {
+  const re = /^\+\d{1,3}\s\d{9}$/;
+  return re.test(mobileNumber);
 }
 
 export function validateUrl(url) {
