@@ -291,6 +291,22 @@
   text-decoration: none;
   background-color: var(--dl-color-primary-100);
 }
+
+.home-navlink3:not(:disabled):not(:active):hover {
+  background-color: #fc4b7b;
+  transition: all 0.3s ease-in-out;
+}
+
+.home-navlink3:disabled {
+  background-color: #ea204988;
+  color: #FFFFFF88;
+}
+
+.home-navlink:not(:active):hover {
+  background-color: #fd5c8c;
+  transition: all 0.3s ease-in-out;
+}
+
 @media(max-width: 1200px) {
   .home-header {
     padding-left: var(--dl-space-space-twounits);

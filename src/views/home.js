@@ -11,17 +11,22 @@ import {
   useLoginUserMutation,
   useRegisterUserMutation,
 } from "../redux/api/auth-api";
+import TermsPopUp from "./terms-pop-up";
 
 const Home = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginerror] = useState("");
+
   const [newName, setNewName] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newMobile, setNewMobile] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [registerError, setRegisterError] = useState("");
+  const [termCheck, setTermCheck] = useState(false);
+
+  const [showTerms, setShowTerms] = useState(false);
 
   const [loginUser, loginStates] = useLoginUserMutation();
   const [registerUser, registerStates] = useRegisterUserMutation();
@@ -123,7 +128,7 @@ const Home = (props) => {
   }, [loginStates.isLoading]);
 
   return (
-    <div className="home-container">
+    <div className="home-container" style={{ position: "relative" }}>
       <Helmet>
         <title>Eurasia Media Content</title>
         <meta property="og:title" content="Eurasia Media Content" />
@@ -268,22 +273,38 @@ const Home = (props) => {
       ) : null}
       <div className="home-confirm-passwordf1">
         <div className="home-container09">
-          <input type="checkbox" checked="true" className="home-checkbox" />
+          <input
+            type="checkbox"
+            checked={termCheck}
+            onChange={(e) => {
+              setTermCheck(e.target.checked);
+            }}
+            className="home-checkbox"
+          />
           <span className="home-text12">
             I have read and agree to the Terms of Service and Privacy Policy
           </span>
-          <Link to="/terms-pop-up" className="home-navlink2">
+          <button className="home-navlink2" onClick={() => setShowTerms(true)}>
             READ -&gt;
-          </Link>
+          </button>
         </div>
       </div>
       <div className="home-confirm1">
-        <button className="home-navlink3 button" onClick={handleSignup}>
+        <button
+          disabled={!termCheck}
+          className="home-navlink3 button"
+          onClick={handleSignup}
+        >
           Register
         </button>
       </div>
       <div className="home-container09"></div>
       <Footer rootClassName="footer-root-class-name14"></Footer>
+      <TermsPopUp
+        show={showTerms}
+        setShow={setShowTerms}
+        setAccept={setTermCheck}
+      />
     </div>
   );
 };
