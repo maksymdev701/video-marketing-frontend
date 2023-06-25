@@ -1,13 +1,36 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 
 import NavbarCreator from "../components/navbar-creator";
 import ThumbnailMOB from "../components/thumbnail-mob";
 import Footer from "../components/footer";
+import { useGetDownloadableVideosQuery } from "../redux/api/video-api";
+import FullScreenLoader from "../components/fullscreen-loader";
+
 import "./download.css";
 
-const Download = (props) => {
+const Download = () => {
+  const { isLoading, isError, error, data } = useGetDownloadableVideosQuery();
+
+  useEffect(() => {
+    if (isError) {
+      if (Array.isArray(error.data.detail)) {
+        error.data.detail.forEach((el) =>
+          toast.error(`${el.loc[1]}: ${el.msg}`, {
+            position: "top-right",
+          })
+        );
+      } else {
+        toast.error(error.data.detail, {
+          position: "top-right",
+        });
+      }
+    }
+  }, [isLoading]);
+
+  if (isLoading) return <FullScreenLoader />;
+
   return (
     <div className="download-container">
       <Helmet>
@@ -29,7 +52,7 @@ const Download = (props) => {
         <h1 className="download-text">DOWNLOAD</h1>
         <div className="download-container1">
           <span className="download-text1">Downloads Remaining Today</span>
-          <span className="download-text2">3/3</span>
+          <span className="download-text2">3/{data.day_download}</span>
         </div>
       </div>
       <div className="download-waterfall">

@@ -1,7 +1,27 @@
+import Spinner from "./spinner";
+
 const FullScreenLoader = () => {
   return (
-    <div style={{height: '95vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-        Loading ...
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div
+        style={{
+          height: "100%",
+          width: 1400,
+          background: "#EA2049",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Spinner />
+      </div>
     </div>
   );
 };

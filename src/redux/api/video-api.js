@@ -19,14 +19,16 @@ export const videoApi = createApi({
       },
     }),
     getDownloadableVideos: builder.query({
-      query(data) {
+      query() {
         return {
           url: "downloadable",
           method: "GET",
+          credentials: "include",
         };
       },
     }),
   }),
 });
 
-export const { useUploadVideoMutation } = videoApi;
+export const { useUploadVideoMutation, useGetDownloadableVideosQuery } =
+  videoApi;

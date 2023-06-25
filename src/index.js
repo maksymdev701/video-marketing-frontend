@@ -18,6 +18,8 @@ import Dashboard from "./views/dashboard";
 import UnauthorizedPage from "./views/unauthorized";
 import RequireUser from "./components/require-user";
 import Contact from "./views/contact";
+import Jackpot from "./views/jackpot";
+import NewUserPopUp from "./views/new-user-pop-up";
 import { store } from "./redux/store";
 
 const App = () => {
@@ -40,6 +42,8 @@ const App = () => {
           <Route element={<RequireUser allowedRoles={["admin"]} />}>
             <Route element={<Users />} path="/users" />
             <Route element={<Dashboard />} path="/dashboard" />
+            <Route element={<Jackpot />} path="/jackpot" />
+            <Route element={<NewUserPopUp />} path="/new-user-pop-up" />
           </Route>
 
           <Route element={<RequireUser allowedRoles={["creator"]} />}>
