@@ -5,7 +5,7 @@ import NavbarCreator from "../components/navbar-creator";
 import Footer from "../components/footer";
 import UploadPopup from "./upload-pop-up";
 import FullScreenLoader from "../components/fullscreen-loader";
-import { useGetCreatorStatsQuery } from "../redux/api/user-api";
+import { useGetCreatorStatsQuery } from "../redux/api/stats-api";
 
 import "./creator.css";
 
@@ -47,7 +47,9 @@ const Creator = () => {
           content="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/071bde54-b947-4b89-82c7-e6a339ef6380/186d5565-2c99-44f3-984e-7613e4faed3d?org_if_sml=1"
         />
       </Helmet>
-      <NavbarCreator rootClassName="navbar-creator-root-class-name1"></NavbarCreator>
+      <div className="my-stats-sticky-nav-bar">
+        <NavbarCreator rootClassName="navbar-creator-root-class-name7"></NavbarCreator>
+      </div>
       <div className="creator-heading-title">
         <h1 className="creator-text">CREATOR DASHBOARD</h1>
         <button
@@ -148,7 +150,7 @@ const Creator = () => {
                 </svg>
               </div>
               <h1 className="creator-text17 StatsBig">
-                €{data.champion_bonus.toLocaleString()}
+                €{(data.jackpot / 4).toLocaleString()}
               </h1>
               <span className="creator-text18 StatTitle">Champions Bonus</span>
               <span className="creator-text19">

@@ -28,6 +28,7 @@
   display: flex;
   max-width: var(--dl-size-size-maxwidth);
   align-items: center;
+  margin-top: 125px;
   padding-top: var(--dl-space-space-halfunit);
   padding-left: var(--dl-space-space-twounits);
   margin-bottom: var(--dl-space-space-unit);

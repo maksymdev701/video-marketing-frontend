@@ -25,25 +25,5 @@ export const userApi = createApi({
         } catch (error) {}
       },
     }),
-    getMyStats: builder.query({
-      query() {
-        return {
-          url: "stats",
-          credentials: "include",
-        };
-      },
-      transformResponse: (result) => result.stats,
-    }),
-    getCreatorStats: builder.query({
-      query() {
-        return {
-          url: "creator",
-          credentials: "include",
-        };
-      },
-      transformResponse: (result) => result.stats,
-    }),
   }),
 });
-
-export const { useGetMyStatsQuery, useGetCreatorStatsQuery } = userApi;

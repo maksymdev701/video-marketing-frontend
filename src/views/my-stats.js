@@ -7,12 +7,12 @@ import NavbarCreator from "../components/navbar-creator";
 import NavbarMarketeer from "../components/navbar-marketeer";
 import Footer from "../components/footer";
 import { getDateFromPydate } from "../utils";
-import { useGetMyStatsQuery } from "../redux/api/user-api";
+import { useGetMyStatsQuery } from "../redux/api/stats-api";
 import FullScreenLoader from "../components/fullscreen-loader";
 
 import "./my-stats.css";
 
-const MyStats = (props) => {
+const MyStats = () => {
   const { isLoading, isError, error, data } = useGetMyStatsQuery();
   const user = useSelector((state) => state.userState.user);
 
@@ -53,7 +53,7 @@ const MyStats = (props) => {
       </Helmet>
       <div className="my-stats-sticky-nav-bar">
         {user.role === "creator" ? (
-          <NavbarCreator rootClassName="navbar-creator-root-class-name"></NavbarCreator>
+          <NavbarCreator rootClassName="navbar-creator-root-class-name7"></NavbarCreator>
         ) : (
           <NavbarMarketeer></NavbarMarketeer>
         )}

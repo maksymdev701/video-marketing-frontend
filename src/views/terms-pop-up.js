@@ -1,13 +1,32 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
+import PropTypes from "prop-types";
 
-import { Helmet } from 'react-helmet'
-
-import './terms-pop-up.css'
+import "./terms-pop-up.css";
 
 const TermsPopUp = (props) => {
+  const modalRef = useRef(null);
+
+  const handleCloseModal = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      props.setShow(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleCloseModal);
+
+    return () => {
+      document.removeEventListener("mousedown", handleCloseModal);
+    };
+  }, []);
+
   return (
-    <div className="terms-pop-up-container">
+    <div
+      className="terms-pop-up-container"
+      style={{ display: props.show ? "flex" : "none" }}
+    >
       <Helmet>
         <title>Terms-PopUp - Eurasia Media Content</title>
         <meta
@@ -23,7 +42,7 @@ const TermsPopUp = (props) => {
           content="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/071bde54-b947-4b89-82c7-e6a339ef6380/186d5565-2c99-44f3-984e-7613e4faed3d?org_if_sml=1"
         />
       </Helmet>
-      <div className="terms-pop-up-container1">
+      <div className="terms-pop-up-container1" ref={modalRef}>
         <div className="terms-pop-up-heading-title">
           <h1 className="terms-pop-up-text">TERMS AND PRIVACY</h1>
           <span className="terms-pop-up-text1">
@@ -74,17 +93,33 @@ const TermsPopUp = (props) => {
             <span className="terms-pop-up-text6">
               By clicking you agree to our Terms of Service and Privacy Policy
             </span>
-            <Link to="/" className="terms-pop-up-navlink button">
+            <button
+              className="terms-pop-up-navlink button"
+              onClick={() => {
+                props.setAccept(true);
+                props.setShow(false);
+              }}
+            >
               I ACCEPT 
-            </Link>
+            </button>
           </div>
-          <button type="button" className="terms-pop-up-button button">
+          <button
+            type="button"
+            className="terms-pop-up-button button"
+            onClick={() => props.setShow(false)}
+          >
             CLOSE
           </button>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TermsPopUp
+TermsPopUp.propTypes = {
+  show: PropTypes.bool,
+  setShow: PropTypes.func,
+  setAccept: PropTypes.func,
+};
+
+export default TermsPopUp;
