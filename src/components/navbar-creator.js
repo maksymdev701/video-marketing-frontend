@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
+import { useLogoutUserMutation } from "../redux/api/auth-api";
 import Language from "./language";
 import "./navbar-creator.css";
 
 const NavbarCreator = (props) => {
+  const [logoutUser, { isLoading, isSuccess, error, isError }] =
+    useLogoutUserMutation();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/");
+    }
+
+    if (isError) {
+      if (Array.isArray(error.data.detail)) {
+        error.data.detail.forEach((el) =>
+          toast.error(el.message, {
+            position: "top-right",
+          })
+        );
+      } else {
+        toast.error(error.data.detail, {
+          position: "top-right",
+        });
+      }
+    }
+  }, [isLoading]);
+
   return (
     <div className={`navbar-creator-container ${props.rootClassName} `}>
       <header
@@ -49,7 +76,11 @@ const NavbarCreator = (props) => {
             rootClassName="language-root-class-name"
             className=""
           ></Language>
-          <button type="button" className="navbar-creator-button button">
+          <button
+            type="button"
+            className="navbar-creator-button button"
+            onClick={() => logoutUser()}
+          >
             {props.logout}
           </button>
         </div>
@@ -111,7 +142,11 @@ const NavbarCreator = (props) => {
               className=""
             ></Language>
             <div className="navbar-creator-container2">
-              <button type="button" className="button navbar-creator-button1">
+              <button
+                type="button"
+                className="button navbar-creator-button1"
+                onClick={() => logoutUser()}
+              >
                 Log Out
               </button>
             </div>

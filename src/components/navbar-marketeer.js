@@ -1,12 +1,38 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
+import { useLogoutUserMutation } from "../redux/api/auth-api";
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
-import PropTypes from 'prop-types'
-
-import Language from './language'
-import './navbar-marketeer.css'
+import Language from "./language";
+import "./navbar-marketeer.css";
 
 const NavbarMarketeer = (props) => {
+  const [logoutUser, { isLoading, isSuccess, error, isError }] =
+    useLogoutUserMutation();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/");
+    }
+
+    if (isError) {
+      if (Array.isArray(error.data.detail)) {
+        error.data.detail.forEach((el) =>
+          toast.error(el.message, {
+            position: "top-right",
+          })
+        );
+      } else {
+        toast.error(error.data.detail, {
+          position: "top-right",
+        });
+      }
+    }
+  }, [isLoading]);
+
   return (
     <div className="navbar-marketeer-container">
       <header
@@ -40,7 +66,11 @@ const NavbarMarketeer = (props) => {
             </Link>
           </nav>
           <Language rootClassName="language-root-class-name1"></Language>
-          <button type="button" className="navbar-marketeer-button button">
+          <button
+            type="button"
+            className="navbar-marketeer-button button"
+            onClick={() => logoutUser()}
+          >
             {props.button}
           </button>
         </div>
@@ -120,28 +150,28 @@ const NavbarMarketeer = (props) => {
         </div>
       </header>
     </div>
-  )
-}
+  );
+};
 
 NavbarMarketeer.defaultProps = {
-  button: 'Log Out',
-  text: 'Download',
+  button: "Log Out",
+  text: "Download",
   image_src1:
-    'https://presentation-website-assets.teleporthq.io/logos/logo.png',
-  text7: 'Team',
-  Register: 'Register',
-  text1: 'My Stats',
-  text3: 'Account',
-  text8: 'Blog',
-  image_alt: 'logo',
-  text5: 'Features',
-  image_alt1: 'image',
-  image_src: '/eurasia%20media%20logo.svg',
-  text6: 'Pricing',
-  text4: 'About',
-  Login: 'Login',
-  text2: 'Creator Stats',
-}
+    "https://presentation-website-assets.teleporthq.io/logos/logo.png",
+  text7: "Team",
+  Register: "Register",
+  text1: "My Stats",
+  text3: "Account",
+  text8: "Blog",
+  image_alt: "logo",
+  text5: "Features",
+  image_alt1: "image",
+  image_src: "/eurasia%20media%20logo.svg",
+  text6: "Pricing",
+  text4: "About",
+  Login: "Login",
+  text2: "Creator Stats",
+};
 
 NavbarMarketeer.propTypes = {
   button: PropTypes.string,
@@ -160,6 +190,6 @@ NavbarMarketeer.propTypes = {
   text4: PropTypes.string,
   Login: PropTypes.string,
   text2: PropTypes.string,
-}
+};
 
-export default NavbarMarketeer
+export default NavbarMarketeer;

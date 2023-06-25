@@ -1,12 +1,38 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useLogoutUserMutation } from "../redux/api/auth-api";
+import PropTypes from "prop-types";
 
-import PropTypes from 'prop-types'
-
-import Language from './language'
-import './navbar-admin.css'
+import Language from "./language";
+import "./navbar-admin.css";
 
 const NavbarAdmin = (props) => {
+  const [logoutUser, { isLoading, isSuccess, error, isError }] =
+    useLogoutUserMutation();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/");
+    }
+
+    if (isError) {
+      if (Array.isArray(error.data.detail)) {
+        error.data.detail.forEach((el) =>
+          toast.error(el.message, {
+            position: "top-right",
+          })
+        );
+      } else {
+        toast.error(error.data.detail, {
+          position: "top-right",
+        });
+      }
+    }
+  }, [isLoading]);
+
   return (
     <div className={`navbar-admin-container ${props.rootClassName} `}>
       <header data-thq="thq-navbar" className="navbar-admin-navbar-interactive">
@@ -46,7 +72,11 @@ const NavbarAdmin = (props) => {
             rootClassName="language-root-class-name3"
             className=""
           ></Language>
-          <button type="button" className="navbar-admin-button button">
+          <button
+            type="button"
+            className="navbar-admin-button button"
+            onClick={() => logoutUser()}
+          >
             {props.logout}
           </button>
         </div>
@@ -134,21 +164,21 @@ const NavbarAdmin = (props) => {
         </div>
       </header>
     </div>
-  )
-}
+  );
+};
 
 NavbarAdmin.defaultProps = {
-  image_alt: 'logo',
-  Account: 'Account',
-  rootClassName: '',
-  logout: 'Log Out',
-  Jackpot: 'Jackpot',
-  Download: 'Download',
-  Login: 'Login',
-  Dashboard: 'Dashboard',
-  logo: '/eurasia-logo-r.svg',
-  Users: 'Users',
-}
+  image_alt: "logo",
+  Account: "Account",
+  rootClassName: "",
+  logout: "Log Out",
+  Jackpot: "Jackpot",
+  Download: "Download",
+  Login: "Login",
+  Dashboard: "Dashboard",
+  logo: "/eurasia-logo-r.svg",
+  Users: "Users",
+};
 
 NavbarAdmin.propTypes = {
   image_alt: PropTypes.string,
@@ -161,6 +191,6 @@ NavbarAdmin.propTypes = {
   Dashboard: PropTypes.string,
   logo: PropTypes.string,
   Users: PropTypes.string,
-}
+};
 
-export default NavbarAdmin
+export default NavbarAdmin;
