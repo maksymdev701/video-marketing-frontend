@@ -166,7 +166,7 @@ NavbarMarketeer.defaultProps = {
   image_alt: "logo",
   text5: "Features",
   image_alt1: "image",
-  image_src: "/eurasia%20media%20logo.svg",
+  image_src: "/eurasia-logo-r.svg",
   text6: "Pricing",
   text4: "About",
   Login: "Login",

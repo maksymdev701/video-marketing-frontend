@@ -195,7 +195,7 @@ NavbarCreator.defaultProps = {
   Account: "Account",
   rootClassName: "",
   image_alt: "logo",
-  logo: "/eurasia%20media%20logo.svg",
+  logo: "/eurasia-logo-r.svg",
 };
 
 NavbarCreator.propTypes = {
