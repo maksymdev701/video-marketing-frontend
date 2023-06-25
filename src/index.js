@@ -35,8 +35,15 @@ const App = () => {
             element={<RequireUser allowedRoles={["marketeer", "creator"]} />}
           >
             <Route element={<MyStats />} path="/my-stats" />
-            <Route element={<Account />} path="/account" />
             <Route element={<Download />} path="/download" />
+          </Route>
+
+          <Route
+            element={
+              <RequireUser allowedRoles={["marketeer", "creator", "admin"]} />
+            }
+          >
+            <Route element={<Account />} path="/account" />
           </Route>
 
           <Route element={<RequireUser allowedRoles={["admin"]} />}>

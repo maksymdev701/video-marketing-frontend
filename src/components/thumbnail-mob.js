@@ -12,10 +12,11 @@ const ThumbnailMOB = (props) => {
         poster="https://play.teleporthq.io/static/svg/videoposter.svg"
         className="thumbnail-mob-video"
       ></video>
-      <div className="thumbnail-mob-container1">
-        <div className="thumbnail-mob-id-author">
-          <span className="thumbnail-mob-text">{props.text2}</span>
-          <span className="thumbnail-mob-text1">{props.text11}</span>
+      <div className="thumbnail-mob-id-author">
+        <span className="thumbnail-mob-text">{props.Brand}</span>
+        <div className="thumbnail-mob-container1">
+          <span className="thumbnail-mob-text1">{props.Commission}</span>
+          <span className="thumbnail-mob-text2">{props.Reward}</span>
         </div>
       </div>
       <button type="button" className="thumbnail-mob-button button">
@@ -28,21 +29,21 @@ const ThumbnailMOB = (props) => {
 ThumbnailMOB.defaultProps = {
   rootClassName: '',
   button: 'DOWNLOAD',
+  Commission: '50%',
   text: 'Video ID',
-  text2: 'Brand',
-  text11: 'Reward $',
+  Brand: 'Eurasia Media',
+  Reward: '€0',
   video_src: '',
-  text1: 'Author',
 }
 
 ThumbnailMOB.propTypes = {
   rootClassName: PropTypes.string,
   button: PropTypes.string,
+  Commission: PropTypes.string,
   text: PropTypes.string,
-  text2: PropTypes.string,
-  text11: PropTypes.string,
+  Brand: PropTypes.string,
+  Reward: PropTypes.string,
   video_src: PropTypes.string,
-  text1: PropTypes.string,
 }
 
 export default ThumbnailMOB

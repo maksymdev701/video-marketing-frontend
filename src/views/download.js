@@ -1,36 +1,13 @@
-import React, { useEffect } from "react";
-import { Helmet } from "react-helmet";
-import { toast } from "react-toastify";
+import React from 'react'
 
-import NavbarCreator from "../components/navbar-creator";
-import ThumbnailMOB from "../components/thumbnail-mob";
-import Footer from "../components/footer";
-import { useGetDownloadableVideosQuery } from "../redux/api/video-api";
-import FullScreenLoader from "../components/fullscreen-loader";
+import { Helmet } from 'react-helmet'
 
-import "./download.css";
+import NavbarCreator from '../components/navbar-creator'
+import ThumbnailMOB from '../components/thumbnail-mob'
+import Footer from '../components/footer'
+import './download.css'
 
-const Download = () => {
-  const { isLoading, isError, error, data } = useGetDownloadableVideosQuery();
-
-  useEffect(() => {
-    if (isError) {
-      if (Array.isArray(error.data.detail)) {
-        error.data.detail.forEach((el) =>
-          toast.error(`${el.loc[1]}: ${el.msg}`, {
-            position: "top-right",
-          })
-        );
-      } else {
-        toast.error(error.data.detail, {
-          position: "top-right",
-        });
-      }
-    }
-  }, [isLoading]);
-
-  if (isLoading) return <FullScreenLoader />;
-
+const Download = (props) => {
   return (
     <div className="download-container">
       <Helmet>
@@ -48,14 +25,63 @@ const Download = () => {
       <div className="download-sticky-nav-bar">
         <NavbarCreator rootClassName="navbar-creator-root-class-name7"></NavbarCreator>
       </div>
-      <div className="download-heading-title">
-        <h1 className="download-text">DOWNLOAD</h1>
-        <div className="download-container1">
-          <span className="download-text1">Downloads Remaining Today</span>
-          <span className="download-text2">3/{data.day_download}</span>
+      <div className="download-stickhy-header">
+        <div className="download-heading">
+          <div className="download-text">
+            <h1 className="download-text1">DOWNLOAD</h1>
+            <div className="download-counter">
+              <span className="download-text2">
+                Remaining
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: ' ',
+                  }}
+                />
+              </span>
+              <span className="download-text3">3/3</span>
+            </div>
+          </div>
+          <div className="download-thumbnails">
+            <div className="download-thumbs">
+              <video
+                src
+                poster="https://play.teleporthq.io/static/svg/videoposter.svg"
+                className="download-video"
+              ></video>
+              <svg viewBox="0 0 1024 1024" className="download-icon">
+                <path d="M810 896v-598h-468v598h468zM810 214q34 0 60 25t26 59v598q0 34-26 60t-60 26h-468q-34 0-60-26t-26-60v-598q0-34 26-59t60-25h468zM682 42v86h-512v598h-84v-598q0-34 25-60t59-26h512z"></path>
+              </svg>
+            </div>
+            <div className="download-thumbs1">
+              <video
+                src
+                poster="https://play.teleporthq.io/static/svg/videoposter.svg"
+                className="download-video1"
+              ></video>
+              <svg viewBox="0 0 1024 1024" className="download-icon2">
+                <path d="M810 896v-598h-468v598h468zM810 214q34 0 60 25t26 59v598q0 34-26 60t-60 26h-468q-34 0-60-26t-26-60v-598q0-34 26-59t60-25h468zM682 42v86h-512v598h-84v-598q0-34 25-60t59-26h512z"></path>
+              </svg>
+            </div>
+            <div className="download-thumbs2">
+              <video
+                src
+                poster="https://play.teleporthq.io/static/svg/videoposter.svg"
+                className="download-video2"
+              ></video>
+              <svg viewBox="0 0 1024 1024" className="download-icon4">
+                <path d="M810 896v-598h-468v598h468zM810 214q34 0 60 25t26 59v598q0 34-26 60t-60 26h-468q-34 0-60-26t-26-60v-598q0-34 26-59t60-25h468zM682 42v86h-512v598h-84v-598q0-34 25-60t59-26h512z"></path>
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
       <div className="download-waterfall">
+        <div className="download-container1">
+          <span>
+            After you select the videos, don&apos;t forget to click the copy the
+            video&apos;s hashtags and paste them when you post the video.
+          </span>
+        </div>
         <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name9"></ThumbnailMOB>
         <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name1"></ThumbnailMOB>
         <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name2"></ThumbnailMOB>
@@ -73,7 +99,7 @@ const Download = () => {
       </div>
       <Footer rootClassName="footer-root-class-name12"></Footer>
     </div>
-  );
-};
+  )
+}
 
-export default Download;
+export default Download

@@ -529,6 +529,7 @@
   padding-right: 8px;
   background-color: transparent;
 }
+
 .account-change-password {
   flex: 0 0 auto;
   width: 100%;
@@ -590,6 +591,12 @@
   padding-right: 8px;
   background-color: var(--dl-color-primary-100);
 }
+
+.account-button10:not(:active):hover {
+  background-color: #fd5c8c;
+  transition: all 0.3s ease-in-out;
+}
+
 .account-container16 {
   width: 100%;
   border: 2px dashed rgba(120, 120, 120, 0.4);

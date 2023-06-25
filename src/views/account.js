@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
@@ -8,7 +8,10 @@ import Channels from "../components/channels";
 import Footer from "../components/footer";
 import "./account.css";
 
-const Account = (props) => {
+const Account = () => {
+  const [editable, setEditable] = useState(false);
+  const user = useSelector((state) => state.userState.user);
+
   return (
     <div className="account-container">
       <Helmet>
@@ -27,7 +30,13 @@ const Account = (props) => {
       <div className="account-heading-title">
         <h1 className="account-text">ACCOUNT</h1>
         <div className="account-container01">
-          <a href="#mobile" className="account-text01">
+          <a
+            href="#mobile"
+            className="account-text01"
+            onClick={() => {
+              setEditable(true);
+            }}
+          >
             CHANGE EMAIL OR MOBILE
           </a>
           <Link to="/terms-privacy" className="account-text02">
@@ -171,9 +180,22 @@ const Account = (props) => {
       <div id="mobile" className="account-mobile">
         <div className="account-container11">
           <span className="account-text12">Mobile</span>
-          <span className="account-text13">+33 0745 454 550</span>
+          {editable ? (
+            <input
+              defaultValue={user.mobile}
+              type="text"
+              className="account-textinput input"
+            />
+          ) : (
+            <span className="account-text13">{user.mobile}</span>
+          )}
         </div>
-        <button type="button" className="account-button08 button">
+        <button
+          type="button"
+          className={`${
+            editable ? "account-button10" : "account-button08"
+          } button`}
+        >
           Change
           <span
             dangerouslySetInnerHTML={{
@@ -185,9 +207,22 @@ const Account = (props) => {
       <div className="account-email">
         <div className="account-container12">
           <span className="account-text14">Email</span>
-          <span className="account-text15">Taylor@gmail.com</span>
+          {editable ? (
+            <input
+              defaultValue={user.email}
+              type="text"
+              className="account-textinput input"
+            />
+          ) : (
+            <span className="account-text15">Taylor@gmail.com</span>
+          )}
         </div>
-        <button type="button" className="account-button09 button">
+        <button
+          type="button"
+          className={`${
+            editable ? "account-button10" : "account-button09"
+          } button`}
+        >
           Change
           <span
             dangerouslySetInnerHTML={{
