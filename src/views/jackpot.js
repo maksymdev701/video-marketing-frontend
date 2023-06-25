@@ -1,13 +1,32 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 
-import { Helmet } from 'react-helmet'
+import NavbarAdmin from "../components/navbar-admin";
+import Footer from "../components/footer";
+import {
+  useUpdateJackpotMutation,
+  useGetCreatorStatsQuery,
+} from "../redux/api/stats-api";
+import FullScreenLoader from "../components/fullscreen-loader";
 
-import NavbarAdmin from '../components/navbar-admin'
-import Footer from '../components/footer'
-import './jackpot.css'
+import "./jackpot.css";
 
 const Jackpot = (props) => {
+  const [jackpot, setJackpot] = useState(0);
+  const [editable, setEditable] = useState(false);
+  const [updateJackpot, updateStates] = useUpdateJackpotMutation();
+  const { isLoading, data, refetch } = useGetCreatorStatsQuery();
+
+  useEffect(() => {
+    if (updateStates.isSuccess) {
+      toast.success("Jackpot updated successfully!");
+      refetch();
+    }
+  }, [updateStates.isLoading]);
+
+  if (isLoading) return <FullScreenLoader />;
+
   return (
     <div className="jackpot-container">
       <Helmet>
@@ -45,7 +64,9 @@ const Jackpot = (props) => {
                   />
                 </div>
               </div>
-              <h1 className="jackpot-text04 StatsBig">€12,000</h1>
+              <h1 className="jackpot-text04 StatsBig">
+                €{data.jackpot.toLocaleString()}
+              </h1>
               <span className="jackpot-text05 StatTitle">Jackpot</span>
               <span className="jackpot-text06">Total cash pool this month</span>
             </div>
@@ -55,7 +76,9 @@ const Jackpot = (props) => {
                   <path d="M832 192v-128h-640v128h-192v128c0 106.038 85.958 192 192 192 20.076 0 39.43-3.086 57.62-8.802 46.174 66.008 116.608 113.796 198.38 130.396v198.406h-64c-70.694 0-128 57.306-128 128h512c0-70.694-57.306-128-128-128h-64v-198.406c81.772-16.6 152.206-64.386 198.38-130.396 18.19 5.716 37.544 8.802 57.62 8.802 106.042 0 192-85.962 192-192v-128h-192zM192 436c-63.962 0-116-52.038-116-116v-64h116v64c0 40.186 7.43 78.632 20.954 114.068-6.802 1.246-13.798 1.932-20.954 1.932zM948 320c0 63.962-52.038 116-116 116-7.156 0-14.152-0.686-20.954-1.932 13.524-35.436 20.954-73.882 20.954-114.068v-64h116v64z"></path>
                 </svg>
               </div>
-              <h1 className="jackpot-text07 StatsBig">€3,000</h1>
+              <h1 className="jackpot-text07 StatsBig">
+                €{(data.jackpot / 4).toLocaleString()}
+              </h1>
               <span className="jackpot-text08 StatTitle">Champions Bonus</span>
               <span className="jackpot-text09">Champions Bonus this month</span>
             </div>
@@ -63,7 +86,9 @@ const Jackpot = (props) => {
               <svg viewBox="0 0 1024 1024" className="jackpot-icon2">
                 <path d="M598 554h128l-214-212-214 212h128v172h172v-172zM826 428q82 6 140 67t58 145q0 88-63 151t-151 63h-554q-106 0-181-75t-75-181q0-94 67-169t161-85q42-78 118-126t166-48q108 0 201 76t113 182z"></path>
               </svg>
-              <h1 className="jackpot-text10 StatsBig">10,000</h1>
+              <h1 className="jackpot-text10 StatsBig">
+                {data.total_uploads.toLocaleString()}
+              </h1>
               <span className="jackpot-text11 StatTitle">Videos Uploaded</span>
               <span className="jackpot-text12">
                 Videos uploaded by all creators
@@ -78,7 +103,9 @@ const Jackpot = (props) => {
                   <path d="M922.857 0c52 0 100 38.857 100 93.143 0 30.286-12 59.429-25.714 86.286-44.571 84.571-194.286 364-265.714 429.714-34.857 32.571-76 52-124.571 52-96.571 0-175.429-82.286-175.429-178.286 0-45.714 18.857-90.286 52.571-121.143l364.571-330.857c20-18.286 46.286-30.857 74.286-30.857zM403.429 590.857c29.714 57.714 84 101.143 146.857 117.714l0.571 40.571c3.429 162.857-109.714 274.857-273.143 274.857-193.714 0-277.714-154.286-277.714-329.714 21.143 14.286 94.857 73.143 118.857 73.143 14.286 0 26.286-8 31.429-21.143 48.571-126.857 124.571-149.714 253.143-155.429z"></path>
                 </svg>
               </div>
-              <h1 className="jackpot-text13 StatsBig">12,000</h1>
+              <h1 className="jackpot-text13 StatsBig">
+                {data.creators.toLocaleString()}
+              </h1>
               <span className="jackpot-text14 StatTitle">Creators</span>
               <span className="jackpot-text15">Number of creators</span>
             </div>
@@ -104,76 +131,24 @@ const Jackpot = (props) => {
           </div>
         </div>
         <div className="jackpot-table-body">
-          <div className="jackpot-table-row">
-            <div className="jackpot-container10">
-              <span className="jackpot-text20">1</span>
+          {data.champions.map((champion, index) => (
+            <div className="jackpot-table-row" key={index}>
+              <div className="jackpot-container10">
+                <span className="jackpot-text20">{index + 1}</span>
+              </div>
+              <div className="jackpot-container11">
+                <span className="jackpot-text21">{champion.creator}</span>
+              </div>
+              <div className="jackpot-container12">
+                <span className="jackpot-text22">€5,000,000</span>
+              </div>
+              <div className="jackpot-container13">
+                <span className="jackpot-text23">
+                  {champion.uploads.toLocaleString()}
+                </span>
+              </div>
             </div>
-            <div className="jackpot-container11">
-              <span className="jackpot-text21">Leo Messi</span>
-            </div>
-            <div className="jackpot-container12">
-              <span className="jackpot-text22">€5,000,000</span>
-            </div>
-            <div className="jackpot-container13">
-              <span className="jackpot-text23">2,000,000</span>
-            </div>
-          </div>
-          <div className="jackpot-table-row1">
-            <div className="jackpot-container14">
-              <span className="jackpot-text24">2</span>
-            </div>
-            <div className="jackpot-container15">
-              <span className="jackpot-text25">Leo Messi</span>
-            </div>
-            <div className="jackpot-container16">
-              <span className="jackpot-text26">€5,000,000</span>
-            </div>
-            <div className="jackpot-container17">
-              <span className="jackpot-text27">2,000,000</span>
-            </div>
-          </div>
-          <div className="jackpot-table-row2">
-            <div className="jackpot-container18">
-              <span className="jackpot-text28">3</span>
-            </div>
-            <div className="jackpot-container19">
-              <span className="jackpot-text29">Leo Messi</span>
-            </div>
-            <div className="jackpot-container20">
-              <span className="jackpot-text30">€5,000,000</span>
-            </div>
-            <div className="jackpot-container21">
-              <span className="jackpot-text31">2,000,000</span>
-            </div>
-          </div>
-          <div className="jackpot-table-row3">
-            <div className="jackpot-container22">
-              <span className="jackpot-text32">4</span>
-            </div>
-            <div className="jackpot-container23">
-              <span className="jackpot-text33">Leo Messi</span>
-            </div>
-            <div className="jackpot-container24">
-              <span className="jackpot-text34">€5,000,000</span>
-            </div>
-            <div className="jackpot-container25">
-              <span className="jackpot-text35">2,000,000</span>
-            </div>
-          </div>
-          <div className="jackpot-table-row4">
-            <div className="jackpot-container26">
-              <span className="jackpot-text36">5</span>
-            </div>
-            <div className="jackpot-container27">
-              <span className="jackpot-text37">Leo Messi</span>
-            </div>
-            <div className="jackpot-container28">
-              <span className="jackpot-text38">€5,000,000</span>
-            </div>
-            <div className="jackpot-container29">
-              <span className="jackpot-text39">2,000,000</span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <div className="jackpot-manual-inputs">
@@ -183,57 +158,35 @@ const Jackpot = (props) => {
           </span>
           <input
             type="text"
-            placeholder="placeholder"
+            placeholder="Jackpot Value"
             className="jackpot-textinput input"
+            disabled={!editable}
+            defaultValue={data.jackpot}
+            onChange={(e) => setJackpot(e.target.value)}
           />
-          <button type="button" className="jackpot-button button">
+          <button
+            type="button"
+            className="jackpot-button button"
+            disabled={editable}
+            onClick={() => setEditable(true)}
+          >
             EDIT
           </button>
-          <Link to="/new-user-pop-up" className="jackpot-navlink button">
+          <button
+            className="jackpot-navlink button"
+            disabled={!editable}
+            onClick={() => {
+              updateJackpot({ jackpot });
+              setEditable(false);
+            }}
+          >
             CONFIRM
-          </Link>
-        </div>
-        <div className="jackpot-all-time-revenue">
-          <span className="jackpot-text41">
-            Input the revenue for this month
-          </span>
-          <input
-            type="text"
-            placeholder="placeholder"
-            className="jackpot-textinput1 input"
-          />
-          <button type="button" className="jackpot-button1 button">
-            EDIT
           </button>
-          <Link to="/new-user-pop-up" className="jackpot-navlink1 button">
-            CONFIRM
-          </Link>
-        </div>
-        <div className="jackpot-jackpot-setup">
-          <span className="jackpot-text42">
-            Input the all-time revenue
-            <span
-              dangerouslySetInnerHTML={{
-                __html: ' ',
-              }}
-            />
-          </span>
-          <input
-            type="text"
-            placeholder="placeholder"
-            className="jackpot-textinput2 input"
-          />
-          <button type="button" className="jackpot-button2 button">
-            EDIT
-          </button>
-          <Link to="/new-user-pop-up" className="jackpot-navlink2 button">
-            CONFIRM
-          </Link>
         </div>
       </div>
       <Footer rootClassName="footer-root-class-name7"></Footer>
     </div>
-  )
-}
+  );
+};
 
-export default Jackpot
+export default Jackpot;

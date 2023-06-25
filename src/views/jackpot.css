@@ -834,6 +834,11 @@
   margin-right: var(--dl-space-space-twounits);
   border-radius: var(--dl-radius-radius-radius10);
 }
+
+.jackpot-textinput:disabled {
+  background-color: #d4d4d4;
+}
+
 .jackpot-button {
   color: var(--dl-color-primary-100);
   width: var(--dl-size-size-medium);
@@ -846,7 +851,20 @@
   margin-right: var(--dl-space-space-twounits);
   border-radius: var(--dl-radius-radius-radius20);
   background-color: var(--dl-color-gray-white);
+  cursor: pointer;
 }
+
+.jackpot-button:not(:disabled):not(:active):hover {
+  background-color: #eeeeee;
+  transition: all 0.3s ease-in-out;
+}
+
+.jackpot-button:disabled {
+  background-color: #00000033;
+  color: #ffffffaa;
+  cursor: not-allowed;
+}
+
 .jackpot-navlink {
   color: var(--dl-color-gray-white);
   width: var(--dl-size-size-xlarge);
@@ -859,108 +877,23 @@
   border-radius: var(--dl-radius-radius-radius20);
   text-decoration: none;
   background-color: var(--dl-color-primary-100);
+  cursor: pointer;
 }
-.jackpot-all-time-revenue {
-  flex: 0 0 auto;
-  width: 100%;
-  height: auto;
-  display: flex;
-  align-items: center;
-  padding-top: var(--dl-space-space-twounits);
-  border-color: var(--dl-color-gray-900);
-  border-width: 1px;
-  padding-left: var(--dl-space-space-twounits);
-  margin-bottom: 0t;
-  padding-right: var(--dl-space-space-twounits);
-  padding-bottom: var(--dl-space-space-twounits);
-  justify-content: flex-start;
+
+.jackpot-navlink:not(:disabled):not(:active):hover {
+  background-color: #fd5c8c;
+  transition: all 0.3s ease-in-out;
 }
-.jackpot-text41 {
-  width: var(--dl-size-size-xxlarge);
-  margin-right: var(--dl-space-space-unit);
+
+.jackpot-navlink:disabled {
+  background-color: #fd5c8c99;
+  cursor: not-allowed;
 }
-.jackpot-textinput1 {
-  color: var(--dl-color-gray-black);
-  border-color: var(--dl-color-gray-700);
-  margin-right: var(--dl-space-space-twounits);
-  border-radius: var(--dl-radius-radius-radius10);
-}
-.jackpot-button1 {
-  color: var(--dl-color-primary-100);
-  width: var(--dl-size-size-medium);
-  height: var(--dl-size-size-small);
-  align-self: flex-end;
-  font-style: normal;
-  font-weight: 500;
-  border-color: var(--dl-color-primary-100);
-  border-width: 1px;
-  margin-right: var(--dl-space-space-twounits);
-  border-radius: var(--dl-radius-radius-radius20);
-  background-color: var(--dl-color-gray-white);
-}
-.jackpot-navlink1 {
-  color: var(--dl-color-gray-white);
-  width: var(--dl-size-size-xlarge);
-  height: var(--dl-size-size-small);
-  align-self: flex-end;
-  font-style: normal;
-  font-weight: 500;
-  border-color: var(--dl-color-primary-100);
-  border-width: 0px;
-  border-radius: var(--dl-radius-radius-radius20);
-  text-decoration: none;
-  background-color: var(--dl-color-primary-100);
-}
-.jackpot-jackpot-setup {
-  flex: 0 0 auto;
-  width: 100%;
-  height: auto;
-  display: flex;
-  align-items: center;
-  padding-top: var(--dl-space-space-twounits);
-  border-color: var(--dl-color-gray-900);
-  border-width: 1px;
-  padding-left: var(--dl-space-space-twounits);
-  margin-bottom: 0t;
-  padding-right: var(--dl-space-space-twounits);
-  padding-bottom: var(--dl-space-space-twounits);
-  justify-content: flex-start;
-}
-.jackpot-text42 {
-  width: var(--dl-size-size-xxlarge);
-  margin-right: var(--dl-space-space-unit);
-}
-.jackpot-textinput2 {
-  color: var(--dl-color-gray-black);
-  border-color: var(--dl-color-gray-700);
-  margin-right: var(--dl-space-space-twounits);
-  border-radius: var(--dl-radius-radius-radius10);
-}
-.jackpot-button2 {
-  color: var(--dl-color-primary-100);
-  width: var(--dl-size-size-medium);
-  height: var(--dl-size-size-small);
-  align-self: flex-end;
-  font-style: normal;
-  font-weight: 500;
-  border-color: var(--dl-color-primary-100);
-  border-width: 1px;
-  margin-right: var(--dl-space-space-twounits);
-  border-radius: var(--dl-radius-radius-radius20);
-  background-color: var(--dl-color-gray-white);
-}
-.jackpot-navlink2 {
-  color: var(--dl-color-gray-white);
-  width: var(--dl-size-size-xlarge);
-  height: var(--dl-size-size-small);
-  align-self: flex-end;
-  font-style: normal;
-  font-weight: 500;
-  border-color: var(--dl-color-primary-100);
-  border-width: 0px;
-  border-radius: var(--dl-radius-radius-radius20);
-  text-decoration: none;
-  background-color: var(--dl-color-primary-100);
+
+@media(max-width: 1200px) {
+  .jackpot-sticky-admin-nav-bar {
+    align-items: center;
+  }
 }
 @media(max-width: 991px) {
   .jackpot-jackpot {
@@ -1049,24 +982,6 @@
     margin-bottom: var(--dl-space-space-unit);
   }
   .jackpot-textinput {
-    margin-bottom: var(--dl-space-space-unit);
-  }
-  .jackpot-all-time-revenue {
-    flex-wrap: wrap;
-  }
-  .jackpot-text41 {
-    margin-bottom: var(--dl-space-space-unit);
-  }
-  .jackpot-textinput1 {
-    margin-bottom: var(--dl-space-space-unit);
-  }
-  .jackpot-jackpot-setup {
-    flex-wrap: wrap;
-  }
-  .jackpot-text42 {
-    margin-bottom: var(--dl-space-space-unit);
-  }
-  .jackpot-textinput2 {
     margin-bottom: var(--dl-space-space-unit);
   }
 }
