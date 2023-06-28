@@ -25,5 +25,15 @@ export const userApi = createApi({
         } catch (error) {}
       },
     }),
+    getUsers: builder.query({
+      query() {
+        return {
+          url: "list",
+          credentials: "include",
+        };
+      },
+    }),
   }),
 });
+
+export const { useGetUsersQuery } = userApi;

@@ -22,7 +22,6 @@ export const videoApi = createApi({
       query() {
         return {
           url: "downloadable",
-          method: "GET",
           credentials: "include",
         };
       },

@@ -1,12 +1,36 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
-import { Helmet } from 'react-helmet'
+import "./users.css";
 
-import NavbarCreator from '../components/navbar-creator'
-import Footer from '../components/footer'
-import './users.css'
+import NavbarAdmin from "../components/navbar-admin";
+import Footer from "../components/footer";
+import FullScreenLoader from "../components/fullscreen-loader";
+import { useGetUsersQuery } from "../redux/api/user-api";
+import { getDateFromPydate } from "../utils";
 
-const Users = (props) => {
+const Users = () => {
+  const { isLoading, isError, error, data } = useGetUsersQuery();
+
+  useEffect(() => {
+    if (isError) {
+      if (Array.isArray(error.data.detail)) {
+        error.data.detail.forEach((el) =>
+          toast.error(`${el.loc[1]}: ${el.msg}`, {
+            position: "top-right",
+          })
+        );
+      } else {
+        toast.error(error.data.detail, {
+          position: "top-right",
+        });
+      }
+    }
+  }, [isLoading]);
+
+  if (isLoading) return <FullScreenLoader />;
+
   return (
     <div className="users-container">
       <Helmet>
@@ -21,31 +45,117 @@ const Users = (props) => {
           content="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/071bde54-b947-4b89-82c7-e6a339ef6380/186d5565-2c99-44f3-984e-7613e4faed3d?org_if_sml=1"
         />
       </Helmet>
-      <NavbarCreator rootClassName="navbar-creator-root-class-name5"></NavbarCreator>
+      <div className="users-sticky-admin-nav-bar">
+        <NavbarAdmin rootClassName="navbar-admin-root-class-name2"></NavbarAdmin>
+      </div>
       <div className="users-container1">
         <h1 className="users-text">Users</h1>
-        <button type="button" className="users-button button">
-          ADD NEW USER
-        </button>
+        <div className="users-container2">
+          <span className="users-text01">
+            <span className="users-text02">
+              BONUS STATUS: 
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: " ",
+                }}
+              />
+            </span>
+            <span> </span>
+            <br></br>
+            <span>
+              C -&gt; Congrats, you didn’t need support!
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: " ",
+                }}
+              />
+            </span>
+            <br></br>
+            <span>
+              P -&gt; Bonus paid
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: " ",
+                }}
+              />
+            </span>
+            <br></br>
+            <span>
+              W -&gt; Working on the task
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: " ",
+                }}
+              />
+            </span>
+            <br></br>
+            <span>
+              F -&gt; Failed to deliver
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: " ",
+                }}
+              />
+            </span>
+            <br></br>
+            <span>
+              N -&gt; Not applicable
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: " ",
+                }}
+              />
+            </span>
+            <br></br>
+          </span>
+          <span className="users-text15">
+            <span className="users-text16">
+              TYPE: 
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: " ",
+                }}
+              />
+            </span>
+            <span> </span>
+            <br></br>
+            <span>C -&gt; Creator</span>
+            <br></br>
+            <span>M -&gt; Marketeer</span>
+            <br></br>
+            <span>A -&gt; Admin</span>
+            <span>
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: " ",
+                }}
+              />
+            </span>
+            <br></br>
+          </span>
+          <button to="/new-user-pop-up" className="users-navlink button">
+            ADD NEW USER
+          </button>
+        </div>
       </div>
       <div className="users-table-header">
         <div className="users-user-id">
-          <span className="users-text01">User ID</span>
+          <span className="users-text26">User ID</span>
         </div>
         <div className="users-type">
-          <span className="users-text02">Type</span>
+          <span className="users-text27">Type</span>
         </div>
         <div className="users-uploads">
-          <span className="users-text03">Uploads</span>
+          <span className="users-text28">Uploads</span>
         </div>
         <div className="users-downloads">
-          <span className="users-text04">Downloads</span>
+          <span className="users-text29">Downloads</span>
         </div>
         <div className="users-views">
-          <span className="users-text05">Views</span>
+          <span className="users-text30">Views</span>
         </div>
         <div className="users-likes">
-          <span className="users-text06">Likes</span>
+          <span className="users-text31">Likes</span>
         </div>
         <div className="users-tt">
           <img alt="image" src="/tiktok-wh-200h.png" className="users-image" />
@@ -71,197 +181,97 @@ const Users = (props) => {
           </svg>
         </div>
         <div className="users-likes01">
-          <span className="users-text07">Joined</span>
+          <span className="users-text32">Joined</span>
         </div>
         <div className="users-vids-40-days">
-          <span className="users-text08">Videos 40 Days</span>
+          <span className="users-text33">Videos 40 Days</span>
         </div>
         <div className="users-status">
-          <span className="users-text09">Status</span>
+          <span className="users-text34">Bonus</span>
         </div>
       </div>
       <div className="users-table-body">
-        <div className="users-table-row">
-          <div className="users-user-id1">
-            <span className="users-text10">fdefrlkjrjh</span>
+        {data.users.map((user, index) => (
+          <div className="users-table-row" key={index}>
+            <div className="users-user-id1">
+              <span className="users-text35">{user.name}</span>
+            </div>
+            <div className="users-type1">
+              <span className="users-text36">
+                {user.role === "admin"
+                  ? "A"
+                  : user.role === "creator"
+                  ? "C"
+                  : "M"}
+              </span>
+            </div>
+            <div className="users-uploads1">
+              <span className="users-text37">{user.upload_count}</span>
+            </div>
+            <div className="users-downloads1">
+              <span className="users-text38">{user.download_count}</span>
+            </div>
+            <div className="users-views1">
+              <span className="users-text39">{user.views}</span>
+            </div>
+            <div className="users-likes02">
+              <span className="users-text40">{user.likes}</span>
+            </div>
+            <div className="users-tt03">
+              <span className="users-text41">
+                {user.tiktok.length === 0 ? "N" : "Y"}
+              </span>
+            </div>
+            <div className="users-yt1">
+              <span className="users-text42">
+                {user.youtube.length === 0 ? "N" : "Y"}
+              </span>
+            </div>
+            <div className="users-fb1">
+              <span className="users-text43">
+                {user.facebook.length === 0 ? "N" : "Y"}
+              </span>
+            </div>
+            <div className="users-tt04">
+              <span className="users-text44">
+                {user.instagram.length === 0 ? "N" : "Y"}
+              </span>
+            </div>
+            <div className="users-tt05">
+              <span className="users-text45">
+                {user.twitter.length === 0 ? "N" : "Y"}
+              </span>
+            </div>
+            <div className="users-likes03">
+              <span className="users-text46">
+                {getDateFromPydate(user.created_at)
+                  .getFullYear()
+                  .toString(10)
+                  .substr(-2)}
+                /
+                {getDateFromPydate(user.created_at).getMonth() + 1 < 10
+                  ? "0" + (getDateFromPydate(user.created_at).getMonth() + 1)
+                  : getDateFromPydate(user.created_at).getMonth() + 1}
+                /
+                {getDateFromPydate(user.created_at).getDate() < 10
+                  ? "0" + getDateFromPydate(user.created_at).getDate()
+                  : getDateFromPydate(user.created_at).getDate()}
+              </span>
+            </div>
+            <div className="users-vids-40-days1">
+              <span className="users-text47">
+                {user.first_40d_download_count}
+              </span>
+            </div>
+            <div className="users-status1">
+              <span className="users-text48">W</span>
+            </div>
           </div>
-          <div className="users-type1">
-            <span className="users-text11">C</span>
-          </div>
-          <div className="users-uploads1">
-            <span className="users-text12">4.3m</span>
-          </div>
-          <div className="users-downloads1">
-            <span className="users-text13">4.3m</span>
-          </div>
-          <div className="users-views1">
-            <span className="users-text14">4.3m</span>
-          </div>
-          <div className="users-likes02">
-            <span className="users-text15">4.3m</span>
-          </div>
-          <div className="users-tt03">
-            <span className="users-text16">Y</span>
-          </div>
-          <div className="users-yt1">
-            <span className="users-text17">Y</span>
-          </div>
-          <div className="users-fb1">
-            <span className="users-text18">Y</span>
-          </div>
-          <div className="users-tt04">
-            <span className="users-text19">Y</span>
-          </div>
-          <div className="users-tt05">
-            <span className="users-text20">Y</span>
-          </div>
-          <div className="users-likes03">
-            <span className="users-text21">23-06-13</span>
-          </div>
-          <div className="users-vids-40-days1">
-            <span className="users-text22">98</span>
-          </div>
-          <div className="users-status1">
-            <span className="users-text23">W</span>
-          </div>
-        </div>
-        <div className="users-table-row1">
-          <div className="users-user-id2">
-            <span className="users-text24">fdffgfgdfgfg</span>
-          </div>
-          <div className="users-type2">
-            <span className="users-text25">C</span>
-          </div>
-          <div className="users-uploads2">
-            <span className="users-text26">4.3m</span>
-          </div>
-          <div className="users-downloads2">
-            <span className="users-text27">4.3m</span>
-          </div>
-          <div className="users-views2">
-            <span className="users-text28">4.3m</span>
-          </div>
-          <div className="users-likes04">
-            <span className="users-text29">4.3m</span>
-          </div>
-          <div className="users-tt06">
-            <span className="users-text30">Y</span>
-          </div>
-          <div className="users-yt2">
-            <span className="users-text31">Y</span>
-          </div>
-          <div className="users-fb2">
-            <span className="users-text32">Y</span>
-          </div>
-          <div className="users-tt07">
-            <span className="users-text33">Y</span>
-          </div>
-          <div className="users-tt08">
-            <span className="users-text34">Y</span>
-          </div>
-          <div className="users-likes05">
-            <span className="users-text35">23-06-13</span>
-          </div>
-          <div className="users-vids-40-days2">
-            <span className="users-text36">98</span>
-          </div>
-          <div className="users-status2">
-            <span className="users-text37">W</span>
-          </div>
-        </div>
-        <div className="users-table-row2">
-          <div className="users-user-id3">
-            <span className="users-text38">ffdfkdfskdfjh</span>
-          </div>
-          <div className="users-type3">
-            <span className="users-text39">C</span>
-          </div>
-          <div className="users-uploads3">
-            <span className="users-text40">4.3m</span>
-          </div>
-          <div className="users-downloads3">
-            <span className="users-text41">4.3m</span>
-          </div>
-          <div className="users-views3">
-            <span className="users-text42">4.3m</span>
-          </div>
-          <div className="users-likes06">
-            <span className="users-text43">4.3m</span>
-          </div>
-          <div className="users-tt09">
-            <span className="users-text44">Y</span>
-          </div>
-          <div className="users-yt3">
-            <span className="users-text45">Y</span>
-          </div>
-          <div className="users-fb3">
-            <span className="users-text46">Y</span>
-          </div>
-          <div className="users-tt10">
-            <span className="users-text47">Y</span>
-          </div>
-          <div className="users-tt11">
-            <span className="users-text48">Y</span>
-          </div>
-          <div className="users-likes07">
-            <span className="users-text49">23-06-13</span>
-          </div>
-          <div className="users-vids-40-days3">
-            <span className="users-text50">98</span>
-          </div>
-          <div className="users-status3">
-            <span className="users-text51">W</span>
-          </div>
-        </div>
-        <div className="users-table-row3">
-          <div className="users-user-id4">
-            <span className="users-text52">frgtggnntff</span>
-          </div>
-          <div className="users-type4">
-            <span className="users-text53">C</span>
-          </div>
-          <div className="users-uploads4">
-            <span className="users-text54">4.3m</span>
-          </div>
-          <div className="users-downloads4">
-            <span className="users-text55">4.3m</span>
-          </div>
-          <div className="users-views4">
-            <span className="users-text56">4.3m</span>
-          </div>
-          <div className="users-likes08">
-            <span className="users-text57">4.3m</span>
-          </div>
-          <div className="users-tt12">
-            <span className="users-text58">Y</span>
-          </div>
-          <div className="users-yt4">
-            <span className="users-text59">Y</span>
-          </div>
-          <div className="users-fb4">
-            <span className="users-text60">Y</span>
-          </div>
-          <div className="users-tt13">
-            <span className="users-text61">Y</span>
-          </div>
-          <div className="users-tt14">
-            <span className="users-text62">Y</span>
-          </div>
-          <div className="users-likes09">
-            <span className="users-text63">23-06-13</span>
-          </div>
-          <div className="users-vids-40-days4">
-            <span className="users-text64">98</span>
-          </div>
-          <div className="users-status4">
-            <span className="users-text65">W</span>
-          </div>
-        </div>
+        ))}
       </div>
-      <div className="users-container2"></div>
-      <Footer rootClassName="footer-root-class-name5"></Footer>
+      <Footer rootClassName="footer-root-class-name6"></Footer>
     </div>
-  )
-}
+  );
+};
 
-export default Users
+export default Users;

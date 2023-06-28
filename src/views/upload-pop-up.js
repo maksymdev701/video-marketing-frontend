@@ -6,11 +6,14 @@ import { useUploadVideoMutation } from "../redux/api/video-api";
 import Spinner from "../components/spinner";
 
 import "./upload-pop-up.css";
+import { useSelector } from "react-redux";
 
 const UploadPopUp = (props) => {
   const inputFileRef = useRef(null);
   const modalRef = useRef(null);
   const [files, setFiles] = useState([]);
+  const [hashValues, setHashValues] = useState("#ai-designer");
+  const user = useSelector((state) => state.userState.user);
 
   const [uploadVideo, uploadStates] = useUploadVideoMutation();
 
@@ -91,7 +94,24 @@ const UploadPopUp = (props) => {
               Drag and drop files her or click to browse on your computer
             </span>
           </div>
+
           <div className="upload-pop-up-container2">
+            <div className="hashtag-description__container">
+              <div style={{ display: "flex", gap: 20, marginBottom: 10 }}>
+                <span className="hashtag-description">
+                  Add 3 to 5 more hashtags, separate them by a comma
+                </span>
+                <span style={{ flex: 1 }}>Creator Hashtag</span>
+              </div>
+              <div style={{ display: "flex", gap: 20 }}>
+                <input
+                  className="hashtag-input"
+                  value={hashValues}
+                  onChange={(e) => setHashValues(e.target.value)}
+                />
+                <span className="hashtag-creator">Creator Hashtag</span>
+              </div>
+            </div>
             <div
               className="upload-pop-up-container3"
               onClick={() => inputFileRef.current.click()}

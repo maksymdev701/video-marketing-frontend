@@ -7,10 +7,13 @@ import NavbarCreator from "../components/navbar-creator";
 import Channels from "../components/channels";
 import Footer from "../components/footer";
 import "./account.css";
+import FullScreenLoader from "../components/fullscreen-loader";
 
 const Account = () => {
   const [editable, setEditable] = useState(false);
   const user = useSelector((state) => state.userState.user);
+
+  if (!user) return <FullScreenLoader />;
 
   return (
     <div className="account-container">

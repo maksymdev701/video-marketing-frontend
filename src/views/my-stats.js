@@ -33,7 +33,6 @@ const MyStats = () => {
   }, [isLoading]);
 
   if (!user || isLoading) return <FullScreenLoader />;
-  console.log(data);
 
   const enrolDate = getDateFromPydate(user.created_at);
 

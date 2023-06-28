@@ -144,3 +144,29 @@
   display: flex;
   justify-content: space-between;
 }
+
+.hashtag-description__container {
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+}
+
+.hashtag-description {
+  flex: 4;
+}
+
+.hashtag-creator{
+  flex: 1;
+  background-color: white;
+  color: var(--dl-color-primary-100);
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.hashtag-input {
+  flex: 4;
+  background-color: white;
+  color: var(--dl-color-primary-100);
+  padding: 10px;
+  border-radius: 20px;
+}
