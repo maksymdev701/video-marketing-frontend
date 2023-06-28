@@ -50,7 +50,6 @@ const App = () => {
             <Route element={<Users />} path="/users" />
             <Route element={<Dashboard />} path="/dashboard" />
             <Route element={<Jackpot />} path="/jackpot" />
-            <Route element={<NewUserPopUp />} path="/new-user-pop-up" />
           </Route>
 
           <Route element={<RequireUser allowedRoles={["creator"]} />}>

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 
@@ -7,11 +7,13 @@ import "./users.css";
 import NavbarAdmin from "../components/navbar-admin";
 import Footer from "../components/footer";
 import FullScreenLoader from "../components/fullscreen-loader";
+import NewUserPopUp from "../views/new-user-pop-up";
 import { useGetUsersQuery } from "../redux/api/user-api";
 import { getDateFromPydate } from "../utils";
 
 const Users = () => {
   const { isLoading, isError, error, data } = useGetUsersQuery();
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     if (isError) {
@@ -133,7 +135,10 @@ const Users = () => {
             </span>
             <br></br>
           </span>
-          <button to="/new-user-pop-up" className="users-navlink button">
+          <button
+            className="users-navlink button"
+            onClick={() => setShowPopup(true)}
+          >
             ADD NEW USER
           </button>
         </div>
@@ -191,7 +196,7 @@ const Users = () => {
         </div>
       </div>
       <div className="users-table-body">
-        {data.users.map((user, index) => (
+        {data.map((user, index) => (
           <div className="users-table-row" key={index}>
             <div className="users-user-id1">
               <span className="users-text35">{user.name}</span>
@@ -270,6 +275,7 @@ const Users = () => {
         ))}
       </div>
       <Footer rootClassName="footer-root-class-name6"></Footer>
+      <NewUserPopUp isShown={showPopup} showFunc={setShowPopup} />
     </div>
   );
 };
