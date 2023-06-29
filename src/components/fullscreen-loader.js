@@ -14,7 +14,7 @@ const FullScreenLoader = () => {
         style={{
           height: "100%",
           width: 1400,
-          background: "#EA2049",
+          background: "#EA204933",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

@@ -7,6 +7,7 @@ import "./download.css";
 import NavbarCreator from "../components/navbar-creator";
 import ThumbnailMOB from "../components/thumbnail-mob";
 import Footer from "../components/footer";
+import FullScreenLoader from "../components/fullscreen-loader";
 
 import { useGetDownloadableVideosQuery } from "../redux/api/video-api";
 
@@ -106,20 +107,15 @@ const Download = () => {
             video&apos;s hashtags and paste them when you post the video.
           </span>
         </div>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name9"></ThumbnailMOB>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name1"></ThumbnailMOB>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name2"></ThumbnailMOB>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name19"></ThumbnailMOB>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name18"></ThumbnailMOB>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name17"></ThumbnailMOB>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name16"></ThumbnailMOB>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name15"></ThumbnailMOB>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name14"></ThumbnailMOB>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name13"></ThumbnailMOB>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name12"></ThumbnailMOB>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name11"></ThumbnailMOB>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name10"></ThumbnailMOB>
-        <ThumbnailMOB rootClassName="thumbnail-mob-root-class-name"></ThumbnailMOB>
+
+        {data.videos.map((video) => (
+          <ThumbnailMOB
+            key={video._id}
+            video_id={video._id}
+            video_src={video.src}
+            rootClassName="thumbnail-mob-root-class-name9"
+          ></ThumbnailMOB>
+        ))}
       </div>
       <Footer rootClassName="footer-root-class-name12"></Footer>
     </div>

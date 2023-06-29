@@ -7,6 +7,7 @@ export const videoApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${BASE_URL}/videos/`,
   }),
+  tagTypes: ["Videos"],
   endpoints: (builder) => ({
     uploadVideo: builder.mutation({
       query(data) {
@@ -25,18 +26,33 @@ export const videoApi = createApi({
           credentials: "include",
         };
       },
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.videos.map(({ id }) => ({
+                type: "Videos",
+                id,
+              })),
+              { type: "Videos", id: "LIST" },
+            ]
+          : [{ type: "Videos", id: "LIST" }],
     }),
     downloadVideo: builder.mutation({
-      query() {
+      query(data) {
         return {
           url: "download",
           method: "PUT",
           credentials: "include",
+          body: data,
         };
       },
+      invalidatesTags: [{ type: "Videos", id: "LIST" }],
     }),
   }),
 });
 
-export const { useUploadVideoMutation, useGetDownloadableVideosQuery } =
-  videoApi;
+export const {
+  useUploadVideoMutation,
+  useGetDownloadableVideosQuery,
+  useDownloadVideoMutation,
+} = videoApi;
