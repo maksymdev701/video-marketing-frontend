@@ -1,13 +1,37 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 
-import { Helmet } from 'react-helmet'
+import "./download.css";
 
-import NavbarCreator from '../components/navbar-creator'
-import ThumbnailMOB from '../components/thumbnail-mob'
-import Footer from '../components/footer'
-import './download.css'
+import NavbarCreator from "../components/navbar-creator";
+import ThumbnailMOB from "../components/thumbnail-mob";
+import Footer from "../components/footer";
 
-const Download = (props) => {
+import { useGetDownloadableVideosQuery } from "../redux/api/video-api";
+
+const Download = () => {
+  const { isLoading, isError, error, data } = useGetDownloadableVideosQuery();
+
+  useEffect(() => {
+    if (isError) {
+      if (Array.isArray(error.data.detail)) {
+        error.data.detail.forEach((el) =>
+          toast.error(`${el.loc[1]}: ${el.msg}`, {
+            position: "top-right",
+          })
+        );
+      } else {
+        toast.error(error.data.detail, {
+          position: "top-right",
+        });
+      }
+    }
+  }, [isLoading]);
+
+  if (isLoading) return <FullScreenLoader />;
+  console.log(data);
+
   return (
     <div className="download-container">
       <Helmet>
@@ -34,7 +58,7 @@ const Download = (props) => {
                 Remaining
                 <span
                   dangerouslySetInnerHTML={{
-                    __html: ' ',
+                    __html: " ",
                   }}
                 />
               </span>
@@ -99,7 +123,7 @@ const Download = (props) => {
       </div>
       <Footer rootClassName="footer-root-class-name12"></Footer>
     </div>
-  )
-}
+  );
+};
 
-export default Download
+export default Download;

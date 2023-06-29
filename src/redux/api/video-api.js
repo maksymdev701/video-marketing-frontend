@@ -26,6 +26,15 @@ export const videoApi = createApi({
         };
       },
     }),
+    downloadVideo: builder.mutation({
+      query() {
+        return {
+          url: "download",
+          method: "PUT",
+          credentials: "include",
+        };
+      },
+    }),
   }),
 });
 

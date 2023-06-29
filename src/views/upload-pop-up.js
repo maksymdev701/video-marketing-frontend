@@ -13,6 +13,7 @@ const UploadPopUp = (props) => {
   const modalRef = useRef(null);
   const [files, setFiles] = useState([]);
   const [hashValues, setHashValues] = useState("#ai-designer");
+  const [uploadDisabled, setUploadDisabled] = useState(true);
   const user = useSelector((state) => state.userState.user);
 
   const [uploadVideo, uploadStates] = useUploadVideoMutation();
@@ -28,8 +29,8 @@ const UploadPopUp = (props) => {
 
   const handleUpload = () => {
     const formData = new FormData();
-    formData.append("files", files[0]);
-    files.forEach((files) => formData.append("files", files));
+    files.forEach((file) => formData.append("files", file));
+    formData.append("hashtags", hashValues);
     uploadVideo(formData);
   };
 
@@ -107,7 +108,11 @@ const UploadPopUp = (props) => {
                 <input
                   className="hashtag-input"
                   value={hashValues}
-                  onChange={(e) => setHashValues(e.target.value)}
+                  onChange={(e) => {
+                    setHashValues(e.target.value);
+                    const hashArray = hashValues.trim().split(",");
+                    setUploadDisabled(!(hashArray.length >= 3));
+                  }}
                 />
                 <span className="hashtag-creator">{user.hashtag}</span>
               </div>
@@ -143,6 +148,7 @@ const UploadPopUp = (props) => {
             </div>
             <button
               className="upload-pop-up-navlink button"
+              disabled={uploadDisabled}
               onClick={handleUpload}
             >
               UPLOAD
