@@ -31,8 +31,6 @@ const Creator = () => {
 
   if (isLoading) return <FullScreenLoader />;
 
-  console.log(data);
-
   return (
     <div className="creator-container">
       <Helmet>

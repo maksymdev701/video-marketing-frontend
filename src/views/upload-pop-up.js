@@ -109,7 +109,7 @@ const UploadPopUp = (props) => {
                   value={hashValues}
                   onChange={(e) => setHashValues(e.target.value)}
                 />
-                <span className="hashtag-creator">Creator Hashtag</span>
+                <span className="hashtag-creator">{user.hashtag}</span>
               </div>
             </div>
             <div

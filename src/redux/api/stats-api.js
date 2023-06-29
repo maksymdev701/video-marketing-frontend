@@ -35,6 +35,15 @@ export const statsApi = createApi({
         };
       },
     }),
+    getAdminStats: builder.query({
+      query() {
+        return {
+          url: "admin",
+          credentials: "include",
+        };
+      },
+      transformResponse: (result) => result.info,
+    }),
   }),
 });
 
@@ -42,4 +51,5 @@ export const {
   useGetMyStatsQuery,
   useGetCreatorStatsQuery,
   useUpdateJackpotMutation,
+  useGetAdminStatsQuery,
 } = statsApi;
