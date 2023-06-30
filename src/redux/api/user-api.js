@@ -55,7 +55,54 @@ export const userApi = createApi({
       },
       invalidatesTags: [{ type: "Users", id: "LIST" }],
     }),
+    updateChannel: builder.mutation({
+      query(data) {
+        return {
+          url: "channel",
+          method: "PUT",
+          credentials: "include",
+          body: data,
+        };
+      },
+    }),
+    updateMobile: builder.mutation({
+      query(data) {
+        return {
+          url: "mobile",
+          method: "PATCH",
+          credentials: "include",
+          body: data,
+        };
+      },
+    }),
+    updateEmail: builder.mutation({
+      query(data) {
+        return {
+          url: "email",
+          method: "PATCH",
+          credentials: "include",
+          body: data,
+        };
+      },
+    }),
+    updatePassword: builder.mutation({
+      query(data) {
+        return {
+          url: "password",
+          method: "PATCH",
+          credentials: "include",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetUsersQuery, useCreateUserMutation } = userApi;
+export const {
+  useGetUsersQuery,
+  useCreateUserMutation,
+  useUpdateChannelMutation,
+  useUpdateMobileMutation,
+  useUpdateEmailMutation,
+  useUpdatePasswordMutation,
+} = userApi;

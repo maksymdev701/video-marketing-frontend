@@ -63,40 +63,27 @@ const Download = () => {
                   }}
                 />
               </span>
-              <span className="download-text3">3/3</span>
+              <span className="download-text3">{3 - data.day_download}/3</span>
             </div>
           </div>
           <div className="download-thumbnails">
-            <div className="download-thumbs">
-              <video
-                src
-                poster="https://play.teleporthq.io/static/svg/videoposter.svg"
-                className="download-video"
-              ></video>
-              <svg viewBox="0 0 1024 1024" className="download-icon">
-                <path d="M810 896v-598h-468v598h468zM810 214q34 0 60 25t26 59v598q0 34-26 60t-60 26h-468q-34 0-60-26t-26-60v-598q0-34 26-59t60-25h468zM682 42v86h-512v598h-84v-598q0-34 25-60t59-26h512z"></path>
-              </svg>
-            </div>
-            <div className="download-thumbs1">
-              <video
-                src
-                poster="https://play.teleporthq.io/static/svg/videoposter.svg"
-                className="download-video1"
-              ></video>
-              <svg viewBox="0 0 1024 1024" className="download-icon2">
-                <path d="M810 896v-598h-468v598h468zM810 214q34 0 60 25t26 59v598q0 34-26 60t-60 26h-468q-34 0-60-26t-26-60v-598q0-34 26-59t60-25h468zM682 42v86h-512v598h-84v-598q0-34 25-60t59-26h512z"></path>
-              </svg>
-            </div>
-            <div className="download-thumbs2">
-              <video
-                src
-                poster="https://play.teleporthq.io/static/svg/videoposter.svg"
-                className="download-video2"
-              ></video>
-              <svg viewBox="0 0 1024 1024" className="download-icon4">
-                <path d="M810 896v-598h-468v598h468zM810 214q34 0 60 25t26 59v598q0 34-26 60t-60 26h-468q-34 0-60-26t-26-60v-598q0-34 26-59t60-25h468zM682 42v86h-512v598h-84v-598q0-34 25-60t59-26h512z"></path>
-              </svg>
-            </div>
+            {data.today_list.map((row, index) => (
+              <div className="download-thumbs" key={index}>
+                <video
+                  poster="https://play.teleporthq.io/static/svg/videoposter.svg"
+                  className="download-video"
+                ></video>
+                <svg
+                  viewBox="0 0 1024 1024"
+                  className="download-icon"
+                  onClick={() => {
+                    navigator.clipboard.writeText(row.hashtags);
+                  }}
+                >
+                  <path d="M810 896v-598h-468v598h468zM810 214q34 0 60 25t26 59v598q0 34-26 60t-60 26h-468q-34 0-60-26t-26-60v-598q0-34 26-59t60-25h468zM682 42v86h-512v598h-84v-598q0-34 25-60t59-26h512z"></path>
+                </svg>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -118,6 +105,7 @@ const Download = () => {
         ))}
       </div>
       <Footer rootClassName="footer-root-class-name12"></Footer>
+      <input style={{ position: "absolute", left: -9999 }} />
     </div>
   );
 };

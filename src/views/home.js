@@ -59,6 +59,12 @@ const Home = (props) => {
     }
     setRegisterError("");
 
+    setNewEmail("");
+    setNewName("");
+    setNewMobile("");
+    setConfirm("");
+    setNewPassword("");
+
     registerUser({
       name: newName,
       email: newEmail,
@@ -72,7 +78,6 @@ const Home = (props) => {
   useEffect(() => {
     if (registerStates.isSuccess) {
       toast.success("User registered successfully");
-      navigate("");
     }
     if (registerStates.isError) {
       if (Array.isArray(registerStates.error.data.detail)) {
