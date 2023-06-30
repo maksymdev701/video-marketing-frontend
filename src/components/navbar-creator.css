@@ -55,6 +55,7 @@
 .navbar-creator-button {
   border-width: 0px;
   background-color: transparent;
+  cursor: pointer;
 }
 .navbar-creator-burger-menu {
   display: none;

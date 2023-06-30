@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useLogoutUserMutation } from "../redux/api/auth-api";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 
 import Language from "./language";
 import "./navbar-admin.css";
@@ -15,6 +16,7 @@ const NavbarAdmin = (props) => {
 
   useEffect(() => {
     if (isSuccess) {
+      toast.success("Logout successfully!");
       navigate("/");
     }
 

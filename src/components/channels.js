@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import "./channels.css";
 import { useSelector } from "react-redux";
 import { useUpdateChannelMutation } from "../redux/api/user-api";
+import { validateUrl } from "../utils";
 
 const Channels = (props) => {
   const formRef = useRef(null);
@@ -37,8 +38,13 @@ const Channels = (props) => {
   const handleSave = () => {
     let channelArray = [];
     const len = formRef.current.elements.length;
-    for (let i = 0; i < len; ++i)
+    for (let i = 0; i < len; ++i) {
+      if (!validateUrl(formRef.current.elements[i].value)) {
+        toast.error(`Input valid ${props.text} channel urls`);
+        return;
+      }
       channelArray.push(formRef.current.elements[i].value);
+    }
 
     updateChannel({ channel_type: props.text, channel_list: channelArray });
   };

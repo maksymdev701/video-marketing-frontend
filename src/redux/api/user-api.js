@@ -24,6 +24,7 @@ export const userApi = createApi({
           dispatch(setUser(data));
         } catch (error) {}
       },
+      providesTags: (result, error, id) => [{ type: "Users", id }],
     }),
     getUsers: builder.query({
       query() {
@@ -65,35 +66,22 @@ export const userApi = createApi({
         };
       },
     }),
-    updateMobile: builder.mutation({
+    updateUser: builder.mutation({
       query(data) {
         return {
-          url: "mobile",
+          url: "",
           method: "PATCH",
           credentials: "include",
           body: data,
         };
       },
-    }),
-    updateEmail: builder.mutation({
-      query(data) {
-        return {
-          url: "email",
-          method: "PATCH",
-          credentials: "include",
-          body: data,
-        };
-      },
-    }),
-    updatePassword: builder.mutation({
-      query(data) {
-        return {
-          url: "password",
-          method: "PATCH",
-          credentials: "include",
-          body: data,
-        };
-      },
+      invalidatesTags: (result, error, { id }) =>
+        result
+          ? [
+              { type: "Users", id },
+              { type: "Users", id: "LIST" },
+            ]
+          : [{ type: "Users", id: "LIST" }],
     }),
   }),
 });
@@ -102,7 +90,5 @@ export const {
   useGetUsersQuery,
   useCreateUserMutation,
   useUpdateChannelMutation,
-  useUpdateMobileMutation,
-  useUpdateEmailMutation,
-  useUpdatePasswordMutation,
+  useUpdateUserMutation,
 } = userApi;

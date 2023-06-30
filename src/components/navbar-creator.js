@@ -16,6 +16,7 @@ const NavbarCreator = (props) => {
 
   useEffect(() => {
     if (isSuccess) {
+      toast.success("Logout successfully!");
       navigate("/");
     }
 

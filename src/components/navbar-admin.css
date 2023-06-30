@@ -55,6 +55,7 @@
 .navbar-admin-button {
   border-width: 0px;
   background-color: transparent;
+  cursor: pointer;
 }
 .navbar-admin-burger-menu {
   display: none;

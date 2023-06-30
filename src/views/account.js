@@ -1,17 +1,41 @@
-import React, { useRef, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 import NavbarCreator from "../components/navbar-creator";
 import Channels from "../components/channels";
 import Footer from "../components/footer";
 import "./account.css";
 import FullScreenLoader from "../components/fullscreen-loader";
+import { useUpdateUserMutation } from "../redux/api/user-api";
+import { validateEmpty, validateEmail, validatePhoneNumber } from "../utils";
 
 const Account = () => {
   const [editable, setEditable] = useState(false);
   const user = useSelector((state) => state.userState.user);
+
+  const [mobile, setMobile] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [updateUser, { isLoading, isError, error, isSuccess }] =
+    useUpdateUserMutation();
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Profile updated successfully!");
+    }
+    if (isError) {
+      if (Array.isArray(error.data.detail)) {
+        error.data.detail.forEach((el) =>
+          toast.error(`${el.loc[1]}: ${el.msg}`)
+        );
+      } else {
+        toast.error(error.data.detail);
+      }
+    }
+  }, [isLoading]);
 
   if (!user) return <FullScreenLoader />;
 
@@ -29,20 +53,30 @@ const Account = () => {
           content="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/071bde54-b947-4b89-82c7-e6a339ef6380/186d5565-2c99-44f3-984e-7613e4faed3d?org_if_sml=1"
         />
       </Helmet>
-      <div className="account-sticky-nav-bar">
-        <NavbarCreator rootClassName="navbar-creator-root-class-name4"></NavbarCreator>
+      <div className="my-stats-sticky-nav-bar">
+        {user.role === "creator" ? (
+          <NavbarCreator rootClassName="navbar-creator-root-class-name4"></NavbarCreator>
+        ) : (
+          <NavbarMarketeer></NavbarMarketeer>
+        )}
       </div>
       <div className="account-heading-title">
         <h1 className="account-text">ACCOUNT</h1>
-        <div className="account-creator-number">
-          <span className="account-text01">Creator Hashtag</span>
-          <span className="account-text02">#eurasia00001</span>
-        </div>
+        {user.role === "creator" ? (
+          <div className="account-creator-number">
+            <span className="account-text01">Creator Hashtag</span>
+            <span className="account-text02">{user.hashtag}</span>
+          </div>
+        ) : null}
         <div className="account-container1">
           <a
             href="#mobile"
             className="account-text03"
-            onClick={() => setEditable(true)}
+            onClick={() => {
+              setEditable(true);
+              setEmail(user.email);
+              setMobile(user.mobile);
+            }}
           >
             CHANGE EMAIL OR MOBILE
           </a>
@@ -104,9 +138,10 @@ const Account = () => {
             <span className="account-text10">Mobile</span>
             {editable ? (
               <input
-                defaultValue={user.mobile}
+                value={mobile}
                 type="text"
                 className="account-textinput input"
+                onChange={(e) => setMobile(e.target.value)}
               />
             ) : (
               <span className="account-text11">{user.mobile}</span>
@@ -124,6 +159,18 @@ const Account = () => {
             className={`${
               editable ? "account-button2" : "account-button"
             } button`}
+            disabled={!editable}
+            onClick={() => {
+              if (validateEmpty(mobile)) {
+                toast.error("Mobile field can't be empty!");
+                return;
+              }
+              if (!validatePhoneNumber(mobile)) {
+                toast.error("Input valid mobile format!");
+                return;
+              }
+              updateUser({ field_name: "mobile", field_data: mobile });
+            }}
           >
             Change
             <span
@@ -138,12 +185,13 @@ const Account = () => {
             <span className="account-text14">Email</span>
             {editable ? (
               <input
-                defaultValue={user.email}
+                value={email}
                 type="text"
                 className="account-textinput input"
+                onChange={(e) => setEmail(e.target.value)}
               />
             ) : (
-              <span className="account-text15">Taylor@gmail.com</span>
+              <span className="account-text15">{email}</span>
             )}
           </div>
           <button
@@ -151,6 +199,18 @@ const Account = () => {
             className={`${
               editable ? "account-button2" : "account-button"
             } button`}
+            disabled={!editable}
+            onClick={() => {
+              if (validateEmpty(email)) {
+                toast.error("Email field can't be empty!");
+                return;
+              }
+              if (!validateEmail(email)) {
+                toast.error("Input valid email format!");
+                return;
+              }
+              updateUser({ field_name: "email", field_data: email });
+            }}
           >
             Change
             <span
@@ -171,20 +231,38 @@ const Account = () => {
           <div className="account-container7">
             <span className="account-text17">New Password</span>
             <input
-              type="text"
-              placeholder="placeholder"
+              type="password"
+              placeholder="Password"
               className="account-textinput input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="account-container8">
             <span className="account-text18">Confirm Password</span>
             <input
-              type="text"
-              placeholder="placeholder"
+              type="password"
+              placeholder="Confirm"
               className="account-textinput1 input"
+              value={confirm}
+              onChange={(e) => setConfirm(e.target.value)}
             />
           </div>
-          <button type="button" className="account-button2 button">
+          <button
+            type="button"
+            className="account-button2 button"
+            onClick={() => {
+              if (validateEmpty(password)) {
+                toast.error("Password can't be empty!");
+                return;
+              }
+              if (password !== confirm) {
+                toast.error("Password doesn't match!");
+                return;
+              }
+              updateUser({ field_name: "password", field_data: password });
+            }}
+          >
             CHANGE
           </button>
         </div>

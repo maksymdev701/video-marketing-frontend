@@ -50,6 +50,7 @@
 .navbar-marketeer-button {
   border-width: 0px;
   background-color: transparent;
+  cursor: pointer;
 }
 .navbar-marketeer-burger-menu {
   display: none;

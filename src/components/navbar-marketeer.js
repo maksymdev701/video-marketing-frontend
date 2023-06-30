@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useLogoutUserMutation } from "../redux/api/auth-api";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import Language from "./language";
@@ -15,6 +16,7 @@ const NavbarMarketeer = (props) => {
 
   useEffect(() => {
     if (isSuccess) {
+      toast.success("Logout successfully!");
       navigate("/");
     }
 
