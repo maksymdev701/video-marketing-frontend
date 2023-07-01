@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 import NavbarCreator from "../components/navbar-creator";
+import NavbarMarketeer from "../components/navbar-marketeer";
+import NavbarAdmin from "../components/navbar-admin";
 import Channels from "../components/channels";
 import Footer from "../components/footer";
 import "./account.css";
@@ -56,8 +58,10 @@ const Account = () => {
       <div className="my-stats-sticky-nav-bar">
         {user.role === "creator" ? (
           <NavbarCreator rootClassName="navbar-creator-root-class-name4"></NavbarCreator>
+        ) : user.role === "admin" ? (
+          <NavbarAdmin rootClassName="navbar-admin-root-class-name" />
         ) : (
-          <NavbarMarketeer></NavbarMarketeer>
+          <NavbarMarketeer />
         )}
       </div>
       <div className="account-heading-title">
@@ -130,7 +134,7 @@ const Account = () => {
         <div id="mobile" className="account-name">
           <div className="account-container3">
             <span className="account-text08">Name</span>
-            <span className="account-text09">Taylor Swift</span>
+            <span className="account-text09">{user.name}</span>
           </div>
         </div>
         <div className="account-mobile">
@@ -191,7 +195,7 @@ const Account = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             ) : (
-              <span className="account-text15">{email}</span>
+              <span className="account-text15">{user.email}</span>
             )}
           </div>
           <button

@@ -5,14 +5,18 @@ import { toast } from "react-toastify";
 import "./download.css";
 
 import NavbarCreator from "../components/navbar-creator";
+import NavbarAdmin from "../components/navbar-admin";
+import NavbarMarketeer from "../components/navbar-marketeer";
 import ThumbnailMOB from "../components/thumbnail-mob";
 import Footer from "../components/footer";
 import FullScreenLoader from "../components/fullscreen-loader";
 
 import { useGetDownloadableVideosQuery } from "../redux/api/video-api";
+import { useSelector } from "react-redux";
 
 const Download = () => {
   const { isLoading, isError, error, data } = useGetDownloadableVideosQuery();
+  const user = useSelector((state) => state.userState.user);
 
   useEffect(() => {
     if (isError) {
@@ -30,8 +34,7 @@ const Download = () => {
     }
   }, [isLoading]);
 
-  if (isLoading) return <FullScreenLoader />;
-  console.log(data);
+  if (isLoading || !user) return <FullScreenLoader />;
 
   return (
     <div className="download-container">
@@ -47,8 +50,14 @@ const Download = () => {
           content="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/071bde54-b947-4b89-82c7-e6a339ef6380/186d5565-2c99-44f3-984e-7613e4faed3d?org_if_sml=1"
         />
       </Helmet>
-      <div className="download-sticky-nav-bar">
-        <NavbarCreator rootClassName="navbar-creator-root-class-name7"></NavbarCreator>
+      <div className="my-stats-sticky-nav-bar">
+        {user.role === "creator" ? (
+          <NavbarCreator rootClassName="navbar-creator-root-class-name4"></NavbarCreator>
+        ) : user.role === "admin" ? (
+          <NavbarAdmin rootClassName="navbar-admin-root-class-name" />
+        ) : (
+          <NavbarMarketeer />
+        )}
       </div>
       <div className="download-stickhy-header">
         <div className="download-heading">

@@ -35,7 +35,6 @@ const App = () => {
             element={<RequireUser allowedRoles={["marketeer", "creator"]} />}
           >
             <Route element={<MyStats />} path="/my-stats" />
-            <Route element={<Download />} path="/download" />
           </Route>
 
           <Route
@@ -44,6 +43,7 @@ const App = () => {
             }
           >
             <Route element={<Account />} path="/account" />
+            <Route element={<Download />} path="/download" />
           </Route>
 
           <Route element={<RequireUser allowedRoles={["admin"]} />}>
