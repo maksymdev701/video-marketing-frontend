@@ -112,7 +112,12 @@ const Home = (props) => {
     if (loginStates.isSuccess) {
       toast.success("User login successfully");
       const role = loginStates.data.role;
-      const from = role === "admin" ? "/dashboard" : "/my-stats";
+      const from =
+        role === "admin"
+          ? "/dashboard"
+          : role === "creator"
+          ? "/creator"
+          : "/my-stats";
       navigate(from);
     }
     if (loginStates.isError) {
