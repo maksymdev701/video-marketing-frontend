@@ -21,6 +21,7 @@ import Contact from "./views/contact";
 import Jackpot from "./views/jackpot";
 import NewUserPopUp from "./views/new-user-pop-up";
 import { store } from "./redux/store";
+import Verify from "./views/verify";
 
 const App = () => {
   return (
@@ -29,6 +30,7 @@ const App = () => {
         <ToastContainer />
         <Routes>
           <Route element={<Home />} path="/" />
+          <Route element={<Verify />} path="/verify" />
           <Route element={<UnauthorizedPage />} path="/unauthorized" />
 
           <Route

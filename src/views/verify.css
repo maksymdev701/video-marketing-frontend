@@ -1,0 +1,21 @@
+.verify-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.verify-form {
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    padding: 50px;
+    border-radius: 30px;
+}
+
+.verify-button {
+    background-color: var(--dl-color-primary-100);
+    border-radius: var(--dl-radius-radius-radius20);
+    border: none;
+    margin-top: 30px;
+    color: white;
+    cursor: pointer;
+}

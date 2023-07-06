@@ -78,6 +78,7 @@ const Home = (props) => {
   useEffect(() => {
     if (registerStates.isSuccess) {
       toast.success("User registered successfully");
+      navigate("/verify");
     }
     if (registerStates.isError) {
       if (Array.isArray(registerStates.error.data.detail)) {

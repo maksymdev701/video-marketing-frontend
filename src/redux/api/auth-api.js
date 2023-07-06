@@ -38,8 +38,15 @@ export const authApi = createApi({
       query({ verificationCode }) {
         return {
           url: `verifyemail/${verificationCode}`,
-          method: "GET",
+          method: "PATCH",
+          credentials: "include",
         };
+      },
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          await dispatch(userApi.endpoints.getMe.initiate(null));
+        } catch (error) {}
       },
     }),
     logoutUser: builder.mutation({

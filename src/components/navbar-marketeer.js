@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLogoutUserMutation } from "../redux/api/auth-api";
 import PropTypes from "prop-types";
