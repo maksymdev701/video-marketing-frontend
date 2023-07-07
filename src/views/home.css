@@ -104,7 +104,7 @@
 }
 .home-navlink1 {
   color: var(--dl-color-primary-100);
-  align-self: center;
+  text-align: center;
   font-style: normal;
   font-weight: 500;
   text-decoration: none;
@@ -118,7 +118,11 @@
   margin-top: var(--dl-space-space-twounits);
   align-items: flex-start;
   margin-bottom: var(--dl-space-space-twounits);
-  background-image: linear-gradient(0deg, rgb(251, 64, 102) 2.00%,rgb(234, 32, 73) 100.00%);
+  background-image: linear-gradient(
+    0deg,
+    rgb(251, 64, 102) 2%,
+    rgb(234, 32, 73) 100%
+  );
 }
 .home-sign-up {
   width: 100%;
@@ -300,7 +304,7 @@
 
 .home-navlink3:disabled {
   background-color: #ea204988;
-  color: #FFFFFF88;
+  color: #ffffff88;
   cursor: not-allowed;
 }
 
@@ -309,13 +313,13 @@
   transition: all 0.3s ease-in-out;
 }
 
-@media(max-width: 1200px) {
+@media (max-width: 1200px) {
   .home-header {
     padding-left: var(--dl-space-space-twounits);
     padding-right: var(--dl-space-space-twounits);
   }
 }
-@media(max-width: 991px) {
+@media (max-width: 991px) {
   .home-navlink {
     border-radius: var(--dl-radius-radius-radius10);
   }
@@ -326,7 +330,7 @@
     border-radius: var(--dl-radius-radius-radius10);
   }
 }
-@media(max-width: 479px) {
+@media (max-width: 479px) {
   .home-header {
     height: 70px;
   }
@@ -354,5 +358,62 @@
   .home-navlink3 {
     color: var(--dl-color-primary-300);
     background-color: var(--dl-color-primary-100);
+  }
+
+  .home-container01,
+  .home-container02 {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .home-text01,
+  .home-text02,
+  .home-textinput,
+  .home-textinput1 {
+    width: 100%;
+  }
+
+  .home-email,
+  .home-password {
+    height: 85px;
+    padding-bottom: 0px;
+  }
+
+  .home-container04,
+  .home-container05,
+  .home-container06,
+  .home-container07,
+  .home-container08 {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .home-text04,
+  .home-text05,
+  .home-text09,
+  .home-text10,
+  .home-text11,
+  .home-textinput2,
+  .home-textinput3,
+  .home-textinput4,
+  .home-textinput5,
+  .home-textinput6,
+  .home-container09 {
+    width: 100%;
+  }
+
+  .home-name,
+  .home-email1,
+  .home-mobile,
+  .home-password1,
+  .home-confirm-passwordf {
+    height: 80px;
+    width: 100%;
+  }
+
+  .home-confirm-passwordf1 {
+    height: 150px;
+    width: 100%;
   }
 }

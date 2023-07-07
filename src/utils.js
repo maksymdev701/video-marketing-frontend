@@ -12,7 +12,7 @@ export function validateEmail(email) {
 }
 
 export function validatePhoneNumber(mobileNumber) {
-  const re = /^\+\d{1,3}\s\d{9}$/;
+  const re = /^([0|\+[0-9]{1,5})?\s([7-9][0-9]{9})$/;
   return re.test(mobileNumber);
 }
 

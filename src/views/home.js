@@ -237,7 +237,7 @@ const Home = (props) => {
           />
         </span>
         <br></br>
-        <span>Example: &quot;+33 555555555&quot;</span>
+        <span>Example: &quot;+33 75555555555&quot;</span>
       </span>
       <div className="home-mobile">
         <div className="home-container06">
