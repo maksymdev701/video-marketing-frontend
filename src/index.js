@@ -19,7 +19,6 @@ import UnauthorizedPage from "./views/unauthorized";
 import RequireUser from "./components/require-user";
 import Contact from "./views/contact";
 import Jackpot from "./views/jackpot";
-import NewUserPopUp from "./views/new-user-pop-up";
 import { store } from "./redux/store";
 import Verify from "./views/verify";
 
