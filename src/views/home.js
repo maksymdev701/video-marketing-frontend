@@ -12,9 +12,8 @@ import {
   useRegisterUserMutation,
 } from "../redux/api/auth-api";
 import TermsPopUp from "./terms-pop-up";
-import ForgotPWPopUp from "./forgot-pw-pop-up";
 
-const Home = () => {
+const Home = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginerror] = useState("");
@@ -28,7 +27,6 @@ const Home = () => {
   const [termCheck, setTermCheck] = useState(false);
 
   const [showTerms, setShowTerms] = useState(false);
-  const [showForgot, setShowForgot] = useState(false);
 
   const [loginUser, loginStates] = useLoginUserMutation();
   const [registerUser, registerStates] = useRegisterUserMutation();
@@ -193,13 +191,10 @@ const Home = () => {
       </div>
       <div className="home-forgot">
         <a
-          href="#"
+          href="https://example.com"
+          target="_blank"
           rel="noreferrer noopener"
           className="home-navlink1"
-          onClick={(event) => {
-            event.preventDefault();
-            setShowForgot(true);
-          }}
         >
           FORGOT PASSWORD
         </a>
@@ -321,7 +316,6 @@ const Home = () => {
         setShow={setShowTerms}
         setAccept={setTermCheck}
       />
-      <ForgotPWPopUp show={showForgot} setShow={setShowForgot} />
     </div>
   );
 };

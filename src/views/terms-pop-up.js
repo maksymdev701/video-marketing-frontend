@@ -27,7 +27,7 @@ const TermsPopUp = (props) => {
       className="terms-pop-up-container"
       style={{ display: props.show ? "flex" : "none" }}
     >
-      {/* <Helmet>
+      <Helmet>
         <title>Terms-PopUp - Eurasia Media Content</title>
         <meta
           property="og:title"
@@ -41,7 +41,7 @@ const TermsPopUp = (props) => {
           property="og:image"
           content="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/071bde54-b947-4b89-82c7-e6a339ef6380/186d5565-2c99-44f3-984e-7613e4faed3d?org_if_sml=1"
         />
-      </Helmet> */}
+      </Helmet>
       <div className="terms-pop-up-container1" ref={modalRef}>
         <div className="terms-pop-up-heading-title">
           <h1 className="terms-pop-up-text">TERMS AND PRIVACY</h1>
