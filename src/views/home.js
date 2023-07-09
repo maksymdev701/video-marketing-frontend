@@ -116,7 +116,6 @@ const Home = () => {
       toast.success("User login successfully");
       const role = loginStates.data.role;
       const verified = loginStates.data.verified;
-      console.log(verified);
       if (verified === false) navigate("/verify");
       else {
         const from = role === "admin" ? "/dashboard" : "account";
@@ -124,9 +123,7 @@ const Home = () => {
       }
     }
     if (loginStates.isError) {
-      console.log(loginStates);
       if (Array.isArray(loginStates.error.data.detail)) {
-        console.log(loginStates.error.data.detail);
         loginStates.error.data.detail.forEach((el) =>
           toast.error(`${el.loc[1]}: ${el.msg}`, {
             position: "top-right",

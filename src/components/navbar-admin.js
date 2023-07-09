@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useLogoutUserMutation } from "../redux/api/auth-api";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
@@ -9,6 +8,7 @@ import Language from "./language";
 import "./navbar-admin.css";
 
 const NavbarAdmin = (props) => {
+  const [showMobile, setShowMobile] = useState(false);
   const [logoutUser, { isLoading, isSuccess, error, isError }] =
     useLogoutUserMutation();
 
@@ -85,7 +85,11 @@ const NavbarAdmin = (props) => {
             {props.logout}
           </button>
         </div>
-        <div data-thq="thq-burger-menu" className="navbar-admin-burger-menu">
+        <div
+          data-thq="thq-burger-menu"
+          className="navbar-admin-burger-menu"
+          onClick={() => setShowMobile(!showMobile)}
+        >
           <svg viewBox="0 0 1024 1024" className="navbar-admin-icon">
             <path
               d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
@@ -93,7 +97,11 @@ const NavbarAdmin = (props) => {
             ></path>
           </svg>
         </div>
-        <div data-thq="thq-mobile-menu" className="navbar-admin-mobile-menu">
+        <div
+          data-thq="thq-mobile-menu"
+          className="navbar-admin-mobile-menu"
+          style={{ display: showMobile ? "block" : "none" }}
+        >
           <div
             data-thq="thq-mobile-menu-nav"
             data-role="Nav"
@@ -102,12 +110,13 @@ const NavbarAdmin = (props) => {
             <div className="navbar-admin-container1">
               <img
                 alt="image"
-                src="https://presentation-website-assets.teleporthq.io/logos/logo.png"
+                src="/eurasia%20media%20logo.svg"
                 className="navbar-admin-image1"
               />
               <div
                 data-thq="thq-close-menu"
                 className="navbar-admin-menu-close"
+                onClick={() => setShowMobile(false)}
               >
                 <svg viewBox="0 0 1024 1024" className="navbar-admin-icon02">
                   <path
@@ -122,22 +131,37 @@ const NavbarAdmin = (props) => {
               data-role="Nav"
               className="navbar-admin-nav2"
             >
-              <span className="navbar-admin-text">About</span>
-              <span className="navbar-admin-text1">Features</span>
-              <span className="navbar-admin-text2">Pricing</span>
-              <span className="navbar-admin-text3">Pricing</span>
-              <span className="navbar-admin-text4">Pricing</span>
-              <span className="navbar-admin-text5">Team</span>
-              <span className="navbar-admin-text6">Blog</span>
+              <Link to="/dashboard" className="navbar-admin-text">
+                {props.Dashboard}
+              </Link>
+              <Link to="/jackpot" className="navbar-admin-text1">
+                {props.Jackpot}
+              </Link>
+              <Link to="/users" className="navbar-admin-text2">
+                {props.Users}
+              </Link>
+              <Link to="/download" className="navbar-admin-text3">
+                {props.Download}
+              </Link>
+              <Link to="/account" className="navbar-admin-text4">
+                {props.Account}
+              </Link>
             </nav>
+            <Language
+              rootClassName="language-root-class-name4"
+              className=""
+            ></Language>
             <div className="navbar-admin-container2">
-              <button className="navbar-admin-login button">
-                {props.Login}
+              <button
+                type="button"
+                className="button navbar-admin-login"
+                onClick={() => logoutUser()}
+              >
+                Log Out
               </button>
-              <button className="button">Register</button>
             </div>
           </div>
-          <div className="navbar-admin-icon-group">
+          {/* <div className="navbar-admin-icon-group">
             <svg
               viewBox="0 0 950.8571428571428 1024"
               className="navbar-admin-icon04"
@@ -165,7 +189,7 @@ const NavbarAdmin = (props) => {
                 className=""
               ></path>
             </svg>
-          </div>
+          </div> */}
         </div>
       </header>
     </div>

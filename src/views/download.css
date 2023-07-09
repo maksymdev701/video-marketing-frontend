@@ -173,7 +173,7 @@
   display: flex;
   align-items: flex-start;
 }
-@media(max-width: 1200px) {
+@media (max-width: 1200px) {
   .download-sticky-nav-bar {
     align-items: center;
   }
@@ -274,17 +274,17 @@
     justify-content: center;
   }
 }
-@media(max-width: 991px) {
+@media (max-width: 991px) {
   .download-stickhy-header {
     background-color: #efefef;
   }
 }
-@media(max-width: 767px) {
+@media (max-width: 767px) {
   .download-sticky-nav-bar {
     height: 70px;
   }
   .download-stickhy-header {
-    margin-top: 70px;
+    margin-top: 100px;
   }
   .download-heading {
     height: 125px;
@@ -314,7 +314,7 @@
     gap: var(--dl-space-space-halfunit);
   }
 }
-@media(max-width: 479px) {
+@media (max-width: 479px) {
   .download-sticky-nav-bar {
     height: 70px;
   }

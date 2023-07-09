@@ -80,6 +80,16 @@ export const userApi = createApi({
             ]
           : [{ type: "Users", id: "LIST" }],
     }),
+    makeContact: builder.mutation({
+      query(data) {
+        return {
+          url: "users/contact",
+          method: "POST",
+          credentials: "include",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
@@ -88,4 +98,5 @@ export const {
   useCreateUserMutation,
   useUpdateChannelMutation,
   useUpdateUserMutation,
+  useMakeContactMutation,
 } = userApi;

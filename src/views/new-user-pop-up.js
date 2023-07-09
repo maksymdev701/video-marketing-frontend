@@ -4,7 +4,6 @@ import { toast } from "react-toastify";
 import { Helmet } from "react-helmet";
 
 import "./new-user-pop-up.css";
-import FullScreenLoader from "../components/fullscreen-loader";
 import { validateEmail, validatePhoneNumber, validateEmpty } from "../utils";
 import { useCreateUserMutation } from "../redux/api/user-api";
 

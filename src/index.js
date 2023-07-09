@@ -55,10 +55,10 @@ const App = () => {
 
           <Route element={<RequireUser allowedRoles={["creator"]} />}>
             <Route element={<Creator />} path="/creator" />
+            <Route element={<Contact />} path="/contact" />
           </Route>
 
           <Route element={<TermsPrivacy />} path="/terms-privacy" />
-          <Route element={<Contact />} path="/contact" />
         </Routes>
       </BrowserRouter>
     </Provider>
