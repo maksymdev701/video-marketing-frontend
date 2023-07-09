@@ -115,13 +115,13 @@ const Home = () => {
     if (loginStates.isSuccess) {
       toast.success("User login successfully");
       const role = loginStates.data.role;
-      const from =
-        role === "admin"
-          ? "/dashboard"
-          : role === "creator"
-          ? "/creator"
-          : "/my-stats";
-      navigate(from);
+      const verified = loginStates.data.verified;
+      console.log(verified);
+      if (verified === false) navigate("/verify");
+      else {
+        const from = role === "admin" ? "/dashboard" : "account";
+        navigate(from);
+      }
     }
     if (loginStates.isError) {
       console.log(loginStates);

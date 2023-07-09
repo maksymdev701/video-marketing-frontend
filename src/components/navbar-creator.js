@@ -31,6 +31,7 @@ const NavbarCreator = (props) => {
         toast.error(error.data.detail, {
           position: "top-right",
         });
+        navigate("/");
       }
     }
   }, [isLoading]);
@@ -41,12 +42,14 @@ const NavbarCreator = (props) => {
         data-thq="thq-navbar"
         className="navbar-creator-navbar-interactive"
       >
-        <img
-          alt={props.image_alt}
-          src={props.logo}
-          loading="eager"
-          className="navbar-creator-image"
-        />
+        <Link to="/">
+          <img
+            alt={props.image_alt}
+            src={props.logo}
+            loading="eager"
+            className="navbar-creator-image"
+          />
+        </Link>
         <div
           data-thq="thq-navbar-nav"
           data-role="Nav"

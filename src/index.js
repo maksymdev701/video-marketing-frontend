@@ -26,7 +26,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <ToastContainer />
+        <ToastContainer autoClose={1000} />
         <Routes>
           <Route element={<Home />} path="/" />
           <Route element={<Verify />} path="/verify" />

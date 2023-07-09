@@ -1,17 +1,16 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import customFetchBase from "./custom-fetchbase";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 export const statsApi = createApi({
   reducerPath: "statsApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${BASE_URL}/stats/`,
-  }),
+  baseQuery: customFetchBase,
   endpoints: (builder) => ({
     getMyStats: builder.query({
       query() {
         return {
-          url: "marketeer",
+          url: "stats/marketeer",
           credentials: "include",
         };
       },
@@ -20,7 +19,7 @@ export const statsApi = createApi({
     getCreatorStats: builder.query({
       query() {
         return {
-          url: "creator",
+          url: "stats/creator",
           credentials: "include",
         };
       },
@@ -29,7 +28,7 @@ export const statsApi = createApi({
     updateJackpot: builder.mutation({
       query(data) {
         return {
-          url: "jackpot",
+          url: "stats/jackpot",
           method: "POST",
           body: data,
         };
@@ -38,7 +37,7 @@ export const statsApi = createApi({
     getAdminStats: builder.query({
       query() {
         return {
-          url: "admin",
+          url: "stats/admin",
           credentials: "include",
         };
       },

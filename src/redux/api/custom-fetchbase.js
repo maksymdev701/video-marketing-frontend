@@ -1,8 +1,8 @@
 import { fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { Mutex } from "async-mutex";
-import { logout } from "../features/userSlice";
+import { logout } from "../features/user-slice";
 
-const baseUrl = `${process.env.REACT_APP_SERVER_ENDPOINT}/api/`;
+const baseUrl = `${process.env.REACT_APP_API_URL}`;
 
 // Create a new mutex
 const mutex = new Mutex();
@@ -15,8 +15,10 @@ const customFetchBase = async (args, api, extraOptions) => {
   // wait until the mutex is available without locking it
   await mutex.waitForUnlock();
   let result = await baseQuery(args, api, extraOptions);
-  if (!result.error || (result.error && !result.error.data)) return result;
-  if (result.error.data.message === "You are not logged in") {
+  if (!result.error || (result.error && !result.error.data.detail))
+    return result;
+  console.log(result.error);
+  if (result.error.data.detail === "You are not logged in") {
     if (!mutex.isLocked()) {
       const release = await mutex.acquire();
 

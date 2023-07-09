@@ -32,6 +32,7 @@ const NavbarMarketeer = (props) => {
           position: "top-right",
         });
       }
+      navigate("/");
     }
   }, [isLoading]);
 
@@ -41,12 +42,14 @@ const NavbarMarketeer = (props) => {
         data-thq="thq-navbar"
         className="navbar-marketeer-navbar-interactive"
       >
-        <img
-          alt={props.image_alt}
-          src={props.image_src}
-          loading="eager"
-          className="navbar-marketeer-image"
-        />
+        <Link to="/">
+          <img
+            alt={props.image_alt}
+            src={props.image_src}
+            loading="eager"
+            className="navbar-marketeer-image"
+          />
+        </Link>
         <div
           data-thq="thq-navbar-nav"
           data-role="Nav"

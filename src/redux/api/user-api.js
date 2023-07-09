@@ -1,19 +1,16 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { setUser } from "../features/user-slice";
-
-const BASE_URL = process.env.REACT_APP_API_URL;
+import customFetchBase from "./custom-fetchbase";
 
 export const userApi = createApi({
   reducerPath: "userApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${BASE_URL}/users/`,
-  }),
+  baseQuery: customFetchBase,
   tagTypes: ["Users"],
   endpoints: (builder) => ({
     getMe: builder.query({
       query() {
         return {
-          url: "me",
+          url: "users/me",
           credentials: "include",
         };
       },
@@ -29,7 +26,7 @@ export const userApi = createApi({
     getUsers: builder.query({
       query() {
         return {
-          url: "",
+          url: "users",
           credentials: "include",
         };
       },
@@ -48,7 +45,7 @@ export const userApi = createApi({
     createUser: builder.mutation({
       query(data) {
         return {
-          url: "",
+          url: "users",
           method: "POST",
           credentials: "include",
           body: data,
@@ -59,7 +56,7 @@ export const userApi = createApi({
     updateChannel: builder.mutation({
       query(data) {
         return {
-          url: "channel",
+          url: "users/channel",
           method: "PUT",
           credentials: "include",
           body: data,
@@ -69,7 +66,7 @@ export const userApi = createApi({
     updateUser: builder.mutation({
       query(data) {
         return {
-          url: "",
+          url: "users",
           method: "PATCH",
           credentials: "include",
           body: data,

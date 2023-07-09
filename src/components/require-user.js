@@ -23,6 +23,9 @@ const RequireUser = ({ allowedRoles }) => {
     return <FullScreenLoader />;
   }
 
+  if (user && !user.verified)
+    return <Navigate to="/verify" state={{ from: location }} replace />;
+
   if (cookies.logged_in || user) {
     if (user && allowedRoles.includes(user.role)) return <Outlet />;
   }

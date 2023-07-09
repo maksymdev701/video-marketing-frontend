@@ -32,18 +32,21 @@ const NavbarAdmin = (props) => {
           position: "top-right",
         });
       }
+      navigate("/");
     }
   }, [isLoading]);
 
   return (
     <div className={`navbar-admin-container ${props.rootClassName} `}>
       <header data-thq="thq-navbar" className="navbar-admin-navbar-interactive">
-        <img
-          alt={props.image_alt}
-          src={props.logo}
-          loading="eager"
-          className="navbar-admin-image"
-        />
+        <Link to="/">
+          <img
+            alt={props.image_alt}
+            src={props.logo}
+            loading="eager"
+            className="navbar-admin-image"
+          />
+        </Link>
         <div
           data-thq="thq-navbar-nav"
           data-role="Nav"

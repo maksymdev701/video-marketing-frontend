@@ -1,6 +1,4 @@
 import React, { useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
 
 import "./terms-pop-up.css";
@@ -27,21 +25,6 @@ const TermsPopUp = (props) => {
       className="terms-pop-up-container"
       style={{ display: props.show ? "flex" : "none" }}
     >
-      {/* <Helmet>
-        <title>Terms-PopUp - Eurasia Media Content</title>
-        <meta
-          property="og:title"
-          content="Terms-PopUp - Eurasia Media Content"
-        />
-        <meta
-          property="og:description"
-          content="Content platform for Eurasia Media Creators and Marketeers. "
-        />
-        <meta
-          property="og:image"
-          content="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/071bde54-b947-4b89-82c7-e6a339ef6380/186d5565-2c99-44f3-984e-7613e4faed3d?org_if_sml=1"
-        />
-      </Helmet> */}
       <div className="terms-pop-up-container1" ref={modalRef}>
         <div className="terms-pop-up-heading-title">
           <h1 className="terms-pop-up-text">TERMS AND PRIVACY</h1>

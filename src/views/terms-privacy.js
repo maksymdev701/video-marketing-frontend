@@ -1,12 +1,19 @@
-import React from 'react'
+import React from "react";
 
-import { Helmet } from 'react-helmet'
+import { Helmet } from "react-helmet";
+import { useSelector } from "react-redux";
 
-import NavbarCreator from '../components/navbar-creator'
-import Footer from '../components/footer'
-import './terms-privacy.css'
+import "./terms-privacy.css";
 
-const TermsPrivacy = (props) => {
+import NavbarMarketeer from "../components/navbar-marketeer";
+import NavbarCreator from "../components/navbar-creator";
+import Footer from "../components/footer";
+import FullScreenLoader from "../components/fullscreen-loader";
+
+const TermsPrivacy = () => {
+  const user = useSelector((state) => state.userState.user);
+  if (!user) return <FullScreenLoader />;
+
   return (
     <div className="terms-privacy-container">
       <Helmet>
@@ -25,7 +32,11 @@ const TermsPrivacy = (props) => {
         />
       </Helmet>
       <div className="terms-privacy-sticky-nav-bar">
-        <NavbarCreator rootClassName="navbar-creator-root-class-name3"></NavbarCreator>
+        {user.role === "marketeer" ? (
+          <NavbarMarketeer />
+        ) : (
+          <NavbarCreator rootClassName="navbar-creator-root-class-name3" />
+        )}
       </div>
       <div className="terms-privacy-heading-title">
         <h1 className="terms-privacy-text">TERMS AND PRIVACY</h1>
@@ -75,7 +86,7 @@ const TermsPrivacy = (props) => {
       </div>
       <Footer rootClassName="footer-root-class-name5"></Footer>
     </div>
-  )
-}
+  );
+};
 
-export default TermsPrivacy
+export default TermsPrivacy;

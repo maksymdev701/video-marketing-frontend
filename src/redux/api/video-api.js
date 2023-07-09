@@ -1,18 +1,17 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
+import customFetchBase from "./custom-fetchbase";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 export const videoApi = createApi({
   reducerPath: "videoApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${BASE_URL}/videos/`,
-  }),
+  baseQuery: customFetchBase,
   tagTypes: ["Videos"],
   endpoints: (builder) => ({
     uploadVideo: builder.mutation({
       query(data) {
         return {
-          url: "upload",
+          url: "videos/upload",
           method: "POST",
           credentials: "include",
           body: data,
@@ -22,7 +21,7 @@ export const videoApi = createApi({
     getDownloadableVideos: builder.query({
       query() {
         return {
-          url: "downloadable",
+          url: "videos/downloadable",
           credentials: "include",
         };
       },
@@ -40,7 +39,7 @@ export const videoApi = createApi({
     downloadVideo: builder.mutation({
       query(data) {
         return {
-          url: "download",
+          url: "videos/download",
           method: "PUT",
           credentials: "include",
           body: data,
