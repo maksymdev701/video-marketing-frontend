@@ -17,7 +17,6 @@ const customFetchBase = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
   if (!result.error || (result.error && !result.error.data.detail))
     return result;
-  console.log(result.error);
   if (result.error.data.detail === "You are not logged in") {
     if (!mutex.isLocked()) {
       const release = await mutex.acquire();
@@ -28,7 +27,7 @@ const customFetchBase = async (args, api, extraOptions) => {
           api,
           extraOptions
         );
-
+        console.log(refreshResult);
         if (refreshResult.data) {
           // Retry the initial query
           result = await baseQuery(args, api, extraOptions);

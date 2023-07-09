@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import "./channels.css";
 import { useSelector } from "react-redux";
 import { useUpdateChannelMutation } from "../redux/api/user-api";
-import { validateUrl } from "../utils";
+import { validateEmpty, validateUrl } from "../utils";
 
 const Channels = (props) => {
   const formRef = useRef(null);
@@ -16,34 +16,41 @@ const Channels = (props) => {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Channel added successfully!");
-    }
-    if (isError) {
-      if (Array.isArray(error.data.detail)) {
-        error.data.detail.forEach((el) =>
-          toast.error(`${el.loc[1]}: ${el.msg}`)
-        );
-      } else {
-        toast.error(error.data.detail);
-      }
+      toast.success("Channel saved successfully!");
     }
   }, [isLoading]);
 
   const handleAddChannel = () => {
-    const input = document.createElement("input");
-    input.className = "channels-textinput input";
-    formRef.current.appendChild(input);
+    const Input = document.createElement("input");
+    Input.className = "channels-textinput input";
+    const Div = document.createElement("div");
+    const Button = document.createElement("button");
+    Button.textContent = "DEL";
+    Button.className = "button channels-button";
+    Button.type = "button";
+    Button.style = "width: 50px";
+    Button.onclick = () => formRef.current.removeChild(Div);
+    Div.style = "display: flex; gap: 10px; margin-bottom: 10px;";
+    Div.appendChild(Input);
+    Div.appendChild(Button);
+
+    formRef.current.appendChild(Div);
   };
 
   const handleSave = () => {
     let channelArray = [];
-    const len = formRef.current.elements.length;
-    for (let i = 0; i < len; ++i) {
-      if (!validateUrl(formRef.current.elements[i].value)) {
+    const children = formRef.current.querySelectorAll("input");
+    for (let i = 0; i < children.length; ++i) {
+      console.log(children[i]);
+      if (validateEmpty(children[i].value)) {
+        toast.error("No empty channel inputs!");
+        return;
+      }
+      if (!validateUrl(children[i].value)) {
         toast.error(`Input valid ${props.text} channel urls`);
         return;
       }
-      channelArray.push(formRef.current.elements[i].value);
+      channelArray.push(children[i].value);
     }
 
     updateChannel({ channel_type: props.text, channel_list: channelArray });
@@ -77,12 +84,31 @@ const Channels = (props) => {
       <div className="channels-container">
         <form ref={formRef}>
           {channels.map((channel, index) => (
-            <input
-              type="text"
-              defaultValue={channel}
+            <div
+              style={{ display: "flex", gap: 10 }}
               key={index}
-              className="channels-textinput input"
-            />
+              name={`${props.text}-channel${index}`}
+            >
+              <input
+                type="text"
+                defaultValue={channel}
+                className="channels-textinput input"
+              />
+              <button
+                type="button"
+                className="button channels-button"
+                style={{ width: 50 }}
+                onClick={() =>
+                  formRef.current.removeChild(
+                    formRef.current.querySelector(
+                      `div[name="${props.text}-channel${index}"]`
+                    )
+                  )
+                }
+              >
+                DEL
+              </button>
+            </div>
           ))}
         </form>
         <div className="channels-container1">
@@ -112,7 +138,7 @@ Channels.defaultProps = {
   text: "TWITTER",
   rootClassName: "",
   textinput_placeholder1: "placeholder",
-  button: "Add Channel",
+  button: "Add",
 };
 
 Channels.propTypes = {
