@@ -12,7 +12,7 @@ const UploadPopUp = (props) => {
   const inputFileRef = useRef(null);
   const modalRef = useRef(null);
   const [files, setFiles] = useState([]);
-  const [hashValues, setHashValues] = useState("#ai-designer");
+  const [hashValues, setHashValues] = useState("#ai4brands");
   const [uploadDisabled, setUploadDisabled] = useState(true);
   const user = useSelector((state) => state.userState.user);
 

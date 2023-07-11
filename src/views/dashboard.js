@@ -225,7 +225,7 @@ const Dashboard = () => {
         {data.performance.map((row, index) => (
           <div className="dashboard-table-row" key={index}>
             <div className="dashboard-container14">
-              <span className="dashboard-text32">Jul</span>
+              <span className="dashboard-text32">{row.month_abbr}</span>
             </div>
             <div className="dashboard-container15">
               <span className="dashboard-text33">

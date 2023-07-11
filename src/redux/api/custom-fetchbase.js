@@ -33,7 +33,7 @@ const customFetchBase = async (args, api, extraOptions) => {
           result = await baseQuery(args, api, extraOptions);
         } else {
           api.dispatch(logout());
-          window.location.href = "/login";
+          window.location.href = "/";
         }
       } finally {
         // release must be called once the mutex should be released again.

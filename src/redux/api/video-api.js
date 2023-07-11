@@ -17,6 +17,7 @@ export const videoApi = createApi({
           body: data,
         };
       },
+      invalidatesTags: [{ type: "Videos", id: "LIST" }],
     }),
     getDownloadableVideos: builder.query({
       query() {

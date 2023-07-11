@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
+import VideoThumbnail from "react-video-thumbnail";
 
 import "./thumbnail-mob.css";
 
 import { useDownloadVideoMutation } from "../redux/api/video-api";
-import FullScreenLoader from "./fullscreen-loader";
 
 const ThumbnailMOB = (props) => {
   const [downloadVideo, { isLoading, isSuccess, isError, error, data }] =
@@ -14,12 +14,16 @@ const ThumbnailMOB = (props) => {
   useEffect(() => {
     if (isSuccess) {
       toast.success("Donwload Started!");
-      const link = document.createElement("a");
-      link.href = `${process.env.REACT_APP_STATIC_URL}/uploads/${data.src}`;
-      link.target = "_blank";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      fetch(`${process.env.REACT_APP_STATIC_URL}/uploads/${data.src}`)
+        .then((response) => response.blob())
+        .then((blob) => {
+          const url = window.URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", `${data.src}`);
+          document.body.appendChild(link);
+          link.click();
+        });
     }
     if (isError) {
       if (Array.isArray(error.data.detail)) {
@@ -34,11 +38,18 @@ const ThumbnailMOB = (props) => {
 
   return (
     <div className={`thumbnail-mob-container ${props.rootClassName} `}>
-      <video
+      {/* <video
         src={`${process.env.REACT_APP_STATIC_URL}/uploads/${props.video_src}`}
         poster="https://play.teleporthq.io/static/svg/videoposter.svg"
         className="thumbnail-mob-video"
-      ></video>
+      ></video> */}
+      <div className="thumbnail-mob-video">
+        <VideoThumbnail
+          videoUrl={`${process.env.REACT_APP_STATIC_URL}/uploads/${props.video_src}`}
+          width={135}
+          height={180}
+        />
+      </div>
       <div className="thumbnail-mob-id-author">
         <span className="thumbnail-mob-text">{props.Brand}</span>
         <div className="thumbnail-mob-container1">

@@ -65,7 +65,7 @@ const Jackpot = (props) => {
                 </div>
               </div>
               <h1 className="jackpot-text04 StatsBig">
-                €{data.jackpot.toLocaleString()}
+                €{((data.jackpot / 5) * 4).toLocaleString()}
               </h1>
               <span className="jackpot-text05 StatTitle">Jackpot</span>
               <span className="jackpot-text06">Total cash pool this month</span>
@@ -77,7 +77,7 @@ const Jackpot = (props) => {
                 </svg>
               </div>
               <h1 className="jackpot-text07 StatsBig">
-                €{(data.jackpot / 4).toLocaleString()}
+                €{(data.jackpot / 5).toLocaleString()}
               </h1>
               <span className="jackpot-text08 StatTitle">Champions Bonus</span>
               <span className="jackpot-text09">Champions Bonus this month</span>
