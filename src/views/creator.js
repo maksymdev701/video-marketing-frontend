@@ -79,7 +79,7 @@ const Creator = () => {
                 </div>
               </div>
               <h1 className="creator-text03 StatsBig">
-                €{data.jackpot.toLocaleString()}
+                €{((data.jackpot / 5) * 4).toLocaleString()}
               </h1>
               <span className="creator-text04 StatTitle">Jackpot</span>
               <span className="creator-text05">Total cash pool this month</span>
@@ -146,7 +146,7 @@ const Creator = () => {
                 </svg>
               </div>
               <h1 className="creator-text17 StatsBig">
-                €{(data.jackpot / 4).toLocaleString()}
+                €{(data.jackpot / 5).toLocaleString()}
               </h1>
               <span className="creator-text18 StatTitle">Champions Bonus</span>
               <span className="creator-text19">
@@ -223,7 +223,13 @@ const Creator = () => {
                 <span className="creator-text34">{champion.creator}</span>
               </div>
               <div className="creator-container16">
-                <span className="creator-text35">€5,000,000</span>
+                <span className="creator-text35">
+                  €
+                  {(
+                    (data.jackpot / 5 / data.total_uploads) *
+                    champion.uploads
+                  ).toLocaleString()}
+                </span>
               </div>
               <div className="creator-container17">
                 <span className="creator-text36">
@@ -264,7 +270,9 @@ const Creator = () => {
                 />
               </div>
             </div>
-            <h1 className="creator-text57 StatsBig">€800,000</h1>
+            <h1 className="creator-text57 StatsBig">
+              €{((data.jackpot / 5) * 4).toLocaleString()}
+            </h1>
             <span className="creator-text58 StatTitle">Jackpot</span>
             <span className="creator-text59">All-time emoney made</span>
           </div>
@@ -274,7 +282,9 @@ const Creator = () => {
                 <path d="M832 192v-128h-640v128h-192v128c0 106.038 85.958 192 192 192 20.076 0 39.43-3.086 57.62-8.802 46.174 66.008 116.608 113.796 198.38 130.396v198.406h-64c-70.694 0-128 57.306-128 128h512c0-70.694-57.306-128-128-128h-64v-198.406c81.772-16.6 152.206-64.386 198.38-130.396 18.19 5.716 37.544 8.802 57.62 8.802 106.042 0 192-85.962 192-192v-128h-192zM192 436c-63.962 0-116-52.038-116-116v-64h116v64c0 40.186 7.43 78.632 20.954 114.068-6.802 1.246-13.798 1.932-20.954 1.932zM948 320c0 63.962-52.038 116-116 116-7.156 0-14.152-0.686-20.954-1.932 13.524-35.436 20.954-73.882 20.954-114.068v-64h116v64z"></path>
               </svg>
             </div>
-            <h1 className="creator-text60 StatsBig">€10,000</h1>
+            <h1 className="creator-text60 StatsBig">
+              €{(data.jackpot / 5).toLocaleString()}
+            </h1>
             <span className="creator-text61 StatTitle">Champions Bonus</span>
             <span className="creator-text62">All-time money made</span>
           </div>

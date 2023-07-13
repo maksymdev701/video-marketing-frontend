@@ -113,7 +113,7 @@
 }
 @media (max-width: 479px) {
   .channels-channels {
-    padding-left: var(--dl-space-space-halfunit);
+    flex-direction: column;
   }
   .channels-logo {
     width: 25%;
@@ -121,8 +121,13 @@
     margin-right: var(--dl-space-space-unit);
   }
   .channels-container {
-    width: 70%;
+    width: 100%;
   }
+
+  .channels-container1 {
+    justify-content: center;
+  }
+
   .channels-button {
     align-self: flex-end;
   }

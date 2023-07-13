@@ -52,7 +52,7 @@
   min-width: 100%;
   transition: 0.3s;
   align-items: stretch;
-  border-color: #D9D9D9;
+  border-color: #d9d9d9;
   border-width: 1px;
   border-radius: 4px;
   flex-direction: column;
@@ -198,7 +198,9 @@
   font-weight: 500;
 }
 
-
-
-
-
+@media (max-width: 479px) {
+  .language-dropdown-list {
+    right: 0;
+    top: 100%;
+  }
+}
